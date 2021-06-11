@@ -1,0 +1,43 @@
+---
+title: "NDVI Literature Review"
+author: "Atticus Rex"
+date: "6/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Using the satellite-derived NDVI to assess ecological responses to environmental change [PDF](https://doi.org/10.1016/j.tree.2005.05.011)
+
+Pettorelli, N., Vik, J. O., Mysterud, A., Gaillard, J.-M., Tucker, C. J., & Stenseth, N. C.
+
+This paper is a highly-cited review of existing sources on NDVI data. It seeks to introduce and justify this index as an indicator for vegetative health to affect ecological changes, trophic interactions, vegetative health and animal dynamics. The text goes in-depth with respect to why we would care to use NDVI data, it covers different sources of NDVI data, it provides methods of interpreting and predicting NDVI outcomes, it provides a framework to correct for noise and error in NDVI measurements and many suggestions on other variables to correlate NDVI data with. Unfortunately, this paper is now 16 years old and the availability of NDVI data as well as other sources of satellite ecological data has changed substantially. The resolution has increased, the frequency of time series data has increased and thus the need to correct for the error they describe has decreased. If a pixel is split between land and water, for example, it will likely be an infinitesimally small part of the overall resolution and will not skew the overall results of future study. 
+
+## Counting and multidimensional poverty measurement [PDF](https://doi.org/10.1016/j.rse.2006.03.011)
+
+Julien, Y., Sobrino, J. A., &amp; Verhoef, W
+
+This paper examined a correlatory relationship between changes in surface temperatures, insinuated to be related to climate change with the NDVI index as a metric for vegetative health. 
+
+This paper examined a correlatory relationship between changes in surface temperatures, insinuated to be related to climate change with the NDVI index as a metric for vegetative health. The value in this paper comes in the mathematical methodologies that the paper used to document how it went about finding a correlated relationship, quantifying extents of correlation in temporal data like the one we are using in our research. This source also gave useful strategies on correction for data collection error, noise and inconsistencies as well as other sources of bias like cloud cover, satellite orbital drift, and things of that nature. It also emphasizes the importance of establishing a reasonable margin of error when comparing the results. The results of the paper show a somewhat strong correlatory relationship between the mean Land Surface Temperature and the NDVI. The limitations of this paper come in that this is only examining one metric and, in reality, if we are going to have a good predictor of NDVI or something else, we have to use other variables. There were some correlations but a lot of the noise and amplitude shifts could not be correlated with temperature and NDVI. Therefore, it is clear that there are more variables (obviously) that affect the overall vegetative health of a region. Also, the math in this paper is clear for the most part, but there are some very convoluted statistical inference techniques that could be much simpler in terms of what they are actually trying to do. 
+
+## Combining computer vision and deep learning to enable ultra-scale aerial phenotyping and precision agriculture: A case study of lettuce production [PDF](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6544649/)
+
+Bauer, A., Bostrom, A. G., Ball, J., Applegate, C., Cheng, T., Laycock, S., Rojas, S. M., Kirwan, J., &amp; Zhou, J.
+
+The use of aerial imagery to optimize agricultural production is not a new technique. However, advances in the last decade in the areas of machine learning and high-power analysis have opened the door for new prediction and interpretation techniques of agricultural production. This source shows the powerful potential for the use of aerial imaging that takes into account visible, infrared and ultraviolet spectrums of light to produce secondary indices of measurement like NDVI. This particular study looked at combining these indices and inputs from aerial data to create a high-precision neural network prediction model that is able to produce a 98% accurate assessment of lettuce production in the given crop. This paper is invaluable in providing a proof-of-concept study on a small scale to show that NDVI can be used in conjunction with other light-related variables to produce a highly accurate model for projected lettuce growth. This paper comes with some limitations in that the NDVI data was collected via a low-flying airplane rather than a satellite, meaning it has a resolution we simply do not have access to. Furthermore, it contains ground-truth measurements of lettuce growth to train the model that we just do not have access to either. However, this paper gives a useful interpretation of how to train a particular neural networks to accurately predict agricultural performance. It goes into partitioning the crop into uniform subsets which became the algorithm's inputs and then the farmers themselves physically measured lettuce growth in each of these areas to mark the outputs for the training and test sets. If we do go in a direction where machine learning is a particular methodology of interest, this paper validates that pursuit. 
+
+## Putting Landsat 8’s Bands to Work [Website](https://blog.mapbox.com/putting-landsat-8s-bands-to-work-631c4029e9d1)
+
+Lloyd, C.
+
+This is a comprehensive guide to the "Bands" of the Landsat 8 Satellite. This text guides the data acquisition and interpretation of the 11 light-related bands that the Landsat 8 satellite captures in high-resolution. One of them is the near-infrared band and another is the red light, which are used to produce the NDVI index. However, there are visible light sensors in the green, blue, ultraviolet and infrared regions of the electromagnetic spectrum. When determining a model of prediction, these other high-resolution imagesets that are of the same resolution scale as the NDVI set we currently have access to have the potential to provide an easy implementation to whichever predictive model we choose to employ. This article goes in-depth in analyzing an aerial photoanalysis of Los Angeles. One of the most salient parts of this article is the ability to reject areas of the map that are of zero interest, like bodies of water or areas of asphalt and concrete. Lloyd uses different light data to act as filters and then produces a new dataset with only the areas of interest as having any data associated with them. Furthermore, this article points out the use of Short Wave Infrared light (SWIR) to find the incidence of wet and dry earth as well as assessing the difference in soil makeup. The 8th band of the Landsat 8 Satellite actually has twice the resolution of all the other bands making it indispensable for our precision-focused analysis. Band 9 holds a very highly reflective wavelength sensor that is responsible solely for picking up the incidence of clouds. Bands 10 and 11 are in the more typical infrared range, and for this reason, they can determine the thermal distribution of the area in question. These metrics are going to be invaluable for our analysis of the Virginia region and this article provides a very succinct guide in understanding and applying them. 
+
+
+## Reference (APA) 
+1. Pettorelli, N., Vik, J. O., Mysterud, A., Gaillard, J.-M., Tucker, C. J., & Stenseth, N. C. (2005). Using the satellite-derived NDVI to assess ecological responses to environmental change. Trends in Ecology & Evolution, 20(9), 503–510. https://doi.org/10.1016/j.tree.2005.05.011 
+2. Julien, Y., Sobrino, J. A., &amp; Verhoef, W. (2006). Changes in land surface temperatures and NDVI values over Europe between 1982 and 1999. Remote Sensing of Environment, 103(1), 43–55. https://doi.org/10.1016/j.rse.2006.03.011 
+3. Bauer, A., Bostrom, A. G., Ball, J., Applegate, C., Cheng, T., Laycock, S., Rojas, S. M., Kirwan, J., &amp; Zhou, J. (2019). Combining computer vision and deep learning to enable ultra-scale aerial phenotyping and precision agriculture: A case study of lettuce production. Horticulture Research, 6(1). https://doi.org/10.1038/s41438-019-0151-5 
+4. Lloyd, C. (2017, June 29). Putting Landsat 8's Bands to Work. Medium. https://blog.mapbox.com/putting-landsat-8s-bands-to-work-631c4029e9d1. 
