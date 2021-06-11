@@ -15,7 +15,7 @@ Pettorelli, N., Vik, J. O., Mysterud, A., Gaillard, J.-M., Tucker, C. J., & Sten
 
 This paper is a highly-cited review of existing sources on NDVI data. It seeks to introduce and justify this index as an indicator for vegetative health to affect ecological changes, trophic interactions, vegetative health and animal dynamics. The text goes in-depth with respect to why we would care to use NDVI data, it covers different sources of NDVI data, it provides methods of interpreting and predicting NDVI outcomes, it provides a framework to correct for noise and error in NDVI measurements and many suggestions on other variables to correlate NDVI data with. Unfortunately, this paper is now 16 years old and the availability of NDVI data as well as other sources of satellite ecological data has changed substantially. The resolution has increased, the frequency of time series data has increased and thus the need to correct for the error they describe has decreased. If a pixel is split between land and water, for example, it will likely be an infinitesimally small part of the overall resolution and will not skew the overall results of future study. 
 
-## Counting and multidimensional poverty measurement [PDF](https://doi.org/10.1016/j.rse.2006.03.011)
+## Changes in land surface temperatures and NDVI values over Europe between 1982 and 1999. Remote Sensing of Environment [PDF](https://doi.org/10.1016/j.rse.2006.03.011)
 
 Julien, Y., Sobrino, J. A., &amp; Verhoef, W
 
