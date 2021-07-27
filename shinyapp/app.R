@@ -112,62 +112,35 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    )
                           ),
                           fluidRow(style = "margin: 6px;",
-                                   column(4,
+                                   column(6,
                                           h2(strong("Project Background")),
-                                          p(strong("The problem."), "Rural counties often face challenges in providing health care access to their residents given limited", a(href = "https://www.ruralhealthinfo.org/topics/hospitals", "health facilities", target = "_blank"), 
-                                            "available, lack of broadband infrastructure that makes it difficult to provide", a(href = "https://www.ruralhealthinfo.org/topics/telehealth", "telemedicine access", target = "_blank"), "or communicate health information, and individual-level", 
-                                            a(href = "https://www.ruralhealthinfo.org/topics/social-determinants-of-health", "inequalities", target = "_blank"), "that pose barriers to health care use and health 
-                                            behaviors. Identifying areas of high need or potential solutions may also be difficult for rural areas without adequate resources to acquire, analyze, and interpret 
-                                            relevant data."),
-                                          p(),
-                                          p(strong("The setting."), a(href = "https://www.co.patrick.va.us/", "Patrick County", target = "_blank"), "is a rural area in Virginia’s Central Piedmont, bordering North Carolina, 
-                                            with a declining population of approximately 17,600 people. Like many other rural areas in the United States, Patrick County is having difficulty meeting its residents’ health and quality of life needs. 
-                                            The county’s", a(href = "https://www.countyhealthrankings.org/app/virginia/2019/rankings/patrick/county/outcomes/overall/snapshot", "doctor to patient ratios", target = "_blank"), 
-                                            "of 3,530 to 1 for primary care providers, 8,840 to 1 for dentists, and 2,520 to 1 for mental health providers are 3- 
-                                            to 8-times higher than statewide, and the county’s only hospital closed in 2017. At the same time, the median income for Patrick County residents is $42,900, 
-                                            46% of children living in the county are eligible for free or reduced-price school lunch, and 12% of residents are food insecure."),
-                                          p(),
-                                          p(strong("The project."), "This University of Virginia", a(href = "https://biocomplexity.virginia.edu/social-decision-analytics", "Biocomplexity Institute", target = "_blank"), 
-                                            "Data Science for Public Good (DSPG) project aimed to build local capacity, leverage social and data science to address current and future resident well-being, and enhance 
-                                             data-driven decision making about rural health in Patrick County, Virginia.")
+                                          p(style= "text-align: justify;", "Human-nature interaction has long been a source of interest, study and analysis in the scientific community. As remote sensing and 
+                                          data analysis technology become more sophisticated, the ability to create robust models to accurately measure and predict environmental 
+                                          health increases. There are several pre-existing indices developed to determine the health of plant life from a remote sensing apparatus 
+                                          like an airplane or, more commonly, a satellite. The first is the Normalized Difference Vegetation Index (NDVI). This measurement combines
+                                           near-infrared (NIR) and red electromagnetic radiation from plants to produce an index that correlates closely with the true health of the 
+                                           plant. Another index is the Enhanced Vegetative Index (EVI). According to the United States Geological Survey (USGS), “EVI corrects for 
+                                           some atmospheric conditions and canopy background noise and is more sensitive in areas with dense vegetation”. This report uses these two
+                                            indices as the main quantifiers of botanical health within a given area. "),
+                                          
                                    ),
-                                   column(4,
-                                          h2(strong("Our Work")),
-                                          p("Our research team worked closely with Patrick County Extension Office, Virginia Department of Health, and Healthy Patrick County coalition stakeholders 
-                                            to identify the county’s priority challenges in the area of health. The research team reviewed a prior", a(href = "https://www.vdh.virginia.gov/west-piedmont/2020/05/27/patrick-county-health-needs-improvement-plan-completed/", 
-                                                                                                                                                       "community health assessment,", target = "blank"), a(href = "https://www.pubs.ext.vt.edu/VCE/VCE-596/VCE-596-75/VCE-1002-75.html", "situation analysis", target = "_blank"),
-                                            "relevant funding applications, and held a listening meeting with stakeholders to identify these challenges. Lack of 
-                                            data on health care access, food access as related to diabetes and heart disease prevalence, older adult health, and digital connectivity that would facilitate 
-                                            access to telemedicine emerged as key problems where providing actionable insights could address barriers to Patrick County residents’ health."),
-                                          p(),
-                                          p("We implemented the", a(href = "https://doi.org/10.1162/99608f92.2d83f7f5", "data science framework", target = "_blank"), "and identified, acquired, profiled, and used 
-                                            publicly available data to provide Patrick County with data-driven resources in each of the four priority areas. We:"),
-                                          tags$li("Provided census tract- and census block group-level maps of Patrick County residents'", strong("sociodemographic and socioeconomic characteristics,"), " highlighting underprivileged areas."),
-                                          tags$li("Created census tract-level maps on", strong("older adult health"), "to show the geographic distribution of older adults in the county by gender and
-                                                  type of disability, identifying areas where providing telehealth or travelling preventive care services may be particularly important."),
-                                          tags$li("Mapped residents'", strong("computing device and internet access"), "at census block group level, and constructed 10- and 15-minute isochrones (areas of equal travel time) from households to free
-                                                  wifi hotspots to highlight internet gaps that could suggest where new wi-fi hotspots could be optimally placed to provide internet access to more residents."),
-                                          tags$li("Calculated and mapped", strong("emergency medical service (EMS) station coverage"), "of households within 8-, 10-, and 12-minute travel times, identifying areas difficult to reach within 
-                                                   standard EMS travel thresholds."),
-                                          tags$li("Constructed", strong("food access"), "maps by census tract, 10- and 15-minute isochrones from households to grocery stores and farmers markets, and maps of food security resources in the county,
-                                                highlighting food deserts and areas that could benefit from programs facilitating access to fresh produce."),
-                                          p(),
-                                          p("This dashboard compiles our findings and allows extension professionals, stakeholders, and other users to explore the information interactively.")
+                                   column(6,
+                                          h2(strong("Data Background")),
+                                          p(style= "text-align: justify;","The Landsat 8 Satellite was launched in 2013 by NASA to collect high-resolution and electromagnetically diverse remote radiation data 
+                                          about the Earth’s surface. The Landsat senses data from eleven distinct wavelengths of light, from the visible red, green and blue 
+                                          wavelengths to infrared wavelengths for thermal imaging. These diverse ranges of sensing data hold the ability to filter and provide 
+                                          insight into aspects of regions that do not appear visible in a standard RGB photograph. Landsat 8 also has a relatively high resolution, 
+                                          with each pixel in most captured images corresponding to 30 meters of land area. In the panchromatic channel, used for detail, the 
+                                          satellite reaches a detail rating of 15 meters per pixel. The Landsat 8 also provides data for the emission of aerosols, land surface 
+                                          temperature, and cloud cover in a region of interest.
+                                          
+                                          This type of precise temporal sensing data provides a rich proving ground for many types of forecasting applications. One of the newest 
+                                          and most powerful forecasting technologies is neural-network based machine learning. Neural networks provide a robust framework for 
+                                          predicting nonlinear patterns from a large set of inputs. Using neural networks to accurately forecast metrics like NDVI and EVI would 
+                                          prove useful to inform land-use policy and identify areas of concern."),
+                                          
                                    ),
-                                   column(4,
-                                          h2(strong("Dashboard Aims")),
-                                          p("Our dashboard is aimed at:"),
-                                          p(strong("Patrick County extension professionals and the communities they serve."), "Information available through the interface helps extension 
-                                            agents identify areas where residents may not have access to internet, or areas with a high smartphone ownership share, suggesting what channels agents may 
-                                            want to use to disseminate health-related information most effectively. Information on older adult populations and grocery store access can help extension agents 
-                                            better understand where underserved populations live and how to advocate on their behalf."),
-                                          p(strong("Local health-related agencies and departments seeking data insights to inform their decision-making."), "For local stakeholders, identifying broadband 
-                                            access gaps that limit access to telemedicine, grocery store access gaps, and areas with high proportions of older adults with independent living difficulty can suggest 
-                                            optimal locations for placing free wifi hotspots, providing grocery delivery services, devising mobile health unit routes, or can inform other solutions that would benefit 
-                                            a broad population base."),
-                                          p(strong("State government representatives in the Virginia Department of Health and the State Office of Rural Health."), "These and similar stakeholders may 
-                                            need small or rural area-specific insights that Centers for Disease Control and other county-level datasets cannot provide.")
-                                   )
+                                   
                           ),
                           fluidRow(align = "center",
                                    p(tags$small(em('Last updated: August 2020'))))
@@ -215,104 +188,50 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    h1(strong("Using Landsat 8 Images"), align = "center"),
                                    #p("", style = "padding-top:10px;"),
                           )
-                 ),
-                 fluidRow(style = "margin: 6px;",
-                                   column(4,
+                 ,
+                 fluidRow(style = "margin: 6px;", align = "center",
+                                   column(11,
                                           h4(strong("")),
-                                          p("The Landsat 8 satellite is the latest satellite in a series of Landsat Predecessors dating back to the 1970’s. The data captured on the Landsat 8
-                                           satellite is useful for two reasons: firstly, the Landsat 8 uses high-resolution sensors. One pixel of the Landsat 8’s color bands corresponds to 
-                                           30 meters of earth, roughly the size of a baseball diamond as shown below. There is also a panchromatic band that takes photographs at the 15m 
-                                           resolution, allowing for even higher-detail interpolation of satellite images."),
-                                          img(src = "Picture1.png", style = "display: inline; float: center;"),
-                                          p("Another significant advantage of using Landsat 8 satellite imagery is the amount of wavelengths of light captured in each photograph. The Landsat 8
-                                           captures eleven distinct “bands” or wavelengths of light:"),
-                                          img(src = "Picture2.png", style = "display: inline; float: center;", width = "200px"),
-                                          img(src = "Picture3.png", style = "display: inline; float: left;"),
-                                          img(src = "Picture4.png", style = "display: inline; float: right;"),
-                                          p("The main data source for the images used in this project is the United States Geological Survey (USGS), via its Earth Engine Explorer interface. 
-                                          This report is in no way affiliated with the USGS.")
+                                          p(style = "text-align: justify;", "Launched in 2013, the Landsat 8 satellite is the latest in a series of Landsat predecessors dating back to the 1970’s. 
+                                          The data captured on the Landsat 8 satellite is useful for two reasons: firstly, it uses high-resolution sensors. One pixel 
+                                          of the Landsat 8’s color bands corresponds to 30 meters of earth, roughly the size of a baseball diamond as shown below. 
+                                          There is also a panchromatic band that takes photographs at the 15m resolution, allowing for even higher-detail interpolation 
+                                          of satellite images. The second significant advantage of using Landsat 8 satellite imagery is the diversity of wavelengths of light captured 
+                                          in each photograph. The Landsat 8 captures eleven distinct “bands” of light:  "),
+                                          img(src = "Picture1.png", style = "text-align:left;"),
+                                          img(src = "Picture2.png", style = "text-align:right;", width = "550px"),
+                                          
+                                          img(src = "Picture3.png", style = "display: inline;"),
+                                          img(src = "Picture4.png", style = "display: inline;"),
+                                          p(style = "text-align: justify;", "The landsat 8 captures images corresponding to roughly 250x250 kilometer sections of earth. The different bands can be 
+                                          combined to form all sorts of useful secondary images synthesized from the raw wavelengths. The image below is a true-color 
+                                          synthesis of the red, green and blue bands of the Landsat Satellite of Las Angeles, California: "),
+                                          img(src = "Picture5.png", style = "display: inline; float: center;")
                                    ),
                                    
                                             )
-                                          
-                                   
-                          
-                 ,
+                 ),
                  
                  # wifi-----------------------------------------------------------
-                 tabPanel("Connectivity", value = "connectivity",
+                 tabPanel("Derived Indices", value = "connectivity",
                           fluidRow(style = "margin: 6px;",
-                                   h1(strong("Digital Connectivity in Patrick County"), align = "center"),
+                                   h1(strong("Derived Indices"), align = "center"),
                                    p("", style = "padding-top:10px;"),
-                                   column(6,
-                                          h4(strong("Computing Device Ownership and Internet Access Type")),
-                                          p("Internet connection and computing devices are key for access to health information and participation in online health-related services like 
-                                             telemedicine. Rural areas frequently lack broadband access, experience low internet speeds, and have fewer internet providers available 
-                                             than urban areas. It is crucial to consider digital connectivity in improving health care access. We examined digital connectivity in Patrick County in two ways to 
-                                             provide the county with insights on where increasing connectivity would facilitate communicating health information and improve online health service access."),
-                                          p("We first examined access to computing devices and internet connection types in Patrick County. We used American Community Survey (ACS) data to 
-                                            obtain this information at census block group level. ACS is an ongoing yearly survey conducted by the U.S Census Bureau that samples households 
-                                            to compile 1-year and 5-year estimates of population sociodemographic and socioeconomic characteristics. We used the most 
-                                            recently available 5-year data from 2014/18 to calculate the percentage of the Patrick County residents with access to devices
-                                            and internet by census block group."),
-                                          br(),
-                                          selectInput("devicedrop", "Select Variable:", width = "100%", choices = c(
-                                            "Percent Households with No Computer" = "nocomputer",
-                                            "Percent Households with Laptop" = "laptop",
-                                            "Percent Households with Smartphone" = "smartphone",
-                                            "Percent Households with Tablet" = "tablet",
-                                            "Percent Households without Internet" = "nointernet",
-                                            "Percent Households with Satellite Internet" = "satellite",
-                                            "Percent Households with Cellular Internet" = "cellular",
-                                            "Percent Households with Broadband Internet" = "broadband")
+                                   column(12,
+                                          #h4(strong("Computing Device Ownership and Internet Access Type")),
+                                          p(style = "text-align: justify;", "Oftentimes, measurements of natural phenomena are too complex to be accurately 
+                                          described solely with remote sensing. Calculated indices bridge the gap between satellite imagery and internal 
+                                          vegetative processes. The indices of particular interest in this project are the Normalized Difference 
+                                          Vegetative Index (NDVI) and the Normalized Difference Water Index (NDWI). NDVI is strongly correlated to the 
+                                          overall health of plant foliage.1 The Normalized Difference Water Index is strongly correlated to the amount 
+                                          of water held in plant foliage.2 These are both complex phenomena that would be impossible to calculate for 
+                                          each individual pixel of a satellite image, but with the help of indices, we can synthesize a good indicator 
+                                          of vegetative health using relatively little reflection data. The different wavelengths of light captured by 
+                                          the Landsat 8 satellite can be used to synthesize the NDVI and NDWI indices of interest."),
+                                          
                                           ),
-                                          p(strong("Map of Access by Census Block Group")),
-                                          withSpinner(leafletOutput("deviceplot")),
-                                          p(tags$small("Data Source: American Community Survey 2014/18 5-Year Estimates."))),
-                                   column(6,
-                                          h4(strong("Free WiFi Hotspot Access")),
-                                          p("To understand internet access at a more granular level, we examined access to free wi-fi hotspots in the county."),
-                                          p("We obtained wifi hotspot locations using the Virginia Tech and CommonwealthConnect hotspot map. CommonwealthConnect identifies where people can connect to 
-                                            the internet for free, decreasing constraints placed on families that do not have internet access at home. We retrieved free internet locations in Patrick 
-                                            County from the data. We extracted locations of Patrick County residential properties from 2019 CoreLogic, a proprietary dataset for US real estate that 
-                                            includes information on building characteristics. Finally, we used the TravelTime Application Programming Interface (API) to calculate 10- and 15-minute 
-                                            car travel time isochrones—areas of equal travel time given a departure time and mode of transportation—from wifi hotspots. TravelTime API aggregates data 
-                                            from Open Street Maps, transport timetables and speed profiles to generate isochrones. Isochrones allowed us to identify wifi gaps, or clusters of 
-                                            residential properties that cannot reach a free internet location within a selected travel time range."),
-                                          p("This information equips extension agents with knowledge on how best to reach their constituents, as well as identifies internet gaps that suggest where 
-                                            new wi-fi hotspots could be optimally placed to provide internet access to more residents."),
-                                          br(),
-                                          tabsetPanel(
-                                            tabPanel("Explore Hotspot Coverage",
-                                                     p(""),
-                                                     selectInput("wifidrop", "Select Free Wifi Location:", width = "100%", choices = c(
-                                                       "Meadows of Dan Elementary School",
-                                                       "Woolwine Elementary School",
-                                                       "Patrick Springs Primary School",
-                                                       "Blue Ridge Elementary School",
-                                                       "Patrick County High School",
-                                                       "Stuart Elementary School",
-                                                       "Patrick County Branch Library",
-                                                       "Hardin Reynolds Memorial School",
-                                                       "Stuart Baptist Church",                        
-                                                       "Patrick Henry Community College Stuart Campus")),
-                                                     p(strong("Percent Residential Properties Covered")),
-                                                     withSpinner(tableOutput("wifitable")),
-                                                     p(strong("Map of Coverage")),
-                                                     withSpinner(leafletOutput("wifiplot")),
-                                                     p(tags$small("Data Sources: CommonwealthConnect, 2020; CoreLogic, 2019; TravelTime API."))
-                                            ),
-                                            tabPanel("Explore 'Deserts'",
-                                                     p(""),
-                                                     p(strong("Percent Residential Properties Covered")),
-                                                     withSpinner(tableOutput("allwifitable")),
-                                                     p(strong("Map of Free Wi-Fi Deserts")),
-                                                     withSpinner(leafletOutput("allwifi")),
-                                                     p(tags$small("Data Sources: CommonwealthConnect, 2020; CoreLogic, 2019; TravelTime API."))
+                                          
                                             )
-                                          )
-                                   )
-                          )
                  ),
                  
                  # ems -----------------------------------------------------------
