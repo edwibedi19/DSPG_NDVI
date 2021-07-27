@@ -21,6 +21,121 @@ options(spinner.color = prettyblue, spinner.color.background = '#ffffff', spinne
 
 colors <- c("#232d4b","#2c4f6b","#0e879c","#60999a","#d1e0bf","#d9e12b","#e6ce3a","#e6a01d","#e57200","#fdfdfd")
 
+# data -----------------------------------------------------------
+socdem_block <- readRDS("data/socdem_block.Rds")
+socdem_block <- st_transform(socdem_block, '+proj=longlat +datum=WGS84')
+
+socdem_tract <- readRDS("data/socdem_tract.Rds")
+socdem_tract <- st_transform(socdem_tract, '+proj=longlat +datum=WGS84')
+
+connectivity <- readRDS("data/connectivity.Rds")
+connectivity <- st_transform(connectivity, '+proj=longlat +datum=WGS84')
+
+ems <- readRDS("data/ems.Rds")
+ems <- st_transform(ems, '+proj=longlat +datum=WGS84')
+
+groceries <- readRDS("data/groceries.Rds")
+groceries <- st_as_sf(groceries, coords = c("longitude", "latitude"))
+st_crs(groceries) <- "+proj=longlat +datum=WGS84"
+groceries <- st_transform(groceries, '+proj=longlat +datum=WGS84')
+groceries <- subset(groceries, type == "farmers market" | type == "supermarket")
+groceries_latlong <- readRDS("data/groceries.Rds")
+groceries_latlong <- subset(groceries_latlong, type == "farmers market" | type == "supermarket")
+
+otherfood <- readRDS("data/otherfood.Rds")
+otherfood <- st_as_sf(otherfood, coords = c("longitude", "latitude"))
+st_crs(otherfood) <- "+proj=longlat +datum=WGS84"
+otherfood <- st_transform(otherfood, "+proj=longlat +datum=WGS84")
+
+usda <- readRDS("data/usda.Rds")
+usda <- st_transform(usda, '+proj=longlat +datum=WGS84')
+
+wifi <- readRDS("data/wifi.Rds")
+wifi <- st_as_sf(wifi, coords = c("longitude", "latitude"))
+st_crs(wifi) <- "+proj=longlat +datum=WGS84"
+wifi <- st_transform(wifi, '+proj=longlat +datum=WGS84')
+wifi_latlong <- readRDS("data/wifi.Rds")
+
+olderadults <- readRDS("data/olderadults.Rds")
+olderadults <- st_transform(olderadults, '+proj=longlat +datum=WGS84')
+
+residential <- readRDS("data/residential.Rds")
+residential <- st_as_sf(residential, coords = c("longitude", "latitude"))
+st_crs(residential) <- "+proj=longlat +datum=WGS84"
+residential <- st_transform(residential, '+proj=longlat +datum=WGS84')
+
+measures_table <- read_excel("data/Measures.xlsx")
+
+patrickborder <- readRDS("data/patrickborder.Rds")
+patrickborder <- st_transform(patrickborder, '+proj=longlat +datum=WGS84')
+
+grc_iso_10_1 <- readRDS("data/isochrones/grocery/grc_iso_10_1.RDS")
+grc_iso_10_2 <- readRDS("data/isochrones/grocery/grc_iso_10_2.RDS")
+grc_iso_10_3 <- readRDS("data/isochrones/grocery/grc_iso_10_3.RDS")
+grc_iso_10_4 <- readRDS("data/isochrones/grocery/grc_iso_10_4.RDS")
+grc_iso_10_5 <- readRDS("data/isochrones/grocery/grc_iso_10_5.RDS")
+grc_iso_10_6 <- readRDS("data/isochrones/grocery/grc_iso_10_6.RDS")
+grc_iso_10_7 <- readRDS("data/isochrones/grocery/grc_iso_10_7.RDS")
+
+grc_iso_15_1 <- readRDS("data/isochrones/grocery/grc_iso_15_1.RDS")
+grc_iso_15_2 <- readRDS("data/isochrones/grocery/grc_iso_15_2.RDS")
+grc_iso_15_3 <- readRDS("data/isochrones/grocery/grc_iso_15_3.RDS")
+grc_iso_15_4 <- readRDS("data/isochrones/grocery/grc_iso_15_4.RDS")
+grc_iso_15_5 <- readRDS("data/isochrones/grocery/grc_iso_15_5.RDS")
+grc_iso_15_6 <- readRDS("data/isochrones/grocery/grc_iso_15_6.RDS")
+grc_iso_15_7 <- readRDS("data/isochrones/grocery/grc_iso_15_7.RDS")
+
+wifi_iso_10_1 <- readRDS("data/isochrones/wifi/wifi_iso_10_1.RDS")
+wifi_iso_10_2 <- readRDS("data/isochrones/wifi/wifi_iso_10_2.RDS")
+wifi_iso_10_3 <- readRDS("data/isochrones/wifi/wifi_iso_10_3.RDS")
+wifi_iso_10_4 <- readRDS("data/isochrones/wifi/wifi_iso_10_4.RDS")
+wifi_iso_10_5 <- readRDS("data/isochrones/wifi/wifi_iso_10_5.RDS")
+wifi_iso_10_6 <- readRDS("data/isochrones/wifi/wifi_iso_10_6.RDS")
+wifi_iso_10_7 <- readRDS("data/isochrones/wifi/wifi_iso_10_7.RDS")
+wifi_iso_10_8 <- readRDS("data/isochrones/wifi/wifi_iso_10_8.RDS")
+wifi_iso_10_9 <- readRDS("data/isochrones/wifi/wifi_iso_10_9.RDS")
+wifi_iso_10_10 <- readRDS("data/isochrones/wifi/wifi_iso_10_10.RDS")
+
+wifi_iso_15_1 <- readRDS("data/isochrones/wifi/wifi_iso_15_1.RDS")
+wifi_iso_15_2 <- readRDS("data/isochrones/wifi/wifi_iso_15_2.RDS")
+wifi_iso_15_3 <- readRDS("data/isochrones/wifi/wifi_iso_15_3.RDS")
+wifi_iso_15_4 <- readRDS("data/isochrones/wifi/wifi_iso_15_4.RDS")
+wifi_iso_15_5 <- readRDS("data/isochrones/wifi/wifi_iso_15_5.RDS")
+wifi_iso_15_6 <- readRDS("data/isochrones/wifi/wifi_iso_15_6.RDS")
+wifi_iso_15_7 <- readRDS("data/isochrones/wifi/wifi_iso_15_7.RDS")
+wifi_iso_15_8 <- readRDS("data/isochrones/wifi/wifi_iso_15_8.RDS")
+wifi_iso_15_9 <- readRDS("data/isochrones/wifi/wifi_iso_15_9.RDS")
+wifi_iso_15_10 <- readRDS("data/isochrones/wifi/wifi_iso_15_10.RDS")
+
+ems_iso_8_1 <- readRDS("data/isochrones/ems/ems_iso_8_1.RDS")
+ems_iso_8_2 <- readRDS("data/isochrones/ems/ems_iso_8_2.RDS")
+ems_iso_8_3 <- readRDS("data/isochrones/ems/ems_iso_8_3.RDS")
+ems_iso_8_4 <- readRDS("data/isochrones/ems/ems_iso_8_4.RDS")
+ems_iso_8_5 <- readRDS("data/isochrones/ems/ems_iso_8_5.RDS")
+ems_iso_8_6 <- readRDS("data/isochrones/ems/ems_iso_8_6.RDS")
+ems_iso_8_7 <- readRDS("data/isochrones/ems/ems_iso_8_7.RDS")
+ems_iso_8_8 <- readRDS("data/isochrones/ems/ems_iso_8_8.RDS")
+ems_iso_8_9 <- readRDS("data/isochrones/ems/ems_iso_8_9.RDS")
+
+ems_iso_10_1 <- readRDS("data/isochrones/ems/ems_iso_10_1.RDS")
+ems_iso_10_2 <- readRDS("data/isochrones/ems/ems_iso_10_2.RDS")
+ems_iso_10_3 <- readRDS("data/isochrones/ems/ems_iso_10_3.RDS")
+ems_iso_10_4 <- readRDS("data/isochrones/ems/ems_iso_10_4.RDS")
+ems_iso_10_5 <- readRDS("data/isochrones/ems/ems_iso_10_5.RDS")
+ems_iso_10_6 <- readRDS("data/isochrones/ems/ems_iso_10_6.RDS")
+ems_iso_10_7 <- readRDS("data/isochrones/ems/ems_iso_10_7.RDS")
+ems_iso_10_8 <- readRDS("data/isochrones/ems/ems_iso_10_8.RDS")
+ems_iso_10_9 <- readRDS("data/isochrones/ems/ems_iso_10_9.RDS")
+
+ems_iso_12_1 <- readRDS("data/isochrones/ems/ems_iso_12_1.RDS")
+ems_iso_12_2 <- readRDS("data/isochrones/ems/ems_iso_12_2.RDS")
+ems_iso_12_3 <- readRDS("data/isochrones/ems/ems_iso_12_3.RDS")
+ems_iso_12_4 <- readRDS("data/isochrones/ems/ems_iso_12_4.RDS")
+ems_iso_12_5 <- readRDS("data/isochrones/ems/ems_iso_12_5.RDS")
+ems_iso_12_6 <- readRDS("data/isochrones/ems/ems_iso_12_6.RDS")
+ems_iso_12_7 <- readRDS("data/isochrones/ems/ems_iso_12_7.RDS")
+ems_iso_12_8 <- readRDS("data/isochrones/ems/ems_iso_12_8.RDS")
+ems_iso_12_9 <- readRDS("data/isochrones/ems/ems_iso_12_9.RDS")
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 jscode <- "function getUrlVars() {
@@ -69,7 +184,7 @@ jscode <- "function getUrlVars() {
            "
 
 # user -------------------------------------------------------------
-ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite Imagery",
+ui <- navbarPage(title = "I'm a title!",
                  selected = "overview",
                  theme = shinytheme("lumen"),
                  tags$head(tags$style('.selectize-dropdown {z-index: 10000}')),
@@ -103,10 +218,10 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    # br("", style = "padding-top:2px;"),
                                    # img(src = "uva-dspg-logo.jpg", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
                                    br(""),
-                                   h1(strong("Analyzing Vegetative Health using Landsat 8 Satellite Imagery"),
+                                   h1(strong("Analyzing Vegetative Health using​ Landsat 8 Satellite Imagery"),
                                       br(""),
                                       h4("Data Science for the Public Good Program"),
-                                      h4("Virginia Tech"),
+                                      h4("University of Virginia"),
                                       h4("Biocomplexity Insititute"),
                                       br()
                                    )
@@ -174,7 +289,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  ),
                  
                  # socio -----------------------------------------------------------
-                 tabPanel("NDVI Predictions", value = "socio",
+                 tabPanel("Sociodemographics", value = "socio",
                           fluidRow(style = "margin: 6px;",
                                    h1(strong("Patrick County Residents' Sociodemographic Characteristics"), align = "center"),
                                    p("", style = "padding-top:10px;"),
@@ -210,7 +325,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  ),
                  
                  # older -----------------------------------------------------------
-                 tabPanel("Tracking Coastal Flooding", value = "older",
+                 tabPanel("Older Adults", value = "older",
                           fluidRow(style = "margin: 6px;",
                                    h1(strong("Older Adults in Patrick County"), align = "center"),
                                    p("", style = "padding-top:10px;"),
