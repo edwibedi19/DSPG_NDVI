@@ -173,13 +173,13 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    p(tags$small(em('Last updated: August 2020'))))
                  ),
                  
-                 # socio -----------------------------------------------------------
-                 tabPanel("NDVI Predictions", value = "socio",
+                 # NDVI Predictions -----------------------------------------------------------
+                 tabPanel("NDVI Predictions", value = "ndvi",
                           fluidRow(style = "margin: 6px;",
                                    h1(strong("Floyd County: NDVI Predictions"), align = "center"),
                                    p("", style = "padding-top:10px;"),
                                    column(4,
-                                          h4(strong("Who does Patrick County Serve?")),
+                                          h4(strong("What's the deal with NDVI?")),
                                           p("We examined Patrick County population sociodemographic and socioeconomic characteristics to better understand the 
                                             residents that the county serves."),
                                           p("We retrieved American Community Survey (ACS) data to calculate this information at census block group and census 
@@ -188,24 +188,12 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                             employment, health insurance coverage, and other relevant characteristics."),
                                           p("Our interactive plots visualize census block-group level sociodemographic characteristics of Patrick County residents.")),
                                    column(8,
-                                          h4(strong("Map of Resident Socioeconomic Characteristics by Census Tract or Block Group")),
-                                          selectInput("sociodrop", "Select Variable:", width = "100%", choices = c(
-                                            "Percent Population Age 65 and Older" = "age65",
-                                            "Percent Population Age 18 and Younger" = "under18",
-                                            "Percent Population Black" = "black",
-                                            "Percent Population Hispanic" = "hispanic",
-                                            "Percent Population Without Bachelor's Degree" = "noba",
-                                            "Percent Population In Labor Force Unemployed" = "unempl",
-                                            "Percent Population Without Health Insurance" = "nohealthins2",
-                                            "Percent Population With Private Health Insurance" = "privateins",
-                                            "Percent Population With Public Health Insurance" = "publicins",
-                                            "Percent Population in Poverty" = "inpov",
-                                            "Percent Population Receiving SNAP Benefits or Public Assistance" = "snap",
-                                            "Total Population by Census Block Group" = "totalpop_bgrp",
-                                            "Total Population by Census Tract" = "totalpop_trct")
-                                          ),
-                                          withSpinner(leafletOutput("socioplot")),
-                                          p(tags$small("Data Source: American Community Survey 2014/18 5-Year Estimates."))
+                                          h4(strong("Map of NDVI Predictions")),
+                                          selectInput("NDVIPredictions", "Select Year:", width = "100%", choices = c(
+                                            "2021", "2022", "2023", "2024"
+                                          )),
+                                          p(strong("NDVI Predictions")),
+                                          withSpinner(leafletOutput("NDVIMap"))
                                    ))
                  ),
                  
@@ -217,26 +205,26 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           )
                  ),
                  fluidRow(style = "margin: 6px;",
-                                   column(4,
-                                          h4(strong("")),
-                                          p("The Landsat 8 satellite is the latest satellite in a series of Landsat Predecessors dating back to the 1970’s. The data captured on the Landsat 8
+                          column(4,
+                                 h4(strong("")),
+                                 p("The Landsat 8 satellite is the latest satellite in a series of Landsat Predecessors dating back to the 1970’s. The data captured on the Landsat 8
                                            satellite is useful for two reasons: firstly, the Landsat 8 uses high-resolution sensors. One pixel of the Landsat 8’s color bands corresponds to 
                                            30 meters of earth, roughly the size of a baseball diamond as shown below. There is also a panchromatic band that takes photographs at the 15m 
                                            resolution, allowing for even higher-detail interpolation of satellite images."),
-                                          img(src = "Picture1.png", style = "display: inline; float: center;"),
-                                          p("Another significant advantage of using Landsat 8 satellite imagery is the amount of wavelengths of light captured in each photograph. The Landsat 8
+                                 img(src = "Picture1.png", style = "display: inline; float: center;"),
+                                 p("Another significant advantage of using Landsat 8 satellite imagery is the amount of wavelengths of light captured in each photograph. The Landsat 8
                                            captures eleven distinct “bands” or wavelengths of light:"),
-                                          img(src = "Picture2.png", style = "display: inline; float: center;", width = "200px"),
-                                          img(src = "Picture3.png", style = "display: inline; float: left;"),
-                                          img(src = "Picture4.png", style = "display: inline; float: right;"),
-                                          p("The main data source for the images used in this project is the United States Geological Survey (USGS), via its Earth Engine Explorer interface. 
+                                 img(src = "Picture2.png", style = "display: inline; float: center;", width = "200px"),
+                                 img(src = "Picture3.png", style = "display: inline; float: left;"),
+                                 img(src = "Picture4.png", style = "display: inline; float: right;"),
+                                 p("The main data source for the images used in this project is the United States Geological Survey (USGS), via its Earth Engine Explorer interface. 
                                           This report is in no way affiliated with the USGS.")
-                                   ),
-                                   
-                                            )
-                                          
-                                   
+                          ),
                           
+                 )
+                 
+                 
+                 
                  ,
                  
                  # wifi-----------------------------------------------------------
@@ -576,6 +564,33 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
 server <- function(input, output, session) {
   # Run JavaScript Code
   runjs(jscode)
+  
+  
+  #NDVI Predictions
+  
+  var_NDVIMap <- reactive({
+    input$NDVIPredictions
+  })
+  
+  output$NDVIMap <- renderLeaflet({
+    if(var_NDVIMap() == "2021") {
+      ## outline of Floyd
+      virginiaCounty <- st_read("data/VirginiaCounty.shp")
+      f <- virginiaCounty[5,] %>% st_transform(crs = "+init=epsg:4326")
+      m <- leaflet(options = leafletOptions(minzoom = 19))   %>%
+        setView(lng = -80.3, lat = 36.91, zoom = 9.5) %>%
+        addProviderTiles("CartoDB") %>%
+        addPolygons(data = f,stroke = FALSE) 
+      m
+      #add in tiff prediction
+      #addGeoRaster(m, my_file,
+      #             colorOptions = colorOptions(
+      #               palette = hcl.colors(256, palette = "viridis")
+      #               , na.color = "transparent"
+      #             ))
+    }
+  })
+  
   
   # socio plots: done -----------------------------------------------------
   
