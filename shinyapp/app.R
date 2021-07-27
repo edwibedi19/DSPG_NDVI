@@ -226,7 +226,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           img(src = "Picture1.png", style = "display: inline; float: center;"),
                                           p("Another significant advantage of using Landsat 8 satellite imagery is the amount of wavelengths of light captured in each photograph. The Landsat 8
                                            captures eleven distinct “bands” or wavelengths of light:"),
-                                          img(src = "Picture2.png", style = "display: inline; float: center;"),
+                                          img(src = "Picture2.png", style = "display: inline; float: center;", width = "200px"),
                                           img(src = "Picture3.png", style = "display: inline; float: left;"),
                                           img(src = "Picture4.png", style = "display: inline; float: right;"),
                                           p("The main data source for the images used in this project is the United States Geological Survey (USGS), via its Earth Engine Explorer interface. 
