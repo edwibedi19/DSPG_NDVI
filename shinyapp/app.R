@@ -176,7 +176,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  # socio -----------------------------------------------------------
                  tabPanel("NDVI Predictions", value = "socio",
                           fluidRow(style = "margin: 6px;",
-                                   h1(strong("Patrick County Residents' Sociodemographic Characteristics"), align = "center"),
+                                   h1(strong("Floyd County: NDVI Predictions"), align = "center"),
                                    p("", style = "padding-top:10px;"),
                                    column(4,
                                           h4(strong("Who does Patrick County Serve?")),
