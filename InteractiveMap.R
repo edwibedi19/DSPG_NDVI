@@ -83,9 +83,6 @@ m <- leaflet(options = leafletOptions(minzoom = 19))   %>%
               stroke = FALSE) 
 
 
-m2 <- leaflet(options = leafletOptions(minzoom = 19))   %>%
-  setView(lng = -80.3, lat = 36.91, zoom = 9.5) %>%
-  addProviderTiles("CartoDB") 
 
 
 addGeoRaster(m2, my_file,
