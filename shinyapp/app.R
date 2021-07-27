@@ -210,22 +210,24 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  ),
                  
                  # older -----------------------------------------------------------
-                 tabPanel("Tracking Coastal Flooding", value = "older",
+                 tabPanel("Data and Methodology", value = "older",
                           fluidRow(style = "margin: 6px;",
-                                   h1(strong("Older Adults in Patrick County"), align = "center"),
+                                   h1(strong("Using Landsat 8 Images"), align = "center"),
                                    p("", style = "padding-top:10px;"),
                                    column(4,
-                                          h4(strong("Who are the Patrick County Older Adults?")),
-                                          p("The US population is aging, and in Patrick County, over 30% of residents are older adults aged 65 years and over. This represents more than 5,000
-                                           individuals with varying health conditions that may benefit from locally accessible health care and social services resources. However, access to 
-                                           health care resources is limited in rural areas, particularly for older adults in need of assistance with activities of daily life."),
-                                          p("To help Patrick County better understand their older adult population, we used American Community Survey (ACS) data and obtained census tract 
-                                           level information for the age group. ACS is an ongoing yearly survey conducted by the U.S Census Bureau that samples households to compile 
-                                           1-year and 5-year estimates of population sociodemographic and socioeconomic characteristics. We used the most recently available 5-year data
-                                           from 2014/18 to calculate the percentage of the Patrick County older adults with different types of disability, as well as provided information 
-                                           on their living arrangements and socioeconomic status. We provided all information at census tract level and by gender."),
-                                          p("These insights on the health and socioeconomic status of older adults in Patrick County can assist the county in identifying areas of high need 
-                                          for health care resources.")
+                                          h4(strong("")),
+                                          p("The Landsat 8 satellite is the latest satellite in a series of Landsat Predecessors dating back to the 1970’s. The data captured on the Landsat 8
+                                           satellite is useful for two reasons: firstly, the Landsat 8 uses high-resolution sensors. One pixel of the Landsat 8’s color bands corresponds to 
+                                           30 meters of earth, roughly the size of a baseball diamond as shown below. There is also a panchromatic band that takes photographs at the 15m 
+                                           resolution, allowing for even higher-detail interpolation of satellite images."),
+                                          img(src = "Picture1.png", style = "display: inline; float: center;"),
+                                          p("Another significant advantage of using Landsat 8 satellite imagery is the amount of wavelengths of light captured in each photograph. The Landsat 8
+                                           captures eleven distinct “bands” or wavelengths of light:"),
+                                          img(src = "Picture2.png", style = "display: inline; float: center;"),
+                                          img(src = "Picture3.png", style = "display: inline; float: left;"),
+                                          img(src = "Picture4.png", style = "display: inline; float: right;"),
+                                          p("The main data source for the images used in this project is the United States Geological Survey (USGS), via its Earth Engine Explorer interface. 
+                                          This report is in no way affiliated with the USGS.")
                                    ),
                                    column(8,
                                           h4(strong("Map of Older Adult Characteristics by Census Tract")),
