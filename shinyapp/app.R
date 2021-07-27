@@ -176,31 +176,6 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    h1(strong("Using Landsat 8 Images"), align = "center"),
                                    #p("", style = "padding-top:10px;"),
                           )
-<<<<<<< HEAD
-                 ),
-                 fluidRow(style = "margin: 6px;",
-                          column(4,
-                                 h4(strong("")),
-                                 p("The Landsat 8 satellite is the latest satellite in a series of Landsat Predecessors dating back to the 1970’s. The data captured on the Landsat 8
-                                           satellite is useful for two reasons: firstly, the Landsat 8 uses high-resolution sensors. One pixel of the Landsat 8’s color bands corresponds to 
-                                           30 meters of earth, roughly the size of a baseball diamond as shown below. There is also a panchromatic band that takes photographs at the 15m 
-                                           resolution, allowing for even higher-detail interpolation of satellite images."),
-                                 img(src = "Picture1.png", style = "display: inline; float: center;"),
-                                 p("Another significant advantage of using Landsat 8 satellite imagery is the amount of wavelengths of light captured in each photograph. The Landsat 8
-                                           captures eleven distinct “bands” or wavelengths of light:"),
-                                 img(src = "Picture2.png", style = "display: inline; float: center;", width = "200px"),
-                                 img(src = "Picture3.png", style = "display: inline; float: left;"),
-                                 img(src = "Picture4.png", style = "display: inline; float: right;"),
-                                 p("The main data source for the images used in this project is the United States Geological Survey (USGS), via its Earth Engine Explorer interface. 
-                                          This report is in no way affiliated with the USGS.")
-                          ),
-                          
-                 )
-                 
-                 
-                 
-                 ,
-=======
                  ,
                  fluidRow(style = "margin: 6px;", align = "center",
                                    column(11,
@@ -224,7 +199,6 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    
                                             )
                  ),
->>>>>>> ff9203c3ef2d66265996cba8a24842d90e6f683c
                  
                  # wifi-----------------------------------------------------------
                  tabPanel("Derived Indices", value = "connectivity",
