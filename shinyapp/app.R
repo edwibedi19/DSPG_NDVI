@@ -211,9 +211,12 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  
                  # older -----------------------------------------------------------
                  tabPanel("Data and Methodology", value = "older",
-                          fluidRow(style = "margin: 6px;",
+                          fluidRow(style = "margin: 6px;", align = "center",
                                    h1(strong("Using Landsat 8 Images"), align = "center"),
-                                   p("", style = "padding-top:10px;"),
+                                   #p("", style = "padding-top:10px;"),
+                          )
+                 ),
+                 fluidRow(style = "margin: 6px;",
                                    column(4,
                                           h4(strong("")),
                                           p("The Landsat 8 satellite is the latest satellite in a series of Landsat Predecessors dating back to the 1970’s. The data captured on the Landsat 8
@@ -229,46 +232,12 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           p("The main data source for the images used in this project is the United States Geological Survey (USGS), via its Earth Engine Explorer interface. 
                                           This report is in no way affiliated with the USGS.")
                                    ),
-                                   column(8,
-                                          h4(strong("Map of Older Adult Characteristics by Census Tract")),
-                                          tabsetPanel(
-                                            tabPanel("Older Adult Characteristics",
-                                                     p(""),
-                                                     column(6,
-                                                            selectInput("olddrop", "1. Select Variable:", width = "100%", choices = c(
-                                                              "Percent with Vision Difficulty" = "visdiff",
-                                                              "Percent with Ambulatory Difficulty" = "ambdiff",
-                                                              "Percent with Self-Care Difficulty" = "carediff",
-                                                              "Percent with Cognitive Difficulty" = "cogdiff",
-                                                              "Percent with Independent Living Difficulty" = "ildiff",
-                                                              "Percent with Any Disability" = "disab",
-                                                              "Percent in Poverty" = "inpov",
-                                                              "Percent in Labor Force" = "labfor")
-                                                            )),
-                                                     column(6,
-                                                            selectInput("oldspecdrop", "2. Select Group:", width = "100%", choices = c(
-                                                              "Total",
-                                                              "Female" = "_f",
-                                                              "Male" = "_m")
-                                                            )),
-                                                     withSpinner(leafletOutput("oldplot")),
-                                                     p(tags$small("Data Source: American Community Survey 2014/18 5-Year Estimates."))
-                                            ),
-                                            tabPanel("Older Adult Household Characteristics",
-                                                     p(""),
-                                                     selectInput("hhdrop", "Select Variable:", width = "100%", choices = c(
-                                                       "Percent Married Couple Households with one or more 60+ Member" = "hhsixty_married",
-                                                       "Percent Households with one or more 60+ Members" = "hhsixty_total",
-                                                       "Percent Single (no partner present) Households with one or more 60+ Member" = "hhsixty_nonfam",
-                                                       "Percent Households with one or more Male 60+ Members" = "hhsixty_mhh",
-                                                       "Households with one or more Female 60+ Members" = "hhsixty_fhh")),
-                                                     withSpinner(leafletOutput("householdplot")),
-                                                     p(tags$small("Data Source: American Community Survey 2014/18 5-Year Estimates."))
+                                   
                                             )
-                                          )
-                                   )
-                          )
-                 ),
+                                          
+                                   
+                          
+                 ,
                  
                  # wifi-----------------------------------------------------------
                  tabPanel("Connectivity", value = "connectivity",
