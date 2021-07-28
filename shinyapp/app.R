@@ -194,7 +194,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           p(style = "text-align: justify;", "The landsat 8 captures images corresponding to roughly 250x250 kilometer sections of earth. The different bands can be 
                                           combined to form all sorts of useful secondary images synthesized from the raw wavelengths. The image below is a true-color 
                                           synthesis of the red, green and blue bands of the Landsat Satellite of Las Angeles, California: "),
-                                          img(src = "Picture5.png", style = "display: inline; float: center;")
+                                          img(src = "Picture5.png", style = "display: inline; float: center;", width = "550px")
                                    ),
                                    
                                             )
@@ -216,8 +216,45 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           each individual pixel of a satellite image, but with the help of indices, we can synthesize a good indicator 
                                           of vegetative health using relatively little reflection data. The different wavelengths of light captured by 
                                           the Landsat 8 satellite can be used to synthesize the NDVI and NDWI indices of interest."),
+
+                                          p(strong(style = "text-align: justify;","Normalized Difference Vegetative Index")),
+                                          p(style = "text-align: justify;","The Normalized Difference Vegetative Index is derived from the Near Infrared 
+                                          light and Red light emitted from plants. It is described in detail in Nathalie Pettorelli’s book The Normalized 
+                                          Difference Vegetative Index. The Landsat 8 satellite picks up both of these wavelengths of light and the USGS 
+                                          provides a formula for producing this index:  "),
+
+                                          p(strong(align = "center","NDVI = (NIR - R) / (NIR + R)")),
+                                          p(style = "text-align: justify;", "This allows us to create aerial maps of NDVI for a particular region by 
+                                          combining individual pixel values. A Map of the NDVI of Southwest Virginia and Southern West Virginia is shown below: "),
+
+                                          p(style = "text-align: justify;", "This allows us to create aerial maps of NDVI for a particular region by 
+                                          From these types of aerial maps of derived indices, conclusions about distribution and trends in the vegetative
+                                           health over time and throughout the region can be made. The Normalized Difference Vegetative Index has been 
+                                           used in applications such as precision agriculture, drought monitoring, flooding and precipitation patterns.
+                                            The aim of this product is to predict the NDVI by combining the band data from the Landsat 8 satellite to
+                                             give an accurate prediction of how the NDVI will change over time."),  
+
+                                          img(src = "Picture6.png", style = "display: inline"),   
+
+                                          p(strong(style = "text-align: justify;","Normalized Difference Water Index")),
+                                          p(style = "text-align: justify;","The Normalized Difference Water Index (NDWI) is highly correlated with the
+                                           amount of water stored in the foliage of plants, as described in Bo-cai Gao’s paper.4 The NDWI is sometimes 
+                                           described as the Normalized Difference Water Index or NDMI. The USGS also provides a formula to calculate 
+                                           the NDWI by combining the Short-Wave Infrared with the Near Infrared wavelengths of light captured from the
+                                            Landsat 8 satellite in the following formula: "),
+
+                                          p(strong(align = "center","NDMI = (Band 5 – Band 6) / (Band 5 + Band 6)")),    
+
+                                          p(style = "text-align: justify;","Like the NDVI, this formula allows for per-pixel calculation of this index to describe the distribution of water
+                                           in vegetation throughout the new river valley, as shown in the image below:"),   
+
+                                          img(src = "Picture7.png", style = "display: inline;") 
+                                          p(style = "text-align: justify;","By synthesizing specific wavelengths of light, the raw images are encoded as 16-bit positive integer values, 
+                                          so they must be converted to 64-bit floating point values in order to be manipulated.  "),
+
+                                           
                                           
-                                          ),
+                                          )
                                           
                                             )
                  ),
