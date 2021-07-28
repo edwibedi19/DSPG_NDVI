@@ -176,33 +176,8 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    h1(strong("Using Landsat 8 Images"), align = "center"),
                                    #p("", style = "padding-top:10px;"),
                           )
-<<<<<<< HEAD
-                 ),
-                 fluidRow(style = "margin: 6px;",
-                          column(4,
-                                 h4(strong("")),
-                                 p("The Landsat 8 satellite is the latest satellite in a series of Landsat Predecessors dating back to the 1970’s. The data captured on the Landsat 8
-                                           satellite is useful for two reasons: firstly, the Landsat 8 uses high-resolution sensors. One pixel of the Landsat 8’s color bands corresponds to 
-                                           30 meters of earth, roughly the size of a baseball diamond as shown below. There is also a panchromatic band that takes photographs at the 15m 
-                                           resolution, allowing for even higher-detail interpolation of satellite images."),
-                                 img(src = "Picture1.png", style = "display: inline; float: center;"),
-                                 p("Another significant advantage of using Landsat 8 satellite imagery is the amount of wavelengths of light captured in each photograph. The Landsat 8
-                                           captures eleven distinct “bands” or wavelengths of light:"),
-                                 img(src = "Picture2.png", style = "display: inline; float: center;", width = "200px"),
-                                 img(src = "Picture3.png", style = "display: inline; float: left;"),
-                                 img(src = "Picture4.png", style = "display: inline; float: right;"),
-                                 p("The main data source for the images used in this project is the United States Geological Survey (USGS), via its Earth Engine Explorer interface. 
-                                          This report is in no way affiliated with the USGS.")
-                          ),
-                          
-                 )
-                 
-                 
-                 
-                 ,
-=======
-                 ,
-                 fluidRow(style = "margin: 6px;", align = "center",
+                          ,
+                          fluidRow(style = "margin: 6px;", align = "center",
                                    column(11,
                                           h4(strong("")),
                                           p(style = "text-align: justify;", "Launched in 2013, the Landsat 8 satellite is the latest in a series of Landsat predecessors dating back to the 1970’s. 
@@ -219,12 +194,11 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           p(style = "text-align: justify;", "The landsat 8 captures images corresponding to roughly 250x250 kilometer sections of earth. The different bands can be 
                                           combined to form all sorts of useful secondary images synthesized from the raw wavelengths. The image below is a true-color 
                                           synthesis of the red, green and blue bands of the Landsat Satellite of Las Angeles, California: "),
-                                          img(src = "Picture5.png", style = "display: inline; float: center;")
+                                          img(src = "Picture5.png", style = "display: inline; float: center;", width = "550px")
                                    ),
                                    
-                                            )
+                          )
                  ),
->>>>>>> ff9203c3ef2d66265996cba8a24842d90e6f683c
                  
                  # wifi-----------------------------------------------------------
                  tabPanel("Derived Indices", value = "connectivity",
@@ -243,64 +217,106 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           of vegetative health using relatively little reflection data. The different wavelengths of light captured by 
                                           the Landsat 8 satellite can be used to synthesize the NDVI and NDWI indices of interest."),
                                           
-                                          ),
+                                          p(strong(style = "text-align: justify;","Normalized Difference Vegetative Index")),
+                                          p(style = "text-align: justify;","The Normalized Difference Vegetative Index is derived from the Near Infrared 
+                                          light and Red light emitted from plants. It is described in detail in Nathalie Pettorelli’s book The Normalized 
+                                          Difference Vegetative Index. The Landsat 8 satellite picks up both of these wavelengths of light and the USGS 
+                                          provides a formula for producing this index:  "),
                                           
-                                            )
+                                          p(strong(align = "center","NDVI = (NIR - R) / (NIR + R)")),
+                                          p(style = "text-align: justify;", "This allows us to create aerial maps of NDVI for a particular region by 
+                                          combining individual pixel values. A Map of the NDVI of Southwest Virginia and Southern West Virginia is shown below: "),
+                                          
+                                          p(style = "text-align: justify;", "This allows us to create aerial maps of NDVI for a particular region by 
+                                          From these types of aerial maps of derived indices, conclusions about distribution and trends in the vegetative
+                                           health over time and throughout the region can be made. The Normalized Difference Vegetative Index has been 
+                                           used in applications such as precision agriculture, drought monitoring, flooding and precipitation patterns.
+                                            The aim of this product is to predict the NDVI by combining the band data from the Landsat 8 satellite to
+                                             give an accurate prediction of how the NDVI will change over time."),  
+                                          
+                                          img(src = "Picture6.png", style = "display: inline"),   
+                                          
+                                          p(strong(style = "text-align: justify;","Normalized Difference Water Index")),
+                                          p(style = "text-align: justify;","The Normalized Difference Water Index (NDWI) is highly correlated with the
+                                           amount of water stored in the foliage of plants, as described in Bo-cai Gao’s paper.4 The NDWI is sometimes 
+                                           described as the Normalized Difference Water Index or NDMI. The USGS also provides a formula to calculate 
+                                           the NDWI by combining the Short-Wave Infrared with the Near Infrared wavelengths of light captured from the
+                                            Landsat 8 satellite in the following formula: "),
+                                          
+                                          p(strong(align = "center","NDMI = (Band 5 – Band 6) / (Band 5 + Band 6)")),    
+                                          
+                                          p(style = "text-align: justify;","Like the NDVI, this formula allows for per-pixel calculation of this index to describe the distribution of water
+                                           in vegetation throughout the new river valley, as shown in the image below:"),   
+                                          
+                                          img(src = "Picture7.png", style = "display: inline;"), 
+                                          p(style = "text-align: justify;","By synthesizing specific wavelengths of light, the raw images are encoded as 16-bit positive integer values, 
+                                          so they must be converted to 64-bit floating point values in order to be manipulated.  ")
+                                          
+                                          
+                                          
+                                   )
+                                   
+                          )
                  ),
                  
                  # ems -----------------------------------------------------------
-                 tabPanel("Health Care Access", value = "ems",
+                 tabPanel("ML Methodolgy and Results", value = "ml",
+                          
                           fluidRow(style = "margin: 6px;",
-                                   h1(strong("Health Care Access in Patrick County"), align = "center"),
+                                   h1(strong("Machine Learning Methodology"), align = "center"),
                                    p("", style = "padding-top:10px;"),
-                                   column(4,
-                                          h4(strong("Accessing Emergency Medical Service Stations")),
-                                          p("Access to health care services in rural areas is limited by a lack of transportation and a shortage of healthcare professionals. Compared to urban 
-                                            counterparts, rural residents must travel farther to obtain both preventive and specialty care. Patrick County’s general practitioner, dentist, and mental health
-                                            provider-to-patient ratios fall below state averages, and the county recently experienced the closure of its only hospital. Its residents often rely on emergency
-                                            medical services (EMS) stations to obtain care and transportation to other health care facilities."),
-                                          p("To better understand health service access limitations in the county, we examined residents’ access to EMS stations. We obtained EMS locations using Homeland 
-                                            Infrastructure Foundation-Level Data (HIFLD) collected by the Department of Homeland Security. HIFLD is a public source dataset with information on a range of 
-                                            facilities; we used the data to retrieve EMS station latitude and longitude. We extracted locations of Patrick County residential 
-                                            properties from 2019 CoreLogic, a proprietary dataset for US real estate that includes information on building characteristics. Finally, we used the TravelTime
-                                            Application Programming Interface (API) to calculate 8-, 10-, and 12- minute drive time isochrones—areas of equal travel time given a departure time and 
-                                            mode of transportation—from EMS stations. TravelTime API aggregates data from Open Street Maps, transport timetables and speed profiles to generate isochrones. 
-                                            Isochrones allowed us to identify EMS coverage gaps, or clusters of residential properties that cannot be reached from an EMS location within a selected travel 
-                                            time range. We selected 8-, 10-, and 12-minute thresholds as EMS are expected to reach distressed individuals within 8 minutes. However, this threshold is 
-                                            frequently exceeded by 20% to 40% in rural areas.")
-                                   ),
-                                   column(8,
-                                          tabsetPanel(
-                                            tabPanel("Explore Coverage",
-                                                     p(""),
-                                                     selectInput("emsdrop", "Select EMS Location:", width = "100%", choices = c(
-                                                       "Stuart Volunteer Fire Department" = "STUART VOLUNTEER FIRE DEPARTMENT",
-                                                       "Moorefield Store Volunteer Fire Department" = "MOOREFIELD STORE VOLUNTEER FIRE DEPARTMENT",                                                         
-                                                       "Blue Ridge Volunteer Rescue Squad" = "BLUE RIDGE VOLUNTEER RESCUE SQUAD",                                                                   
-                                                       "Vesta Rescue Squad" = "VESTA RESCUE SQUAD",                                                                                           
-                                                       "Ararat Rescue Squad" = "ARARAT RESCUE SQUAD",                                                                                          
-                                                       "Five Forks Volunteer Fire and Rescue Station 1" = "COLLINSTOWN - CLAUDVILLE - DRYPOND - FIVE FORKS VOLUNTEER FIRE AND RESCUE DEPARTMENT STATION 1 - HEADQUARTERS",
-                                                       "Five Forks Volunteer Fire and Rescue Station 2"= "COLLINSTOWN - CLAUDVILLE - DRYPOND - FIVE FORKS VOLUNTEER FIRE AND RESCUE DEPARTMENT STATION 2",
-                                                       "Jeb Stuart Rescue Squad" = "JEB STUART RESCUE SQUAD",                                                                                      
-                                                       "Smith River Rescue Squad" = "SMITH RIVER RESCUE SQUAD"                                                                                     
-                                                     )),
-                                                     p(strong("Percent Residents Covered")),
-                                                     withSpinner(tableOutput("emstable")),
-                                                     p(strong("Map of Coverage")),
-                                                     withSpinner(leafletOutput("emsplot")),
-                                                     p(tags$small("Data Sources: Homeland Infrastructure Foundation-Level Data, 2010; CoreLogic, 2019; TravelTime API."))
-                                            ),
-                                            tabPanel("Explore 'Deserts'",
-                                                     p(""),
-                                                     p(strong("Percent Residents Covered")),
-                                                     withSpinner(tableOutput("allemstable")),
-                                                     p(strong("Map of Coverage Deserts")),
-                                                     withSpinner(leafletOutput("allems")),
-                                                     p(tags$small("Data Sources: Homeland Infrastructure Foundation-Level Data, 2010; CoreLogic, 2019; TravelTime API.")))
-                                          )
+                                   column(12,
+                                          h4(strong("Introduction")),
+                                          p(style = "text-align: justify;", "The main goal of this project is to use modern data-science techniques to produce a model that is able to predict the Normalized Difference Vegetative Index and the Normalized Difference Water Index to a high degree of accuracy at a high resolution using existing wavelength data captured by the Landsat 8. This opens the door to identify trends and areas of concern within a region that might otherwise look healthy. The tool used to accomplish this process is a feed-forward neural network that is trained off of existing satellite pairs. The model trained in this paper looks at an ability to predict vegetative health in two year intervals. The area of interest in this project is the New River Valley of Southwest Virginia and specifically Floyd County, Virginia. This is the region that the model was initially trained on.  
+
+Raw satellite images were downloaded from the Earth Explorer via the United States Geological survey as Geotiff images of the different wavelengths of light captured. A great deal of data cleaning, conditioning and filtering had to be performed before the images could be fed into a machine learning model.  
+
+The first such problem came when the raw images were encoded as 16-bit positive integer values, and needed to be converted to 64-bit floating point values in order to be manipulated. Otherwise, non-natural values result in high-values instead of negative ones that make the resulting indices and processing useless. The other technical nuances encountered when using the raw satellite images are described in the following sections."),
+                                          
+                                          #p(strong(style = "text-align: justify;","Normalized Difference Vegetative Index")),
+                                          h4(strong("Top of Atmosphere Reflectance")),
+                                          p(style = "text-align: justify;","When a satellite takes progressive images of the earth, it is rare that the sun is in the same position each time it takes a picture. Therefore, the angle of the sun needs to be taken into account when examining multiple images of the earth over time. The United States Geological Survey employs a formula to convert the raw intensity values captured by the Landsat to Top of Atmosphere reflectance. The values for the Sun Elevation angle and correction values are included in the metadata of each GeoTiff image. The United States Geological Survey Provides the following reference for converting raw values to Top of Atmosphere Reflectance:"),
+                                          
+                                          img(src = "Picture10.png", style = "display: inline"),
+                                          p(tags$small("Reference: United States Geological Survey ")),
+                                          
+                                          h4(strong("Filtering Data")),
+                                          p(style = "text-align: justify;", "It is important to note that the focus of this project is on vegetation. As it happens, when a satellite snaps a photograph of the earth, it tends to capture much more than just vegetation. Therefore, the team needed a way to filter out clouds and their shadows, water and non-vegetative urban areas. The team used the 9th Band of the Landsat 8 satellite to filter out clouds and developed an algorithm that searched for shadows based on dips in reflectance around clouds. The team also employed a method to filter out the lakes, ponds and rivers in a scene primarily using the Near Infrared Band (Band 5) in combination with others. This method is described in the paper Identification of Water Bodies in a Landsat 8 OLI Image Using a J48 Decision Tree. Once all of these filtration algorithms were applied, the satellite image of Southwest Virginia looked accordingly: "),
+                                          
+                                          img(src = "Picture11.png", style = "display: inline"),
+                                          p(tags$small("A measure of NDVI after the region was filtered with the filtration algorithm. Note the absence of Urban areas such as Roanoke and Blacksburg/Christiansburg, Smith Mountain Lake and a large overhanging Cloud on the Scene.  ")),
+                                          
+                                          h4(strong("Aligning Photographs")),
+                                          p(style = "text-align: justify;", "Because this model seeks to predict vegetative health in 2-year intervals, it is imperative that “before” and “after” data is gathered. Therefore, we chose landsat images taken of the exact same region of Southwest Virginia. The only problem was that the satellite images were virtually identical, but once the team began examining them closely, we realized that they were ever so slightly off. A detailed image of the displacement is shown below: "),
+                                          img(src = "Picture12.png", style = "display: inline"),
+                                          p(style = "text-align: justify;", "Therefore, the team had to develop an algorithm to align before and after images so that the training sets would line up properly at the pixel level. We managed to accomplish this by subtracting the Band 5 Near Infrared light reflectance for the two years and examining the change. Because features like water are well-absorbed by the NIR light, disparities in alignment became very apparent: "),
+                                          img(src = "Picture13.png", style = "display: inline"),
+                                          
+                                          h4(strong("Creating Subsets")),
+                                          p(style = "text-align: justify;", "Once the necessary areas had been filtered out so that the learning algorithm could focus on vegetation only, the image was divided into 20x20 pixel squares for each of the 11 distinct wavelengths of light emitted from that particular section. The model is input 11 different 20x20 subsets and forms a prediction of the same 20x20 pixel square of how the NDVI and NDWI changes.  "),
+                                          img(src = "Picture14.png", style = "display: inline"),
+                                          
+                                          h4(strong("Building and Training a Neural Network")),
+                                          p(style = "text-align: justify;", "Once all the 20x20 subsets of input and output pairs had been assembled, the team needed to create a neural network to handle the more than 4000 inputs per scene. This meant that in a single satellite image, there were going to be over 260,000,000 data points to train from. The team developed a feed-forward neural network with 5,475 neurons and over 4,000,000 weights connecting the neurons together to accommodate the large volume and diversity of data. The structure of the full neural network is below: "),
+                                          img(src = "Picture15.png", style = "display: inline"),
+                                          
+                                          p(style = "text-align: justify;", "The first 85,000 input/output scenes were used to train the model and the roughly 16,000 remaining were set aside to test the conditioned model. Over time, scenes from different time periods and areas of Virginia were used to increase the robustness of the model.  "),
+                                          
+                                          h1(strong("Machine Learning Results"), align = "center"),
+                                          h4(strong("Testing Accuracy ")),
+                                          p(style = "text-align: justify;", "The testing results below are for two different time periods of Southwest Virginia and an Image of Central Virginia. The accuracy percentage is the average percentage correct of predicted results and on the true values. The Loss Function used in this training was Means Absolute Error, which is the absolute value of the distance from the predicted values to the true values. The Loss values in the table are the average losses for all 16,000 test samples.  "),
+                                          img(src = "Picture16.png", style = "display: inline", width = "550px"),
+                                          
+                                          h4(strong("Visualizing Accuracy ")),
+                                          p(style = "text-align: justify;", "For a particular training set of the Southwest Virginia subset from 2014 to 2016, the error over time is shown below:  "),
+                                          img(src = "Picture17.png", style = "display: inline"),
+                                          
+                                          
                                    )
+                                   
                           )
                  ),
+                 
                  
                  # food -----------------------------------------------------------
                  tabPanel("Food Access", value =  "food",
