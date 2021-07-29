@@ -18,7 +18,7 @@ library(shinyjs)
 library(leaflet)
 library(leafem)
 library(raster) 
-library(stars) 
+library(stars)
 
 prettyblue <- "#232D4B"
 navBarBlue <- '#427EDC'
