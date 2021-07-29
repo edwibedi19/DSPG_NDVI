@@ -12,11 +12,13 @@ library(rsconnect)
 library(shinycssloaders)
 library(readxl)
 library(readr)
+library(rgdal)
 library(stringr)
 library(shinyjs)
 library(leaflet)
 library(leafem)
 library(raster)
+library(stars)
 
 prettyblue <- "#232D4B"
 navBarBlue <- '#427EDC'
@@ -291,7 +293,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             column(3),
                             column(3,
                                    h4(strong("Top of Atmosphere Reflectance")),
-                                   p(style = "text-align: justify;","When a satellite takes progressive images of the earth, it is rare that the sun is in the same position each time it takes a picture. Therefore, the angle of the sun needs to be taken into account when examining multiple images of the earth over time. The United States Geological Survey employs a formula to convert the raw intensity values captured by the Landsat to Top of Atmosphere reflectance. The values for the Sun Elevation angle and correction values are included in the metadata of each GeoTiff image. The United States Geological Survey Provides the following reference for converting raw values to Top of Atmosphere Reflectance:")
+                                   p("Because this model seeks to forecast vegetative health in two year intervals, it is imperative that “before” and “after” data is gathered. Therefore, our team chose Landsat images taken of the exact same region of Southwest Virginia. The problem we encountered was that the satellite images were macroscopically identical, but the team soon realized upon close examination that the images were ever so slightly displaced from each other. This makes sense, as it is quite nearly impossible for the satellite to make its way back to the exact same location and orientation two years after taking a photograph. The original GeoTiff Images overlaid upon one another is shown to the right to visualize the distortion:")
                                    ),
                             column(6,
                                    img(src = "Picture10.png", style = "display: inline"),
@@ -301,8 +303,8 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           tags$br(),
                           fluidRow(
                             column(3),
-                            column(3,
-                                   img(src = "Picture11.png", style = "display: inline", width = "400px"),
+                            column(3, align = "right",
+                                   img(src = "Picture11.png", width = "430px", align = "right"),
                                    p(tags$small("A measure of NDVI after the region was filtered with the filtration algorithm. Note the absence of Urban areas such as Roanoke and Blacksburg/Christiansburg, Smith Mountain Lake and a large overhanging Cloud on the Scene.  ")),
                             ),
                             column(3,
@@ -326,34 +328,38 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           fluidRow(
                             column(3),
                             column(3,
-                                   img(src = "Picture13.png", style = "display: inline")),
+                                   img(src = "Picture13.png", style = "display: inline", align = "right")),
                             column(3,
-                                   p(style = "text-align: justify;", "Therefore, the team had to develop an algorithm to align before and after images so that the training sets would line up properly at the pixel level. We managed to accomplish this by subtracting the Band 5 Near Infrared light reflectance for the two years and examining the change. Because features like water are well-absorbed by the NIR light, disparities in alignment became very apparent: "),
-                            )
+                                   p("Because of this technical hurdle, the team had to develop an algorithm to align the before and after images to line up at the individual pixel level. This was imperative because the resolution was so high and each pixel of the image only accounts for a 30m x 30m section of land. Therefore, the team had to be very precise in our corrections between these two images. We managed to accomplish this by subtracting the Band 5 Near Infrared (NIR) light reflectance for the two years and examining the change. This produced large color discrepancies in major landforms like water, lakes, ponds and urban areas which were easy to identify and correct for. Once the pictures were properly aligned, the distinct changes in color disappeared. A visualization of an example correction via subtracting the NIR bands is shown to the left. Correcting for these disparities in alignment turned out to be crucial for the accuracy of our neural network in its ability to truly predict the change from one year to another. ")
+                                   )
                             
                           ),
                           tags$br(),
                           tags$br(),
                           fluidRow(
                             column(3),
-                            column(3,
-                                   h4(strong("Creating Subsets")),
-                                   p(style = "text-align: justify;", "Once the necessary areas had been filtered out so that the learning algorithm could focus on vegetation only, the image was divided into 20x20 pixel squares for each of the 11 distinct wavelengths of light emitted from that particular section. The model is input 11 different 20x20 subsets and forms a prediction of the same 20x20 pixel square of how the NDVI and NDWI changes.  "),
-                            ),
                             column(6,
-                                   img(src = "Picture14.png", style = "display: inline", width = "460px"))
+                                   h4(strong("Creating Subsets")),
+                                   p("After the necessary filtration was performed, the team had to be specific about how the machine learning model would interact with the GeoTiff images. The method the team settled on was to split up the rasterized image into tiny 20x20 pixel subsets. Those subsets would form the basis for what the neural network would be able to see of a particular area. The output that the neural network tries to predict would be the average change in NDVI and NDWI in that particular 20x20 square. It is also important to note that these 20x20 pixel sections each contain 11 different wavelengths of light. The team elected to exclude the Panchromatic band because its pixel dimensions did not match the original images and offered little extra information other than geographic detail. However, this meant that each 20x20 image contained 400 pixels, and each pixel contained 10 bands, which meant that at least 4000 inputs of just pixel data would be fed to the neural network. An example of the input and outputs data available to the model is visualized below.")
+                                   ),
+                            
+                          ),
+                          fluidRow(
+                            align = "center",
+                            img(src = "Subset.jpg", align = "center", width = 1000)
                           ),
                           tags$br(),
                           tags$br(),
                           fluidRow(
                             column(3),
                             column(3,
-                                   img(src = "Picture15.png", style = "display: inline")),
+                                   img(src = "Picture15.png", style = "display: inline", align = "right")),
                             column(3,
                                    h4(strong("Building and Training a Neural Network")),
-                                   p(style = "text-align: justify;", "Once all the 20x20 subsets of input and output pairs had been assembled, the team needed to create a neural network to handle the more than 4000 inputs per scene. This meant that in a single satellite image, there were going to be over 260,000,000 data points to train from. The team developed a feed-forward neural network with 5,475 neurons and over 4,000,000 weights connecting the neurons together to accommodate the large volume and diversity of data. The structure of the full neural network is below: "),
-                                   p(style = "text-align: justify;", "The first 85,000 input/output scenes were used to train the model and the roughly 16,000 remaining were set aside to test the conditioned model. Over time, scenes from different time periods and areas of Virginia were used to increase the robustness of the model.  "),
-                                    
+                                   p("Once the 20 x 20 subsets of input and output were identified and assembled, they needed to be conditioned in order to be fed to a model. The team used the MinMaxScaler from the Sklearn package in python to scale the intensities down to a continuous feature range between 0-1. These inputs had to be linked with the corresponding changes in NDVI and NDWI observed two years later and then saved as compressed numpy arrays. "),
+                                   p("As mentioned previously, a 20x20 pixel square with 10 distinct bands of data means a minimum of an input size of 4000 for a neural network. Not only this, but when the sorting algorithm finished identifying possible subsets, it identified 100,000 of them in a single photo. This means that over 400 million data points would need to be passed through the model. The team also included an input for the time of year that the photo was taken. Because the size of the input was so large, the team constructed a feed-forward neural network with four hidden layers and a total of 5,475 neurons, connected by over 4,000,000 weights. "),
+                                   p("The training data was randomized and then split up into 85,000 subsets to train the data. The remaining 16,000 were set aside to be the validation for the model’s accuracy. This process was repeated with different time periods and regions of Virginia to increase the versatility of the model. The structure of the Neural Network is shown to the left.")
+
                                    )
                             
                           ),
@@ -368,7 +374,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             column(3),
                             column(3,
                                    h4(strong("Testing Accuracy ")),
-                                   p(style = "text-align: justify;", "The testing results below are for two different time periods of Southwest Virginia and an Image of Central Virginia. The accuracy percentage is the average percentage correct of predicted results and on the true values. The Loss Function used in this training was Means Absolute Error, which is the absolute value of the distance from the predicted values to the true values. The Loss values in the table are the average losses for all 16,000 test samples.  ")
+                                   p("The testing results below are for two different time periods of Southwest Virginia and an Image of Central Virginia. The accuracy percentage is the average percentage correct of predicted results and on the true values. The Loss Function used in this training was Means Absolute Error, which is the absolute value of the distance from the predicted values to the true values. The Loss values in the table are the average losses for all 16,000 test samples. The accuracy for Central Virginia is likely lower than the Southwest Virginia samples because it contained the least amount of training data compared to the previous two.")
                                    ),
                             column(6,
                                    tags$br(),
@@ -378,10 +384,10 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           fluidRow(
                             column(3),
                             column(3,
-                                   img(src = "Picture17.png", style = "display: inline")),
+                                   img(src = "Picture17.png", align = "right")),
                             column(3,
                                    h4(strong("Visualizing Accuracy ")),
-                                   p(style = "text-align: justify;", "For a particular training set of the Southwest Virginia subset from 2014 to 2016, the error over time is shown below:  "),
+                                   p("The error in training the model over time is visualized to the left for the data in Southwest Virginia from 2014 to 2016. This shows how the model efficiency decreased the error at an exponential rate and after multiple epochs honed in an astoundingly accurate model at over 99% accuracy. The size of the dataset also ensures that this is not an overfitting problem as this model performed at 99% or better for over 100,000 data points. To compare this to statistics, this is the equivalent of having a P-Value on the order of 1e-17 or a Z-Score 83 standard deviations above the mean. This has huge implications for policy and being able to predict environmental health, which will be spoken about in detail in the latter tabs of this project.")
                             )
                             
                           )
