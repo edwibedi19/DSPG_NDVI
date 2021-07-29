@@ -238,15 +238,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    column(3),
                                    column(6, align = "center",
                                           #h4(strong("Computing Device Ownership and Internet Access Type")),
-                                          p(style = "text-align: justify;", "Oftentimes, measurements of natural phenomena are too complex to be accurately 
-                                          described solely with remote sensing. Calculated indices bridge the gap between satellite imagery and internal 
-                                          vegetative processes. The indices of particular interest in this project are the Normalized Difference 
-                                          Vegetative Index (NDVI) and the Normalized Difference Water Index (NDWI). NDVI is strongly correlated to the 
-                                          overall health of plant foliage.1 The Normalized Difference Water Index is strongly correlated to the amount 
-                                          of water held in plant foliage.2 These are both complex phenomena that would be impossible to calculate for 
-                                          each individual pixel of a satellite image, but with the help of indices, we can synthesize a good indicator 
-                                          of vegetative health using relatively little reflection data. The different wavelengths of light captured by 
-                                          the Landsat 8 satellite can be used to synthesize the NDVI and NDWI indices of interest.")       
+                                          p(style = "text-align: justify;", "Oftentimes, measurements of natural phenomena are too complex to be accurately described solely with remote sensing. Calculated indices bridge the gap between satellite imagery and internal vegetative processes. The indices of particular interest to this project are the Normalized Difference Vegetative Index (NDVI) and the Normalized Difference Water Index (NDWI). NDVI is strongly correlated to the overall health of plant foliage. The Normalized Difference Water Index is strongly correlated to the amount of water held in plant leaves. Foliage health and water density are both complex phenomena that would be impossible to calculate for each individual pixel of a satellite image, but with the help of these indicators, we can synthesize a good idea of vegetative health using relatively little input. The different wavelengths of light captured by the Landsat 8 satellite can be used to produce the NDVI and NDWI indices of interest for each individual pixel of a remote sensing image.")       
                                    )
                                    
                           ),
@@ -254,24 +246,15 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             column(3),
                             column(3,
                                    p(strong(style = "text-align: justify;","Normalized Difference Vegetative Index")),
-                                   p(style = "text-align: justify;","The Normalized Difference Vegetative Index is derived from the Near Infrared 
-                                          light and Red light emitted from plants. It is described in detail in Nathalie Pettorelli’s book The Normalized 
-                                          Difference Vegetative Index. The Landsat 8 satellite picks up both of these wavelengths of light and the USGS 
-                                          provides a formula for producing this index:  "),
+                                   p(style = "text-align: justify;","The Normalized Difference Vegetative Index is derived from the Near Infrared light and Red light emitted from plants. It is described in detail in Nathalie Pettorelli’s book “The Normalized Difference Vegetative Index”. The Landsat 8 satellite captures both wavelengths of light and the USGS provides a formula for producing this index:"),
                                    
                                    p(strong(align = "center","NDVI = (NIR - R) / (NIR + R)")),
-                                   p(style = "text-align: justify;", "This allows us to create aerial maps of NDVI for a particular region by 
-                                          combining individual pixel values. A Map of the NDVI of Southwest Virginia and Southern West Virginia is shown below: "),
+                                   p(style = "text-align: justify;", "This allows us to create aerial maps of NDVI for a particular region by combining individual pixel values. A Map of the NDVI of Southwest Virginia and Southern West Virginia is shown to the right:"),
                                    
-                                   p(style = "text-align: justify;", "This allows us to create aerial maps of NDVI for a particular region by 
-                                          From these types of aerial maps of derived indices, conclusions about distribution and trends in the vegetative
-                                           health over time and throughout the region can be made. The Normalized Difference Vegetative Index has been 
-                                           used in applications such as precision agriculture, drought monitoring, flooding and precipitation patterns.
-                                            The aim of this product is to predict the NDVI by combining the band data from the Landsat 8 satellite to
-                                             give an accurate prediction of how the NDVI will change over time.")
+                                   p(style = "text-align: justify;", "From these types of aerial maps of derived indices, conclusions about distribution and trends in the vegetative health over time and throughout the region can be made. The Normalized Difference Vegetative Index has been used in applications such as precision agriculture, drought monitoring, flooding and precipitation patterns. The aim of this project is to predict the NDVI by combining the band data from the Landsat 8 satellite to give an accurate prediction of how the NDVI will change over time.")
                                    ),
                             column(6,
-                                   img(src = "Picture6.png", style = "display: inline", width = "550px"))
+                                   img(src = "NDVI_2016_NRV.png", style = "display: inline", width = "550px"))
                           ),
                           fluidRow(
                             
@@ -279,16 +262,11 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    img(src = "Picture7.png", style = "display: inline;")),
                             column(3,
                                    p(strong(style = "text-align: justify;","Normalized Difference Water Index")),
-                                   p(style = "text-align: justify;","The Normalized Difference Water Index (NDWI) is highly correlated with the
-                                           amount of water stored in the foliage of plants, as described in Bo-cai Gao’s paper.4 The NDWI is sometimes 
-                                           described as the Normalized Difference Water Index or NDMI. The USGS also provides a formula to calculate 
-                                           the NDWI by combining the Short-Wave Infrared with the Near Infrared wavelengths of light captured from the
-                                            Landsat 8 satellite in the following formula: "),
+                                   p(style = "text-align: justify;","The Normalized Difference Water Index (NDWI) is highly correlated with the amount of water stored in the foliage of plants, as described in Bo-cai Gao’s paper, “A normalized difference water index for remote sensing of vegetation liquid water from space”. The NDWI is sometimes described as the Normalized Difference Water Index or NDMI. The USGS also provides a formula to calculate the NDWI by combining the Short-Wave Infrared with the Near Infrared wavelengths of light captured from the Landsat 8 satellite in the following formula:"),
                                    
-                                   p(strong(align = "center","NDMI = (Band 5 – Band 6) / (Band 5 + Band 6)")),  
+                                   p(strong(align = "center","NDMI = (NIR – SWIR) / (NIR + SWIR)")),  
                                    
-                                   p(style = "text-align: justify;","Like the NDVI, this formula allows for per-pixel calculation of this index to describe the distribution of water
-                                           in vegetation throughout the new river valley, as shown in the image below:"))
+                                   p(style = "text-align: justify;","Like the NDVI, this formula allows for per-pixel calculation of this index to describe the distribution of water in vegetation throughout the new river valley, as shown in the image to the left:"))
                           )
                  ),
                  
@@ -445,162 +423,10 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  ),
                  
                  
-                 # food -----------------------------------------------------------
-                 tabPanel("Food Access", value =  "food",
-                          fluidRow(style = "margin: 6px;",
-                                   h1(strong("Food Access in Patrick County"), align = "center"),
-                                   p("", style = "padding-top:10px;"),
-                                   column(5,
-                                          h4(strong("Food Access in Rural Areas")),
-                                          p("Social determinants of health shape food access, a key factor in negative health outcomes. Rural area residents frequently face difficulties in accessing 
-                                             healthy and nutritious food, and experience high rates of chronic illnesses like heart disease and diabetes, resulting in higher mortality rates and lower
-                                             life expectancy compared to urban areas. Facilitating  access to nutritious and high-quality foods can lead to decreases in chronic disease prevalence. 
-                                             Many Patrick County residents suffer from conditions like diabetes and obesity, and providing healthy food may support disease prevention."),
-                                          p("We analyzed multiple data sources to give Patrick County actionable information on their residents’ food access that can inform county efforts ensuring equitable food access for all."),
-                                          p("First, we examined", strong("food access at multiple distance thresholds by age and socioeconomic status."), "We used the 2017 United States Department of 
-                                             Agriculture (USDA) Food Access Research Atlas, a central database created by the Economic Research Service that provides access indicators for different social groups.
-                                             We created census tract-level maps that identify Patrick County areas where residents may have difficulty accessing nutritious foods, and highlight geographies 
-                                             where this is the case for particularly vulnerable groups like low-income individuals and older adults."),
-                                          p("Second, to better understand how residents must travel to obtain food, we constructed isochrones—shapes covering places within reach in the 
-                                             same time frame given a start location and a mode of transportation—from Patrick County", strong("residential properties to locations of grocery stores 
-                                             and farmers’ markets."), "We used Google Maps to identify these locations' latitude and longitude. We extracted locations of 
-                                             Patrick County residential properties from 2019 CoreLogic, a proprietary dataset for US real estate with information on building characteristics. 
-                                             Finally, we used the TravelTime Application Programming Interface (API) to calculate 10- and 15-minute car travel times from grocery locations. TravelTime 
-                                             API aggregates data from Open Street Maps, transport timetables and speed profiles to generate isochrones. This allowed us to identify food deserts, or clusters 
-                                             of properties that cannot reach a location with healthy food within a selected travel time range. These areas in the county could benefit from programs 
-                                             facilitating access to produce."),
-                                          p("Finally, Patrick County offers", strong("access to free food"), "at multiple locations. For community members that struggle with food security, these locations can 
-                                             offer temporary assistance. We used GoogleMaps to locate food banks, food pantries, and community meal sites, geocoded their addresses, and mapped
-                                             these resources along with notes on their target audiences.")
-                                   ),
-                                   column(7,
-                                          tabsetPanel(
-                                            tabPanel("Food Access",
-                                                     p(""),
-                                                     selectInput("usdadrop", "Select Variable:", width = "100%", choices = c(
-                                                       "Percent Population with Low Food Access at 1 Mile" = "lapop1share",  
-                                                       "Percent Population with Low Food Access at 10 Miles" = "lapop10share",
-                                                       "Percent Children with Low Food Access at 1 Mile" = "lakids1share",
-                                                       "Percent Children with Low Food Access at 10 Miles" = "lakids10share",
-                                                       "Percent Low Income Population with Low Food Access at 1 Mile" = "lalowi1share",
-                                                       "Percent Low Income Population with Low Food Access at 10 Miles" = "lalowi10share",
-                                                       "Percent Older Adults with Low Food Access at 1 Mile" = "laseniors1share",
-                                                       "Percent Older Adults with Low Food Access at 10 Miles" = "laseniors10share")
-                                                     ),
-                                                     p(strong("Map of Access at Census Tract Level")),
-                                                     withSpinner(leafletOutput("usdaplot")),
-                                                     p(tags$small("Data Source: USDA Food Access Research Atlas, 2017"))
-                                            ),
-                                            tabPanel("Grocery and Farmers' Market Coverage",
-                                                     p(""),
-                                                     selectInput("grocdrop", "Select Location:", width = "100%", choices = c(
-                                                       "Mountain Meadow Farm and Craft Market",
-                                                       "Lowes Foods of Stuart",
-                                                       "Patrick County Local Farmers Market",
-                                                       "Stuart Farmers Market",                
-                                                       "W & W Produce",
-                                                       "Walmart Supercenter",
-                                                       "Poor Farmers Farm")),
-                                                     p(strong("Percent Households Covered")),
-                                                     withSpinner(tableOutput("groctable")),
-                                                     p(strong("Map of Coverage")),
-                                                     withSpinner(leafletOutput("grocplot")),
-                                                     p(tags$small("Data Source: Google Maps; TravelTime API; CoreLogic, 2019."))
-                                            ),
-                                            tabPanel("Food Deserts",
-                                                     p(""),
-                                                     p(strong("Percent Households Covered")),
-                                                     withSpinner(tableOutput("allgrctable")),
-                                                     p(strong("Map of Food Deserts")),
-                                                     withSpinner(leafletOutput("allgroc")),
-                                                     p(tags$small("Data Source: Google Maps; TravelTime API; CoreLogic, 2019."))
-                                            ),
-                                            tabPanel("Food Security Resources",
-                                                     p(""),
-                                                     p(strong("Map of Food Security Resources")),
-                                                     withSpinner(leafletOutput("othermap")),
-                                                     p(tags$small("Data Source: Google Maps."))
-                                            )
-                                          )
-                                   )
-                          )
-                 ),
-                 # data -----------------------------------------------------------
-                 tabPanel("Data and Measures", value = "data",
-                          fluidRow(style = "margin: 6px;",
-                                   h1(strong("Data and Measures"), align = "center"),
-                                   br()
-                          ),
-                          tabsetPanel(
-                            tabPanel("Data Sources",
-                                     h3("", align = "center"),
-                                     br(""),
-                                     column(4, 
-                                            img(src = "data-hifld.png", style = "display: inline; float: left;", width = "100px"),
-                                            p(strong("Homeland Infrastructure Foundation-Level Data."), "Homeland Infrastructure Foundation-Level Data (HIFLD) is a collection of public 
-                                              source datasets at property level provided by the Department of Homeland Security. Since 2002, this HIFLD has provided quarterly 
-                                              updated layers on topics from education to energy, including on health care facilities. We used HIFLD emergency medical services 
-                                              station data at the latitude and longitude geographic level in our analyses."),
-                                            br(""),
-                                            img(src = "data-gmaps.png", style = "display: inline; float: left;", width = "130px"),
-                                            p(strong("Google Maps."), "Google Maps is a comprehensive web mapping service created by Google. Its goal is to provide an interactive map
-                                              of all the geographical contents of the world. This resource has a variety of uses, ranging from examining all service locations within 
-                                              a city to finding the quickest route between locations. It provides data at latitude and longitude level. We used Google Maps to locate 
-                                              all supermarkets, convenience stores, and farmers’ markets in Patrick County, and subsequently employed the information in calculating 
-                                              grocery access and coverage isochrones.")
-                                     ),
-                                     column(4,
-                                            img(src = "data-acs.png", style = "display: inline; float: left;", width = "200px"),
-                                            p(strong("American Community Survey."), "The American Community Survey (ACS) is an ongoing yearly survey conducted by the U.S Census 
-                                            Bureau. ACS samples households to compile 1-year and 5-year datasets providing information on population sociodemographic and 
-                                            socioeconomic characteristics including employment, disability, and health insurance coverage. We used AC 2014/18 5-year 
-                                            estimates to obtain census tract and census block group-level to explore Patrick County resident characteristics."),
-                                            br(""),
-                                            img(src = "data-connect.png", style = "display: inline; float: left;", width = "150px"),
-                                            p(strong("CommonwealthConnect."), "The Virginia Tech CommonwealthConnect Wi-Fi Hotspot Map is an interactive map of free, publicly 
-                                           available wi-fi hotspots in Virginia. Its goal is to provide an easily accessible map of areas where individuals can connect to the 
-                                           internet for free, decreasing the constraints placed on families that do not have internet access at home. We used the 2020 wi-fi 
-                                           hotspot map data to retrieve hotspot locations in Patrick County and subsequently employed the information in calculating hotspot 
-                                           coverage isochrones."),
-                                            br(""),
-                                            img(src = "data-corelogic.png", style = "display: inline; float: left;", width = "120px"),
-                                            p(strong("CoreLogic."), "CoreLogic is a supplier of proprietary US real estate and specialized business data at the property level. 
-                                           This company provides data spanning over 50 years at the latitude and longitude level. Information available in the dataset includes 
-                                           property characteristics, mortgage, foreclosures and performance. We used 2019 CoreLogic data to obtain the locations of all residential
-                                           properties in Patrick County.")
-                                     ),
-                                     column(4,
-                                            img(src = "data-traveltime.png", style = "display: inline; float: left;", width = "140px"),
-                                            p(strong("TravelTime."), "TravelTime Application Programming Interface (API) aggregates data from OpenStreetMap, transport timetables and
-                                           speed profiles to generate isochrones. An isochrone is a shape covering all locations that can be reached within the same timeframe 
-                                           given a start location, departure time, and a mode of transportation. We used the TravelTime API to produce isochrones of 10- and 
-                                           15-minute drive time interval from supermarkets, farmers' markets, and free wi-fi hotspots, and of 8-, 10-, and 12-minute drive 
-                                           time intervals from all emergency medical service stations in Patrick County."),
-                                            br(""),
-                                            img(src = "data-ers.png", style = "display: inline; float: left;", width = "120px"),
-                                            p(strong("Food Access Research Atlas."), "The United State Department of Agriculture Food Access Research Atlas is a data resource 
-                                          created by the Economic Research Service that provides information on food access indicators at census tract level. The data allows 
-                                          individuals to understand food access in communities based on factors like age and socioeconomic status. We used the 2017 Food Access
-                                          Research Atlas to examine Patrick County residents’ food access at multiple distance thresholds and by resident characteristics.")
-                                     )
-                            ),
-                            tabPanel("Measures",  
-                                     h3(strong(""), align = "center"),
-                                     selectInput("topic", "Select Topic:", width = "100%", choices = c(
-                                       "All Measures",
-                                       "Sociodemographic Measures",
-                                       "Older Adult Population Measures",
-                                       "Connectivity Measures",
-                                       "Food Access Measures",
-                                       "Health Care Access Measures")
-                                     ),
-                                     withSpinner(DTOutput("datatable"))
-                            )
-                          )
-                 ),
+                 
                  
                  # contact -----------------------------------------------------------
-                 tabPanel("Contact", value = "contact",
+                 tabPanel("Our Team", value = "team",
                           fluidRow(style = "margin-left: 300px; margin-right: 300px;",
                                    h1(strong("Contact"), align = "center"),
                                    br(),
@@ -643,6 +469,9 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    h4(strong("Acknowledgments")),
                                    p("We would like to thank Healthy Patrick County, an association of concerned Patrick County residents, and Brandon Kramer for their input to this project.")
                           )
+                 ),
+                 tabPanel("References", value = "references"
+                   
                  ),
                  inverse = T)
 
