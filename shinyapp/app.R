@@ -24,6 +24,7 @@ options(spinner.color = prettyblue, spinner.color.background = '#ffffff', spinne
 
 colors <- c("#232d4b","#2c4f6b","#0e879c","#60999a","#d1e0bf","#d9e12b","#e6ce3a","#e6a01d","#e57200","#fdfdfd")
 
+tags$cite()
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 jscode <- "function getUrlVars() {
@@ -107,70 +108,42 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    # img(src = "uva-dspg-logo.jpg", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
                                    br(""),
                                    h1(strong("Analyzing Vegetative Health using Landsat 8 Satellite Imagery"),
-                                      br(""),
-                                      h4("Data Science for the Public Good Program"),
-                                      h4("Virginia Tech"),
-                                      h4("Biocomplexity Insititute"),
-                                      br()
+                                   h3("Data Science for the Public Good Program"),
+                                   h4(em("Virginia Polytechnic Institute and State University")),
+                                   br(),
+                                   br(),
                                    )
                           ),
                           fluidRow(style = "margin: 6px;",
-                                   column(6,
-                                          h2(strong("Project Background")),
-                                          p(style= "text-align: justify;", "Human-nature interaction has long been a source of interest, study and analysis in the scientific community. As remote sensing and 
-                                          data analysis technology become more sophisticated, the ability to create robust models to accurately measure and predict environmental 
-                                          health increases. There are several pre-existing indices developed to determine the health of plant life from a remote sensing apparatus 
-                                          like an airplane or, more commonly, a satellite. The first is the Normalized Difference Vegetation Index (NDVI). This measurement combines
-                                           near-infrared (NIR) and red electromagnetic radiation from plants to produce an index that correlates closely with the true health of the 
-                                           plant. Another index is the Enhanced Vegetative Index (EVI). According to the United States Geological Survey (USGS), “EVI corrects for 
-                                           some atmospheric conditions and canopy background noise and is more sensitive in areas with dense vegetation”. This report uses these two
-                                            indices as the main quantifiers of botanical health within a given area. "),
+                                   column(3),
+                                   column(3,
+                                          h4(strong("Project Background")),
+                                          p("Human-nature interaction has long been a source of interest, study and analysis in the scientific community. As remote sensing and data analysis technology become more sophisticated, the ability to create robust models to accurately measure and predict environmental health increases. This project was completed through Data Science for the Public Good program at Virginia Tech and seeks to use modern data-science techniques to analyze, predict and draw conclusions from remote-sensing quantifications of vegetation health and water distribution. "),
+                                          
+                                          
                                           
                                    ),
-                                   column(6,
-                                          h2(strong("Data Background")),
-                                          p(style= "text-align: justify;","The Landsat 8 Satellite was launched in 2013 by NASA to collect high-resolution and electromagnetically diverse remote radiation data 
-                                          about the Earth’s surface. The Landsat senses data from eleven distinct wavelengths of light, from the visible red, green and blue 
-                                          wavelengths to infrared wavelengths for thermal imaging. These diverse ranges of sensing data hold the ability to filter and provide 
-                                          insight into aspects of regions that do not appear visible in a standard RGB photograph. Landsat 8 also has a relatively high resolution, 
-                                          with each pixel in most captured images corresponding to 30 meters of land area. In the panchromatic channel, used for detail, the 
-                                          satellite reaches a detail rating of 15 meters per pixel. The Landsat 8 also provides data for the emission of aerosols, land surface 
-                                          temperature, and cloud cover in a region of interest.
-                                          
-                                          This type of precise temporal sensing data provides a rich proving ground for many types of forecasting applications. One of the newest 
-                                          and most powerful forecasting technologies is neural-network based machine learning. Neural networks provide a robust framework for 
-                                          predicting nonlinear patterns from a large set of inputs. Using neural networks to accurately forecast metrics like NDVI and EVI would 
-                                          prove useful to inform land-use policy and identify areas of concern."),
-                                          
-                                   ),
+                                   column(3,
+                                          img(src = "Landsat Satellite.jpg", width = "420px"),
+                                          tags$small("The Landsat 8 Satellite. Image Source: United States Geological Survey")
+                                          )
                                    
                           ),
-                          fluidRow(align = "center",
-                                   p(tags$small(em('Last updated: August 2020'))))
-                 ),
-                 
-                 # NDVI Predictions -----------------------------------------------------------
-                 tabPanel("Floyd County Case Study", value = "ndvi",
-                          fluidRow(style = "margin: 6px;",
-                                   h1(strong("Floyd County: NDVI Predictions"), align = "center"),
-                                   p("", style = "padding-top:10px;"),
-                                   column(7,
-                                          h4(strong("What's the deal with NDVI?")),
-                                          p("We examined Patrick County population sociodemographic and socioeconomic characteristics to better understand the 
-                                            residents that the county serves."),
-                                          p("We retrieved American Community Survey (ACS) data to calculate this information at census block group and census 
-                                            tract levels. ACS is an ongoing yearly survey conducted by the U.S Census Bureau that samples households to compile 1-year and 5-year datasets. We used 
-                                            the most recently available 5-year estimates from 2014/18 to compute percent Patrick County residents in a given block group or tract by age, race, ethnicity, 
-                                            employment, health insurance coverage, and other relevant characteristics."),
-                                          p("Our interactive plots visualize census block-group level sociodemographic characteristics of Patrick County residents.")),
-                                   column(5,
-                                          h4(strong("Map of NDVI Predictions")),
-                                          selectInput("NDVIPredictions", "Select Year:", width = "100%", choices = c(
-                                            "2021", "2022", "2023", "2024"
-                                          )),
-                                          p(strong("NDVI Predictions")),
-                                          withSpinner(leafletOutput("NDVIMap"))
-                                   ))
+                          fluidRow(
+                            column(3),
+                            column(3, align = "right",
+                                   img(src = "Google Earth NDWI.jpg", width = "440px", align = "right"),
+                                   tags$small("An aerial view of NDWI. Image Source: Google Earth Engine"),
+                                  ),
+                            column(3,
+                                   h4(strong("Brief Overview")),
+                                   
+                                   p("The data used throughout this project was primarily scraped from the United States Geological Survey’s database of Landsat 8 Satellite Images. These images were then used to calculate specific indicators of vegetative health and water distribution. Images of the same region over time were used to train a machine learning model to be able to predict these indicators over time and, lastly, the model was applied to a case study in Floyd County, Virginia."),
+                                   p("The research team also delved into attempting to predict depth-to-water in remote communities based on elevation, indicators of water-density and precipitation data collected from the USGS and Google Earth Explorer.")
+                                   
+                                   )
+                            
+                          )
                  ),
                  
                  # older -----------------------------------------------------------
@@ -178,59 +151,49 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           fluidRow(style = "margin: 6px;", align = "center",
                                    h1(strong("Using Landsat 8 Images"), align = "center"),
                                    #p("", style = "padding-top:10px;"),
-                          )
-                          ,
-                          fluidRow(style = "margin: 6px;", align = "center",
-                                   column(3),
-                                   column(align = "center",6,
-                                          
-                                          h4(strong("")),
-                                          p(style = "text-align: justify;", "Launched in 2013, the Landsat 8 satellite is the latest in a series of Landsat predecessors dating back to the 1970’s. 
-                                          The data captured on the Landsat 8 satellite is useful for two reasons: firstly, it uses high-resolution sensors. One pixel 
-                                          of the Landsat 8’s color bands corresponds to 30 meters of earth, roughly the size of a baseball diamond as shown below. 
-                                          There is also a panchromatic band that takes photographs at the 15m resolution, allowing for even higher-detail interpolation 
-                                          of satellite images. "), tags$br()
-                                          
-                                    
-                                          )
-                                   
-                                   ),
+                          ),
+                          
                           fluidRow(
-                            column(12, align = "center",
-                                   img(src = "Picture1.png", style = "text-align:left;")
-                                   )
+                            column(3),
+                            column(3,
+                                   h4(strong("Introduction")),
+                                   p("The Landsat 8 Satellite was launched in 2013 by NASA to collect high-resolution and electromagnetically diverse remote radiation data about the Earth’s surface. The Landsat senses eleven distinct wavelength ranges of light, from the visible red, green and blue wavelengths to infrared wavelengths for thermal imaging. These diverse ranges of sensing data hold the ability to filter and provide insight into aspects of regions that do not appear visible in a standard RGB photograph. Landsat 8 also has a relatively high resolution, with each pixel in most captured images corresponding to 30 meters of land area. In the panchromatic channel, used for detail, the satellite reaches a detail rating of 15 meters per pixel.")
+                            ),
+                            column(3,
+                                   img(src = "Picture1.png", style = "text-align:left;", width = 420),
+                                   tags$small("Image Source: United States Geological Survey")
+                            )
+                                   
                           ),
                           fluidRow(
                             column(3),
-                            column(6,
-                                   tags$br(),
-                                   p(style = "text-align: justify;", "The second significant advantage of using Landsat 8 satellite imagery is the diversity of wavelengths of light captured 
-                                          in each photograph. The Landsat 8 captures eleven distinct “bands” of light:  "))
+                            column(3, align = "right",
+                                   img(src = "Picture2.png", style = "text-align:left;", width = 420, align = "right")
+                            ),
+                            column(3,
+                                   h4(strong("Landsat Bands")),
+                                   p("The second significant advantage of using Landsat 8 satellite imagery is the diversity of wavelengths of light captured in each photograph. These wavelengths of light allow for the construction of specific indicators and insight into a wide array of information like aerosols, clouds, water and temperature. To the left is a table that details the different bands and their respective uses. ")
+                            )
+                            
+                            
                           ),
-                          fluidRow(style = "margin: 6px", align = "center",
-                            column(12, align = "center",
-                                   img(src = "Picture2.png", style = "text-align:right;", width = "550px"),
-                                   tags$br())
-                          ),
+                          
                           fluidRow(
-                            column(12, align = "center",
-                                   img(src = "Picture3.png", style = "display: inline;")
-                                   )
-                          ),
-                          fluidRow(
-                            column(12, align = "center",
-                                   img(src = "Picture4.png", style = "display: inline;"))
-                          ),
-                          fluidRow(style = "margin: 6px", align = "left",
-                                   column(3),
-                                   column(6, align = "center",
-                                          p(style = "text-align: justify;", "The landsat 8 captures images corresponding to roughly 250x250 kilometer sections of earth. The different bands can be 
-                                          combined to form all sorts of useful secondary images synthesized from the raw wavelengths. The image below is a true-color 
-                                          synthesis of the red, green and blue bands of the Landsat Satellite of Las Angeles, California: "))
-                          ),
-                          fluidRow(style = "margin: 6px", align = "center",
-                                   column(12, align = "center",
-                                          img(src = "Picture5.png", style = "display: inline; float: center;", width = "300px")))
+                            column(3),
+                            column(3,
+                                   h4(strong("GeoTiff Files")),
+                                   p("The Landsat 8 Data can be downloaded via the",  a(href = 'https://earthexplorer.usgs.gov/', ' USGS Earth Explorer '), "into large GeoTiff files. These files are then read as matrices of specific intensity values depending on which wavelength is being examined. Landsat GeoTiff files tend to get rather large, often being over 1gb in size because of the detail they capture of a particular region without falling victim to any kind of noise compression. "),
+                                   p("The Landsat captures images corresponding to roughly 250x250 kilometer sections of earth. The different bands can be 
+                                          combined to form all sorts of useful secondary images synthesized from the raw wavelengths. The image to the right is a true-color 
+                                          synthesis of the red, green and blue bands of an image of Las Angeles, California. ")
+                            ),
+                            column(3,
+                                   img(src = "LALandsatImg.jpg", style = "display: inline; float: center;", width = 420),
+                                   tags$small("Image Source: United States Geological Survey")
+                            )
+                            
+                          )
+                          
                  ),
                  
                  # wifi-----------------------------------------------------------
@@ -327,7 +290,6 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           fluidRow(
                             column(3),
                             column(3,
-                                   h4(strong("Introduction")),
                                    h4(strong("Top of Atmosphere Reflectance")),
                                    p(style = "text-align: justify;","When a satellite takes progressive images of the earth, it is rare that the sun is in the same position each time it takes a picture. Therefore, the angle of the sun needs to be taken into account when examining multiple images of the earth over time. The United States Geological Survey employs a formula to convert the raw intensity values captured by the Landsat to Top of Atmosphere reflectance. The values for the Sun Elevation angle and correction values are included in the metadata of each GeoTiff image. The United States Geological Survey Provides the following reference for converting raw values to Top of Atmosphere Reflectance:")
                                    ),
@@ -425,8 +387,115 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           )
                  ),
                  
+                 tabPanel("Predicting NDVI", value = "predictions",
+                          fluidRow(
+                            h1(strong("Predicting Vegetative Health in Floyd County, Virginia"), align = "center"),
+                            column(3),
+                            column(6,
+                                   h4(strong("Overview")),
+                                   p("Floyd County is located in South-west Virginia and suffers from seasonal water scarcity and has observed a gradual decline in groundwater level over the last few decades. The county relies heavily on well water and natural springs for the bulk of its residential and commercial water requirements. This makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. However, the county currently has very limited data on its water resources."),
+                                   p("The Normalized Difference Vegetation Index is a powerful indicator to describe vegetative health. With the model synthesized in the aforementioned chapters, it is now possible to provide a high-resolution prediction for the year 2023 of the distribution of vegetative health in Floyd County, Virginia.")
+                            )
+                          ),
+                          fluidRow(
+                            column(3),
+                            column(2,
+                                   h4(strong("Methodology")),
+                                   p("A Landsat 8 satellite image taken of Southwest Virginia in 2021 was broken up into 20x20 subsets and decomposed into the 11 different bands of light captured by the Landsat 8 satellite. For each 20x20 square, the data was fed into the neural network trained in the previous section and the predicted value for NDVI for the year 2023 was stored. The predictions were then combined as their own GeoTiff file and then plotted on a map within Floyd County, as shown in the graphic to the right."),
+                                   h4(strong("Observations")),
+                                   p("Notice how the prediction of NDVI stays true to the contours of the mountain range at the southeast edge of the county. This is indicative of the robustness of the model and how different landforms, elevations and vegetative conditions are taken into account to produce an accurate prediction of a given area. Drag and Zoom out to see the predictions for the entire region of Southwest Virginia.")
+                                   
+                                   ),
+                            column(4,
+                                   h4(strong("NDVI Predictions for August 2023")),
+                                   withSpinner(leafletOutput("NDVIMap", height = 500)),
+                                   tags$small("Please allow up to a minute for the graphic to load. Refresh if nothing loads.", align = "center")
+                                   )
+                            
+                            
+                          )
+                          ),
                  
+                 # NDVI Predictions -----------------------------------------------------------
+                 tabPanel("Well-Depth Prediction", value = "welldepth",
+                          fluidRow(style = "margin: 6px;",
+                                   h1(strong("Predicting Well-Depth in Floyd County, Virginia"), align = "center"),
+                                   column(3),
+                                   column(6,
+                                          h4(strong("Overview")),
+                                          p("The Landsat 8 imagery provide a rich dataset that can be utilized for various purposes. One major application of the constructed indices in our project was in the prediction of water levels in areas which suffer from scarcity of available data. Groundwater consumption has become a critical element of development in areas with overall and/or seasonal water scarcity. Excessive withdrawal from groundwater sources might prove to be unsustainable unless the groundwater aquifers are regularly replenished."),
+                                          p("Unfortunately, groundwater use is difficult to monitor globally and even in the U.S., wells that are drilled on private property can be exempt from official monitoring. This is also the case for the region under study here, Floyd County, Virginia. Due to lack of official monitoring, there is an acute dearth of well water data for the entire county."),
+                                          p("Because Floyd County suffers from seasonal water scarcity and a gradual decline in groundwater level, this makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. The aim of this section of the project is to use a machine learning model to give an accurate predictor of well-levels on areas without established well-sites.")
+                                          )
+                          ),
+                          fluidRow(
+                            column(3),
+                            column(6,
+                                   h4(strong("Well-Depth Methodology")),
+                                   p("Our project employed a model to predict the well water level within the county utilizing the constructed indices and other readily available data on elevation and precipitation for the county. The NDWI values were hypothesized to be indicative of changes in groundwater levels across seasons over years. Elevation changes significantly impact NDWI values and were hence included in the model. Precipitation is also a major source of groundwater replenishment within most areas in Virginia and was hence also include in the model. "),
+                                   p("The estimation of the water table level was performed through a Long Short-Term Memory (LSTM) network, which is a Recurrent Neural Network (RNN) architecture used in machine learning. The model used data on well water levels (measured in feet below land surface), taken from ten well sites documented under USGS for counties surrounding Floyd. Based on the location (latitude and longitude) of these well sites, corresponding data on NDWI values, elevation of the sites as well as precipitation values from the year 2012 to 2021 was added from Google Earth Engine. The resulting panel dataset was analyzed using a LSTM model, to get temporal predictions of well water level from the training data for the various well sites. This model was also used to spatially and temporally predict the well water level at Floyd given the county’s location, and the elevation, NDWI and precipitation values for the county. ")
+                                   )
+                          ),
+                          fluidRow(
+                            column(3),
+                            column(3,
+                                   h4(strong("Well-Depth Prediction Results")),
+                                   p("Unfortunately, the model was not able to provide an accurate prediction of the true well-depth for a given area. The model hovered around a XX% accuracy in the training sets, and a XX% accuracy when being tested. A graph of the model’s prediction of well-depth over time is shown in the graph to the right.  This shows that well-depth depends on more than the data our team had access to and the need for further research to be able to predict water-table levels is high. This is extremely important to regions like Floyd who do not have the means to drill wells in private locations and need a remote sensing tool to estimate groundwater levels in these inaccessible areas. The results are shown to the right")
+                                   
+                                   ),
+                            column(6,
+                                   # This is where well-depth prediction graph goes
+                                   )
+                          ),
+                          
+                          fluidRow(
+                            column(3),
+                            column(6,
+                                   h4(strong("Limitations")),
+                                   p("One major limitation of the model was the lack of training data used in the LSTM model. Given the dearth of data in counties surrounding Floyd, the data used for training the model came from only ten well sites. Even within these well sites, the well water level data is sporadic across months. This is often coupled with the lack of corresponding NDWI data for the specific date ranges due to the limitations of satellite data collection, which often suffers due to any kind of atmospheric disturbances. This lack of sufficient data required for training the model might result in significant underfitting of the model which would result in biased predictions.  "),
+                                   p("Our model also does not include other variables relevant variables which might significantly impact water table level predictions. These factors include geological variables like soil type, permeability of the soil, as well as topology changes within the county, which all determine the extent to which groundwater can be replenished. Other relevant variables would include vegetation type and the extent of homogeneity of the vegetation, which would also impact the NDWI variations within a region. These factors can be further explored in future research on well water predictions using NDWI. ")
+                                   )
+                          )
+                 ),
                  
+                 tabPanel("Policy Implications", value = "policy",
+                          fluidRow(
+                            h1(strong("Policy Implications"), align = "center"),
+                            tags$br()
+                          ),
+                          
+                          fluidRow(
+                            column(3),
+                            column(6,
+                                   p("Our Neural Network (NN) model tests the possibility of predicting NDVI and NDWI values for a particular geographic region given past NDVI and NDWI values for the region. The high degree of predictability of our model opens up myriad possibilities for the application of these constructed indices in various environmental as well as agriculture-related policy designing. The existing literature on these constructed indices apply these indices in precision agriculture and planned farming. These measures are also used in various environmental policy design, including management of forest fires, drought management, coastal and inland flooding, urban green space management, etc. NDVI is an index primarily related to canopy chlorophyll content (Jackson et al., 2004) and one of the most widely used indexes for the remote sensing of vegetation (Piragnolo et al., 2014; Gao et al., 1996). The NDWI is a measure of liquid water molecules in vegetation canopies that interact with the incoming solar radiation (Gao et al., 1996), specially conceived for the estimate of soil moisture and canopy water content (Jackson et al., 2004; Sánchez-Ruiz, 2014). The NDWI is often a function of local climate and soil properties controlling water availability (Sánchez-Ruiz, 2014), and sensitive to changes in liquid water because it incorporates a short-wave infrared (SWIR) band. This green vegetation spectra region is dominated by water absorption effects that capture important information on seasonally variable water status (Sánchez-Ruiz, 2014; Wang et al., 2011). NDWI has been used extensively for monitoring the status of the vegetation water content over large areas from space (Serrano et al., 2019).  "),
+                                   tags$br()
+                            ),
+                            
+                          ),
+                          
+                          fluidRow(
+                            column(3),
+                            column(6,
+                                   h4(strong("Applications in Precision Agriculture and Planned Agriculture")),
+                                   tags$br(),
+                                   p("Agricultural applications in current times require more and more computer vision technologies for continuous monitoring and analysis of crop health and yield. Machine learning has thus become one of the mechanisms that make farming more efficient by using high-precision algorithms. Precision agriculture technology enables better identification, analysis, and management of temporal and spatial in-field variability of crop production. Precision agriculture is all about reducing this variability through more focused and targeted efforts which increase production by maintaining crop quality and quantity. This can be made more efficient with aerial imagery collected with drones using specialized sensors. In precision agriculture, NDVI is used to measure biomass. Vegetation indices can be averaged over time in order to establish growing conditions for a given time of the year. By studying the time dependence of vegetation indices, we can reveal vegetation stress as well as the influence of human activities."),
+                                   p("Previous studies found that NDVI was appropriate to reveal soil moisture (Gu et al. 2008), which is an important factor for crop management. NDVI has been shown to be an effective and widely used indicator of spatio-temporal changes in vegetation growth and distribution (Fensholt, 2009), vegetation stress (Karnieli, 2010), and vegetation productivity (Gitelson, 2014).")
+                                   )
+                          ),
+                          fluidRow(
+                            column(3),
+                            column(6,
+                                   h4(strong("Applications in Environmental Policy Design ")),
+                                   tags$br(),
+                                   p("NDVI and NDWI have proved to be useful variables in assessing urban heat island. The analysis of the correlation of these spectral indices by land use and land cover types and found that rNDVI-NDWI varied between 0.74–1.00 (lowest was in case water bodies and largest was in case of urban cover pattern) (Ogashawara and Bastos, 2012). NDVI and NDWI also were successfully applied in the study of analyzing urban heat island and land cover change (Chen et al., 2006). Prior studies have also found both NDVI and MNDWI useful indicators in environment monitoring (Liu et al. 2009; Bakar et al. 2016). "),
+                                   p("The temporal tracking of vegetation mass with spectral measures has been widely investigated, especially in water-limited regions. The accurate assessment of the seasonal dynamic of drought in these regions by the use of remote-sensing and field observations is essential to determination of the major constraints of such ecosystems (Chakroun et al., 2015). "),
+                                   p("Modern techniques of remote sensing provide tremendous potential for monitoring and managing dynamic changes in large surface water bodies, extracting hydrological parameters, and modeling the water balance (El Bastawesy et al., 2015, El-Gamily et al., 2010; Memon et al., 2012). The Normalized Difference Water Index (NDWI) using Near Infrared (NIR) and green channels of Landsat that can delineate and enhance open water features was proposed as a suitable dataset for monitoring flooding and performing flood damage assessment (McFeeters, 1996).  There also exists models which look into flood monitoring through integrated water body mapping method through combination of difference between NDVI and NDWI (NDVI–NDWI) with slope and NIR band using HJ-1A/B satellite images (Lu et al. 2011). "),
+                                   p("In forestry, NDVI is often used to quantify forest supply and leaf area index. This alongside NDWI is often used in management of forest fires. Plant humidity is an important indicator for wildfires monitoring and for identifying possibly dangerous regions. Low humidity contributes to environment susceptible to wild fires, especially if it corresponds to ecosystems where live and dry vegetation coexist."),
+                                   p("NDWI can also be of great interest as a support to decision making in terms of pasture and grazing management (Serrano et al., 2019). ")
+                                   )
+                          )
+                          
+                 ),
                  
                  # contact -----------------------------------------------------------
                  tabPanel("Our Team", value = "team",
@@ -473,8 +542,13 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    p("We would like to thank Healthy Patrick County, an association of concerned Patrick County residents, and Brandon Kramer for their input to this project.")
                           )
                  ),
-                 tabPanel("References", value = "references"
-                   
+                 tabPanel("References", value = "references",
+                   fluidRow(
+                     column(3),
+                     column(6,
+                            
+                            )
+                   )
                  ),
                  inverse = T)
 
@@ -488,49 +562,44 @@ server <- function(input, output, session) {
   
   #NDVI Predictions
   
-  var_NDVIMap <- reactive({
-    input$NDVIPredictions
-  })
-  
   output$NDVIMap <- renderLeaflet({
-    if(var_NDVIMap() == "2021") {
-      ## outline of Floyd
-      virginiaCounty <- st_read("data/VirginiaCounty.shp")
-      floyd <- virginiaCounty[5,] %>% st_transform(crs = "+init=epsg:4326")
-      m <- leaflet(options = leafletOptions(minzoom = 19))
-        
-        
+    
+    ## outline of Floyd
+    virginiaCounty <- st_read("data/VirginiaCounty.shp")
+    floyd <- virginiaCounty[5,] %>% st_transform(crs = "+init=epsg:4326")
+    m <- leaflet(options = leafletOptions(minzoom = 19))
       
       
-      geotiffFile = "./www/2021_NN_Predictions.tiff"
-      
-      my_file = raster(geotiffFile)
-      
-      my_file[!(my_file > 0)] = NA
-      
-      pal = colorNumeric(
-        palette = 'viridis',
-        domain = c(0, 1)
-      )
-      
-      m <- addGeoRaster(m, my_file,
-                   opacity = 0.55,
-                   autozoom = FALSE,
-                   colorOptions = colorOptions(
-                     palette = hcl.colors(256, palette = "viridis")
-                     , na.color = "transparent"
-                   ))
-      
-      addPolygons(m, data = floyd,
-                 fillColor = "Transparent",
-                 weight = 4,
-                 opacity = 1,
-                 color = "white") %>%
-        addLegend(pal = pal, values = c(0, 1), opacity = 0.7, title = "Predicted NDVI Value",
-                  position = "bottomright") %>%
-        setView(m, lng = -80.3, lat = 36.91, zoom = 9.5) %>%
-          addProviderTiles("CartoDB")
-    }
+    
+    
+    geotiffFile = "./www/2021_NN_Predictions.tiff"
+    
+    my_file = raster(geotiffFile)
+    
+    my_file[!(my_file > 0)] = NA
+    
+    pal = colorNumeric(
+      palette = 'viridis',
+      domain = c(0, 1)
+    )
+    
+    m <- addGeoRaster(m, my_file,
+                 opacity = 0.55,
+                 autozoom = FALSE,
+                 colorOptions = colorOptions(
+                   palette = hcl.colors(256, palette = "viridis")
+                   , na.color = "transparent"
+                 ))
+    
+    addPolygons(m, data = floyd,
+               fillColor = "Transparent",
+               weight = 4,
+               opacity = 1,
+               color = "white") %>%
+      addLegend(pal = pal, values = c(0, 1), opacity = 0.7, title = "Predicted NDVI Value",
+                position = "bottomright") %>%
+      setView(m, lng = -80.301, lat = 36.91, zoom = 9.5) %>%
+        addProviderTiles("CartoDB")
   })
   
   
