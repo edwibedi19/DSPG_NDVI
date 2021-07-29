@@ -17,7 +17,7 @@ library(stringr)
 library(shinyjs)
 library(leaflet)
 library(leafem)
-library(raster)
+library(raster) 
 library(stars) 
 
 prettyblue <- "#232D4B"
