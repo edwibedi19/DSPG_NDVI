@@ -54,8 +54,8 @@ jscode <- "function getUrlVars() {
            var x = document.getElementsByClassName('navbar-brand');
 
            if (mytype != 'economic') {
-             x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/events/symposium2020/poster-sessions\">' +
-                              '<img src=\"DSPG_black-01.png\", alt=\"DSPG 2020 Symposium Proceedings\", style=\"height:42px;\">' +
+            x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html\">' +
+                              '<img src=\"VTDSPG Logo.png\", alt=\"DSPG 2021 Symposium Proceedings\", style=\"height:42px;\">' +
                               '</a></div>';
 
              //changeLinks('dspg');
@@ -100,14 +100,14 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  tabPanel("Overview", value = "overview",
                           fluidRow(style = "margin: 2px;",
                                    align = "center",
-                                   # br("", style = "padding-top:2px;"),
-                                   # img(src = "uva-dspg-logo.jpg", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
-                                   br(""),
+                                   #br("", style = "padding-top:2px;"),
+                                   #img(src = "VTDSPG-Logo.png", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
+                                   #br(""),
                                    h1(strong("Analyzing Vegetative Health using Landsat 8 Satellite Imagery"),
                                       br(""),
                                       h4("Data Science for the Public Good Program"),
                                       h4("Virginia Tech"),
-                                      h4("Biocomplexity Insititute"),
+                                      h4("Department of Agricultural and Applied Economics"),
                                       br()
                                    )
                           ),
@@ -430,7 +430,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           fluidRow(style = "margin-left: 300px; margin-right: 300px;",
                                    h1(strong("Contact"), align = "center"),
                                    br(),
-                                   h4(strong("UVA Data Science for the Public Good")),
+                                   h4(strong("Virginia Tech Data Science for the Public Good")),
                                    p("The", a(href = 'https://biocomplexity.virginia.edu/social-decision-analytics/dspg-program', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"), 
                                      "is a summer immersive program held at the", a(href = 'https://biocomplexity.virginia.edu/social-decision-analytics', 'University of Virginia Biocomplexity Institute’s Social and Decision Analytics division (SDAD).'), 
                                      "In its seventh year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges around 
