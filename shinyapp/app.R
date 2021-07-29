@@ -423,46 +423,46 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  ),
                  
                  # NDVI Predictions -----------------------------------------------------------
-                 tabPanel("Well-Depth Prediction", value = "welldepth",
-                          fluidRow(style = "margin: 6px;",
-                                   h1(strong("Predicting Well-Depth in Floyd County, Virginia"), align = "center"),
-                                   column(3),
-                                   column(6,
-                                          h4(strong("Overview")),
-                                          p("The Landsat 8 imagery provide a rich dataset that can be utilized for various purposes. One major application of the constructed indices in our project was in the prediction of water levels in areas which suffer from scarcity of available data. Groundwater consumption has become a critical element of development in areas with overall and/or seasonal water scarcity. Excessive withdrawal from groundwater sources might prove to be unsustainable unless the groundwater aquifers are regularly replenished."),
-                                          p("Unfortunately, groundwater use is difficult to monitor globally and even in the U.S., wells that are drilled on private property can be exempt from official monitoring. This is also the case for the region under study here, Floyd County, Virginia. Due to lack of official monitoring, there is an acute dearth of well water data for the entire county."),
-                                          p("Because Floyd County suffers from seasonal water scarcity and a gradual decline in groundwater level, this makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. The aim of this section of the project is to use a machine learning model to give an accurate predictor of well-levels on areas without established well-sites.")
-                                   )
-                          ),
-                          fluidRow(
-                            column(3),
-                            column(6,
-                                   h4(strong("Well-Depth Methodology")),
-                                   p("Our project employed a model to predict the well water level within the county utilizing the constructed indices and other readily available data on elevation and precipitation for the county. The NDWI values were hypothesized to be indicative of changes in groundwater levels across seasons over years. Elevation changes significantly impact NDWI values and were hence included in the model. Precipitation is also a major source of groundwater replenishment within most areas in Virginia and was hence also include in the model. "),
-                                   p("The estimation of the water table level was performed through a Long Short-Term Memory (LSTM) network, which is a Recurrent Neural Network (RNN) architecture used in machine learning. The model used data on well water levels (measured in feet below land surface), taken from ten well sites documented under USGS for counties surrounding Floyd. Based on the location (latitude and longitude) of these well sites, corresponding data on NDWI values, elevation of the sites as well as precipitation values from the year 2012 to 2021 was added from Google Earth Engine. The resulting panel dataset was analyzed using a LSTM model, to get temporal predictions of well water level from the training data for the various well sites. This model was also used to spatially and temporally predict the well water level at Floyd given the county’s location, and the elevation, NDWI and precipitation values for the county. ")
-                            )
-                          ),
-                          fluidRow(
-                            column(3),
-                            column(3,
-                                   h4(strong("Well-Depth Prediction Results")),
-                                   p("Unfortunately, the model was not able to provide an accurate prediction of the true well-depth for a given area. The model hovered around a XX% accuracy in the training sets, and a XX% accuracy when being tested. A graph of the model’s prediction of well-depth over time is shown in the graph to the right.  This shows that well-depth depends on more than the data our team had access to and the need for further research to be able to predict water-table levels is high. This is extremely important to regions like Floyd who do not have the means to drill wells in private locations and need a remote sensing tool to estimate groundwater levels in these inaccessible areas. The results are shown to the right")
-                                   
-                            ),
-                            column(6,
-                                   # This is where well-depth prediction graph goes
-                            )
-                          ),
-                          
-                          fluidRow(
-                            column(3),
-                            column(6,
-                                   h4(strong("Limitations")),
-                                   p("One major limitation of the model was the lack of training data used in the LSTM model. Given the dearth of data in counties surrounding Floyd, the data used for training the model came from only ten well sites. Even within these well sites, the well water level data is sporadic across months. This is often coupled with the lack of corresponding NDWI data for the specific date ranges due to the limitations of satellite data collection, which often suffers due to any kind of atmospheric disturbances. This lack of sufficient data required for training the model might result in significant underfitting of the model which would result in biased predictions.  "),
-                                   p("Our model also does not include other variables relevant variables which might significantly impact water table level predictions. These factors include geological variables like soil type, permeability of the soil, as well as topology changes within the county, which all determine the extent to which groundwater can be replenished. Other relevant variables would include vegetation type and the extent of homogeneity of the vegetation, which would also impact the NDWI variations within a region. These factors can be further explored in future research on well water predictions using NDWI. ")
-                            )
-                          )
-                 ),
+                 #tabPanel("Well-Depth Prediction", value = "welldepth",
+                 #         fluidRow(style = "margin: 6px;",
+                 #                  h1(strong("Predicting Well-Depth in Floyd County, Virginia"), align = "center"),
+                 #                  column(3),
+                 #                  column(6,
+                 #                         h4(strong("Overview")),
+                 #                         p("The Landsat 8 imagery provide a rich dataset that can be utilized for various purposes. One major application of the constructed indices in our project was in the prediction of water levels in areas which suffer from scarcity of available data. Groundwater consumption has become a critical element of development in areas with overall and/or seasonal water scarcity. Excessive withdrawal from groundwater sources might prove to be unsustainable unless the groundwater aquifers are regularly replenished."),
+                 #                         p("Unfortunately, groundwater use is difficult to monitor globally and even in the U.S., wells that are drilled on private property can be exempt from official monitoring. This is also the case for the region under study here, Floyd County, Virginia. Due to lack of official monitoring, there is an acute dearth of well water data for the entire county."),
+                 #                         p("Because Floyd County suffers from seasonal water scarcity and a gradual decline in groundwater level, this makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. The aim of this section of the project is to use a machine learning model to give an accurate predictor of well-levels on areas without established well-sites.")
+                 #                  )
+                 #         ),
+                 #         fluidRow(
+                 #           column(3),
+                 #           column(6,
+                 #                  h4(strong("Well-Depth Methodology")),
+                 #                  p("Our project employed a model to predict the well water level within the county utilizing the constructed indices and other readily available data on elevation and precipitation for the county. The NDWI values were hypothesized to be indicative of changes in groundwater levels across seasons over years. Elevation changes significantly impact NDWI values and were hence included in the model. Precipitation is also a major source of groundwater replenishment within most areas in Virginia and was hence also include in the model. "),
+                 #                  p("The estimation of the water table level was performed through a Long Short-Term Memory (LSTM) network, which is a Recurrent Neural Network (RNN) architecture used in machine learning. The model used data on well water levels (measured in feet below land surface), taken from ten well sites documented under USGS for counties surrounding Floyd. Based on the location (latitude and longitude) of these well sites, corresponding data on NDWI values, elevation of the sites as well as precipitation values from the year 2012 to 2021 was added from Google Earth Engine. The resulting panel dataset was analyzed using a LSTM model, to get temporal predictions of well water level from the training data for the various well sites. This model was also used to spatially and temporally predict the well water level at Floyd given the county’s location, and the elevation, NDWI and precipitation values for the county. ")
+                 #           )
+                 #         ),
+                 #         fluidRow(
+                 #           column(3),
+                 #           column(3,
+                 #                  h4(strong("Well-Depth Prediction Results")),
+                 #                  p("Unfortunately, the model was not able to provide an accurate prediction of the true well-depth for a given area. The model hovered around a XX% accuracy in the training sets, and a XX% accuracy when being tested. A graph of the model’s prediction of well-depth over time is shown in the graph to the right.  This shows that well-depth depends on more than the data our team had access to and the need for further research to be able to predict water-table levels is high. This is extremely important to regions like Floyd who do not have the means to drill wells in private locations and need a remote sensing tool to estimate groundwater levels in these inaccessible areas. The results are shown to the right")
+                 #                  
+                 #           ),
+                 #           column(6,
+                 #                  # This is where well-depth prediction graph goes
+                 #           )
+                 #         ),
+                 #         
+                 #         fluidRow(
+                 #           column(3),
+                 #           column(6,
+                 #                  h4(strong("Limitations")),
+                 #                  p("One major limitation of the model was the lack of training data used in the LSTM model. Given the dearth of data in counties surrounding Floyd, the data used for training the model came from only ten well sites. Even within these well sites, the well water level data is sporadic across months. This is often coupled with the lack of corresponding NDWI data for the specific date ranges due to the limitations of satellite data collection, which often suffers due to any kind of atmospheric disturbances. This lack of sufficient data required for training the model might result in significant underfitting of the model which would result in biased predictions.  "),
+                 #                  p("Our model also does not include other variables relevant variables which might significantly impact water table level predictions. These factors include geological variables like soil type, permeability of the soil, as well as topology changes within the county, which all determine the extent to which groundwater can be replenished. Other relevant variables would include vegetation type and the extent of homogeneity of the vegetation, which would also impact the NDWI variations within a region. These factors can be further explored in future research on well water predictions using NDWI. ")
+                 #           )
+                 #         )
+                 #),
                  
                  tabPanel("Policy Implications", value = "policy",
                           fluidRow(
@@ -505,56 +505,80 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  
                  # contact -----------------------------------------------------------
                  tabPanel("Our Team", value = "team",
-                          fluidRow(style = "margin-left: 300px; margin-right: 300px;",
-                                   h1(strong("Contact"), align = "center"),
-                                   br(),
-                                   h4(strong("UVA Data Science for the Public Good")),
-                                   p("The", a(href = 'https://biocomplexity.virginia.edu/social-decision-analytics/dspg-program', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"), 
-                                     "is a summer immersive program held at the", a(href = 'https://biocomplexity.virginia.edu/social-decision-analytics', 'University of Virginia Biocomplexity Institute’s Social and Decision Analytics division (SDAD).'), 
-                                     "In its seventh year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges around 
-                              critical social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences 
-                              to determine how information generated within every community can be leveraged to improve quality of life and inform public policy. For more information on program 
-                              highlights, how to apply, and our annual symposium, please visit", a(href = 'https://biocomplexity.virginia.edu/social-decision-analytics/dspg-program', 'the official Biocomplexity DSPG website.', target = "_blank")),
-                                   p("", style = "padding-top:10px;")
-                          ),
-                          fluidRow(style = "margin-left: 300px; margin-right: 300px;",
-                                   column(6, align = "center",
-                                          h4(strong("DSPG Team Leadership")),
-                                          img(src = "fellow-Esha.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
-                                          img(src = "fellow-seth.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
-                                          img(src = "faculty-posadas.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
-                                          p(a(href = 'https://www.linkedin.com/in/esha-dwibedi-83a63476/', 'Esha Dwibedi', target = '_blank'), "(Virginia Tech, Applied Microeconomics);"),
-                                          p(a(href = 'https://www.linkedin.com/in/aviseth/', 'Avi Seth', target = '_blank'), "(Virginia Tech, Computer Science);"),
-                                          p(a(href = 'https://www.linkedin.com/in/briannaposadas/', 'Dr. Brianna Posadas', target = '_blank'), "(Virginia Tech, Statistical and Data Science)."),
+                          fluidRow(column(3),
+                                   column(6,
+                                          h1(strong("Contact"), align = "center"),
+                                          br(),
+                                          h4(strong("Virginia Tech Data Science for the Public Good")),
+                                          p("The", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"), 
+                                            "is a summer immersive program held at the", a(href = 'https://aaec.vt.edu/s', 'Virginia Tech Department of Agricultural and Applied Economics.'), 
+                                            "In its second year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges around critical social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences to determine how information generated within every community can be leveraged to improve quality of life and inform public policy. For more information on program highlights, how to apply, and our annual symposium, please visit", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'the official VT DSPG website.', target = "_blank")),
                                           p("", style = "padding-top:10px;")
+                                          )
+                                   
+                          ),
+                          fluidRow(
+                            column(3),
+                            column(2, align = "center",
+                                   h4(strong("Graduate Fellows")), tags$br(),
+                                   img(src = "fellow-Esha.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "175px"),
+                                   tags$br(), p(a(href = 'https://www.linkedin.com/in/esha-dwibedi-83a63476/', 'Esha Dwibedi', target = '_blank'), "(Virginia Tech, Behavioral and Experimental Economics)"),
+                                   tags$br(), img(src = "fellow-seth.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
+                                   tags$br(), p(a(href = 'https://www.linkedin.com/in/aviseth/', 'Avi Seth', target = '_blank'), "(Virginia Tech, Computer Science);")
                                    ),
-                                   column(6, align = "center",
-                                          h4(strong("DSPG Interns")),
-                                          img(src = "team-mukora.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
-                                          img(src = "team-rex.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
-                                          #img(src = "team-sallie.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
-                                          p(a(href = "https://www.linkedin.com/in/tejapristavec/", 'Teja Pristavec', target = '_blank'), "(Project Lead, Research Assistant Professor);",
-                                            a(href = "https://biocomplexity.virginia.edu/brandon-kramer", 'Brandon Kramer', target = '_blank'), "(Postdoctoral Research Associate);",
-                                            a(href = 'https://biocomplexity.virginia.edu/sallie-keller', 'Sallie Keller', target = '_blank'), "(Division Director and Distinguished Professor)."),
-                                          p("", style = "padding-top:10px;")
-                                   )
-                          ),
-                          fluidRow(style = "margin-left: 300px; margin-right: 300px;",
-                                   h4(strong("Project Stakeholders")),
-                                   p(a(href = 'https://www.linkedin.com/in/nancy-bell-aa293810/', 'Nancy Bell', target = '_blank'), "(Virginia Department of Health);",
-                                     a(href = 'https://www.linkedin.com/in/terri-alt-3138b4101/', 'Terri Alt', target = '_blank'), "(Virginia Cooperative Extension, Patrick County at Virginia Tech)."),
-                                   p("", style = "padding-top:10px;"),
-                                   h4(strong("Acknowledgments")),
-                                   p("We would like to thank Healthy Patrick County, an association of concerned Patrick County residents, and Brandon Kramer for their input to this project.")
+                            column(2, align = "center",
+                                   h4(strong("Faculty Advisor")), tags$br(),
+                                   img(src = "faculty-posadas.jpg", height = "150px"), tags$br(),
+                                   p(a(href = 'https://www.linkedin.com/in/briannaposadas/', 'Dr. Brianna Posadas', target = '_blank'), "(Virginia Tech, Statistical and Data Science)"),
+                                   img(src = "VT Logo.jpg", width = 300)
+                                      ),
+                            column(2, align = "center",
+                                   h4(strong("Undergraduate Interns")), tags$br(),
+                                   img(src = "team-rex.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"), tags$br(),
+                                   p(a(href = "https://www.linkedin.com/in/atticus-rex-717581191/", 'Atticus Rex', target = '_blank'), "(Virginia Tech, Mechanical Engineering & Computational Modeling and Data Analytics)"), tags$br(),
+                                   img(src = "team-mukora.PNG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "175px"),
+                                   p(a(href = "www.linkedin.com/in/victormukora", 'Victor Mukora', target = '_blank'), "(Virginia Tech, Computational Modeling and Data Analytics)")
+                                   
+                            )
+                            
                           )
                  ),
                  tabPanel("References", value = "references",
-                          fluidRow(
-                            column(3),
-                            column(6,
-                                   
-                            )
-                          )
+                          column(3),
+                          column(6, 
+                                 h1(strong("References"), align = "center"),
+                            p("Acharya, T., Lee, D., Yang, I., & Lee, J. (2016). Identification of water bodies in a Landsat 8 Oli image using A j48 decision tree. Sensors, 16(7), 1075. https://doi.org/10.3390/s1607107"),
+                            p("Akhtar Ali Memon, Sher Muhammad, Said Rahman, Mateeul Haq, Flood monitoring and damage assessment using water indices: A case study of Pakistan flood-2012, The Egyptian Journal of Remote Sensing and Space Science, Volume 18, Issue 1, 2015, Pages 99-106, ISSN 1110-9823. "),
+                            p("Bakar, S.B.A. – Pradhan, B. – Lay, U.S., Abdullahi, S. (2016): Spatial assessment of land surface temperature and land use/land cover in Langkawi Island. 8th IGRSM International Conference and Exhibition on Remote Sensing & GIS (IGRSM 2016) IOP Publishing IOP Conf. Series: Earth and Environmental Science 37 (2016) 012064 doi:10.1088/1755- 1315/37/1/012064"),
+                            p("Bao, Z., Zhang, J., Wang, G., Guan, T., Jin, J., Liu, Y., Li, M., & Ma, T. (2021). The sensitivity of vegetation cover to climate change in multiple climatic zones using machine learning algorithms. Ecological Indicators, 124, 107443. https://doi.org/10.1016/j.ecolind.2021.107443 "),
+                            p("Chakroun, H.; Mouillot, F.; Hamdi, A. Regional equivalent water thickness modeling from remote sensing across a tree cover/LAI gradient in Mediterranean forests of Northern Tunisia. Remote Sens. 2015, 7, 1937–1961. "),
+                            p("Chen, X.-L. – Zhao, H.-M. – Li, P.-X. – Yin, Z.-Y. (2006): Remote sensing image-based analysis of the relationship between urban heat island and land use/cover changes. Remote Sensing of Environment. 104: 133-146"),
+                            p("Conversion to TOA Radiance. Using the USGS Landsat Level-1 Data Product. (n.d.). https://www.usgs.gov/core-science-systems/nli/landsat/using-usgs-landsat-level-1-data-product."),  
+                            p("Dawson, T., Sandoval, J. S., Sagan, V., & Crawford, T. (2018). A spatial analysis of the relationship between vegetation and poverty. ISPRS International Journal of Geo-Information, 7(3), 83. https://doi.org/10.3390/ijgi7030083"),
+                            p("El Bastawesy, M., Gabr, S., Mohamed, Ihab, 2015. Assessment of hydrological changes in the Nile River due to the construction of Renaissance Dam in Ethiopia. Egypt. J. Remote Sens. Space Sci. 18 (1), 65–75."),
+                            p("Fensholt, R.; Rasmussen, K.; Nielsen, T.T.; Mbow, C. Evaluation of earth observation based long term vegetation trends—Ntercomparing NDVI time series trend analysis consistency of Sahel from AVHRR GIMMS, Terra MODIS and SPOT VGT data. Remote Sens. Environ. 2009, 113, 1886–1898"),
+                            p("Gao, B.-C. NDWI—A normalized difference water index for remote sensing of vegetation liquid water from space. Remote Sens. Environ. 1996, 58, 257–266."),
+                            p("Gao, B.-cai. (1996). NDWI—A normalized Difference WATER index for remote sensing of VEGETATION liquid water from space. Remote Sensing of Environment, 58(3), 257–266. https://doi.org/10.1016/s0034-4257(96)00067-3"), 
+                            p("Gitelson, A.A.; Peng, Y.; Huemmrich, K.F. Relationship between fraction of radiation absorbed by photosynthesizing maize and soybean canopies and NDVI from remotely sensed data taken at close range and from MODIS 250m resolution data. Remote Sens. Environ. 2014, 147, 108–120."),
+                            p("Gu, Y. – Hunt, E. – Wardlow, B. – Basara, J.B. – Brown, J.F. - Verdin, J.P. (2008): Evaluation of MODIS NDVI and NDWI for vegetation drought monitoring using Oklahoma Mesonet soil moisture data, Geophysical Research Letters 35: L22401, doi:10.1029/2008GL035772."),
+                            p("Herrero, H., Waylen, P., Southworth, J., Khatami, R., Yang, D., & Child, B. (2020). A healthy Park NEEDS HEALTHY Vegetation: The story OF Gorongosa National Park in the 21st century. Remote Sensing, 12(3), 476. https://doi.org/10.3390/rs12030476"),  
+                            p("I.H.El-Gamily,G.Selim,E.A.Hermas, Wireless mobile field-based GIS science and technology for crisis management process: a case study of a fire event, Cairo, Egypt, Egypt. J. Remote Sens. Space Sci.,13(1)(2010), pp.21-29"), 
+                            p("Jackson, T.J.; Chen, D.; Cosh, M.; Li, F.; Anderson, M.; Walthall, C.; Doriaswamy, P.; Hunt, E.R. Vegetation water content mapping using Landsat data derived normalized difference water index for corn and soybeans. Remote Sens. Environ. 2004, 92, 475–482. "),
+                            p("Karnieli, A.; Agam, N.; Pinker, R.T.; Anderson, M.; Imhoff, M.L.; Gutman, G.G.; Panov, N.; Goldberg, A. Use of NDVI and land surface temperature for drought assessment: Merits and limitations. J. Clim. 2010, 23, 618–633."),
+                            p("Landsat surface REFLECTANCE-DERIVED SPECTRAL Indices. Landsat Normalized Difference Vegetation Index. (n.d.). https://www.usgs.gov/core-science-systems/nli/landsat/landsat-normalized-difference-vegetation-index?qt-science_support_page_related_con=0#qt-science_support_page_related_con. "),  
+                            p("Liu, W. – Lu, L. – Ye, C. – Liu, Y. (2009.): Relating urban surface temperature to surface characteristics in Beijing area of China. Proc. SPIE 7498, MIPPR 2009: Remote Sensing and GIS Data Processing and Other Applications, 74982I (30 October 2009); doi: 10.1117/12.833679"), 
+                            p("Ogashawara, I. – Bastos, V.S.B. (2012): A Quantitative Approach for Analyzing the Relationship between Urban Heat Islands and Land Cover. Remote Sensing. 4: 3596-3618. "), 
+                            p("Ouzemou, J.-E., El Harti, A., Lhissou, R., El Moujahid, A., Bouch, N., El Ouazzani, R., Bachaoui, E. M., & El Ghmari, A. (2018). Crop type mapping FROM pansharpened Landsat 8 NDVI data: A case of a highly fragmented and intensive agricultural system. Remote Sensing Applications: Society and Environment, 11, 94–103. https://doi.org/10.1016/j.rsase.2018.05.002"),
+                            p("Pettorelli, N. (2013). The normalized difference vegetation index. Oxford University Press. "),  
+                            p("Piragnolo, M.; Pirotti, F.; Guarnieri, A.; Vettore, A.; Salogni, G. Geo-spatial support for assessment of anthropic impact on biodiversity. Int. J. Geo-Inf. 2014, 3, 599–618. "),
+                            p("Pravalie, R., Sîrodoev, I., & Peptenatu, D. (2014). Detecting climate change effects on forest ecosystems in southwestern Romania USING Landsat TM Ndvi data. Journal of Geographical Sciences, 24(5), 815–832. https://doi.org/10.1007/s11442-014-1122-2"), 
+                            p("S.Lu,B.Wu,N.Yan,H.Wang, Water body mapping method with HJ-1A/B satellite imagery, Int. J. Appl. Earth Obs. Geoinf.,13(3)(2011), pp.428-434"), 
+                            p("S.K.McFeeters, The use of the normalized difference water index (NDWI) in the delineation of open water features, Int. J. Remote Sens.,17(7)(1996), pp.1425-1432"), 
+                            p("Sánchez-Ruiz, S.; Piles, M.; Sánchez, N.; Martínez-Fernández, J.; Vall-llossera, M.; Camps, A. Combining SMOS with visible and near/shortwave/thermal infrared satellite data for high resolution soil moisture estimates. J. Hidrol. 2014, 516, 273–283."),
+                            p("Serrano, J; Shahidian, S.; Marques da Silva, J. (2019) Evaluation of Normalized Difference Water Index as a Tool for Monitoring Pasture Seasonal and Inter-Annual Variability in a Mediterranean Agro-Silvo-Pastoral System. Water, 11, 62; doi:10.3390/w11010062"), 
+                            p("Su, H., Yang, D., & Yong, Y. (2015). MODIS-Landsat data fusion for Estimating Vegetation dynamics - a case study for Two ranches in SOUTHWESTERN TEXAS. Proceedings of 1st International Electronic Conference on Remote Sensing. https://doi.org/10.3390/ecrs-1-d016"), 
+                            p("Wang, X.; Fuller, D.O.; Setemberg, L.; Miralles-Wilhelm, F. Foliar nutrient and water content in subtropical tree islands: A new chemohydrodynamic link between satellite vegetation indices and foliar δ 15N values. Remote Sens. Environ. 2011, 3, 923–930."),
+                            p("Zhu, Y., Yang, K., Pan, E., Yin, X., & Zhao, J. (2018). Extraction and analysis of urban vegetation information based on remote sensing image. 2018 26th International Conference on Geoinformatics. https://doi.org/10.1109/geoinformatics.2018.8557075"))
                  ),
                  inverse = T)
 
