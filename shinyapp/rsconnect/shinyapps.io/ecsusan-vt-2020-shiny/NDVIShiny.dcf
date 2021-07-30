@@ -5,9 +5,9 @@ account: ecsusan-vt-2020-shiny
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4436297
-bundleId: 4869195
+bundleId: 4869854
 url: https://ecsusan-vt-2020-shiny.shinyapps.io/NDVIShiny/
-when: 1627578373.21735
-lastSyncTime: 1627578373.21735
+when: 1627592603.04883
+lastSyncTime: 1627592603.04883
 asMultiple: FALSE
 asStatic: FALSE

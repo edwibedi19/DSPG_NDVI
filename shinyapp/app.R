@@ -126,7 +126,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           
                                    ),
                                    column(3,
-                                          img(src = "Landsat Satellite.jpg", width = "420px"),
+                                          img(src = "Landsat Satellite.jpg", height="100%", width="100%"),
                                           tags$small("The Landsat 8 Satellite. Image Source: United States Geological Survey")
                                    )
                                    
@@ -134,7 +134,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           fluidRow(
                             column(3),
                             column(3, align = "right",
-                                   img(src = "Google Earth NDWI.jpg", width = "440px", align = "right"),
+                                   img(src = "Google Earth NDWI.jpg", height="100%", width="100%", align = "right"),
                                    tags$small("An aerial view of NDWI. Image Source: Google Earth Engine"),
                             ),
                             column(3,
@@ -145,6 +145,31 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    
                             )
                             
+                          ),
+                          
+                          fluidRow(
+                            column(3),
+                            column(6,
+                                   align = "center",
+                                   tags$br(),
+                                   h3(strong("Dashboard Aims"), align = "center"),
+                                   h4(em("Our Dashboard is Aimed at:"), align = "center"),
+                                   tags$br(),
+                                   )
+                          ),
+                          fluidRow(
+                            column(3),
+                            column(6,
+                                   h4(strong("Researchers and practitioners working on remote-sensing data: ")),
+                                   p("Information available through the interface would provide insights on utilization of Landsat 8 satellite imagery for construction of images relevant to gauging vegetative health. Information on construction of these indices and their various usage would provide both researchers and practitioners preliminary guidelines on using Landsat 8 data. Our Neural Network (NN) model also provides information on how to use these data to form prediction models which can be further utilized in designing research-informed policies. "),
+                                   tags$br(),
+                                   h4(strong("Researchers working on hydrology in data scarce areas: ")),
+                                   p("Our interface provides insights into potential avenues to explore for indirect estimation of water resources in areas which suffer from a lack of sufficient data. This would help researchers identify ways to model available data to estimate and map out the water resources in such data scare areas. "),
+                                   tags$br(),
+                                   h4(strong("Agriculture and Environmental Policy Designing Agencies: ")),
+                                   p("These and similar stakeholders might use the models designed and presented through the interface to build insights into how agriculture and environmental policy can be designed using remote-sensing data in the fields of precision agriculture, planned farming, and climate change impact measurement and management.")
+                                   
+                                   )
                           )
                  ),
                  
@@ -162,7 +187,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    p("The Landsat 8 Satellite was launched in 2013 by NASA to collect high-resolution and electromagnetically diverse remote radiation data about the Earth’s surface. The Landsat senses eleven distinct wavelength ranges of light, from the visible red, green and blue wavelengths to infrared wavelengths for thermal imaging. These diverse ranges of sensing data hold the ability to filter and provide insight into aspects of regions that do not appear visible in a standard RGB photograph. Landsat 8 also has a relatively high resolution, with each pixel in most captured images corresponding to 30 meters of land area. In the panchromatic channel, used for detail, the satellite reaches a detail rating of 15 meters per pixel.")
                             ),
                             column(3,
-                                   img(src = "Picture1.png", style = "text-align:left;", width = 420),
+                                   img(src = "Picture1.png", style = "text-align:left;", height="100%", width="100%"),
                                    tags$small("Image Source: United States Geological Survey")
                             )
                             
@@ -170,7 +195,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           fluidRow(
                             column(3),
                             column(3, align = "right",
-                                   img(src = "Picture2.png", style = "text-align:left;", width = 420, align = "right")
+                                   img(src = "Picture2.png", style = "text-align:left;", height="100%", width="100%", align = "right")
                             ),
                             column(3,
                                    h4(strong("Landsat Bands")),
@@ -190,7 +215,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           synthesis of the red, green and blue bands of an image of Las Angeles, California. ")
                             ),
                             column(3,
-                                   img(src = "LALandsatImg.jpg", style = "display: inline; float: center;", width = 420),
+                                   img(src = "LALandsatImg.jpg", style = "display: inline; float: center;", height="100%", width="100%"),
                                    tags$small("Image Source: United States Geological Survey")
                             )
                             
@@ -221,18 +246,18 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    
                                    p(style = "text-align: justify;", "From these types of aerial maps of derived indices, conclusions about distribution and trends in the vegetative health over time and throughout the region can be made. The Normalized Difference Vegetative Index has been used in applications such as precision agriculture, drought monitoring, flooding and precipitation patterns. The aim of this project is to predict the NDVI by combining the band data from the Landsat 8 satellite to give an accurate prediction of how the NDVI will change over time.")
                             ),
-                            column(6,
-                                   img(src = "NDVI_2016_NRV.png", style = "display: inline", width = "550px"))
+                            column(3,
+                                   img(src = "NDVI_2016_NRV.png", style = "display: inline", height="120%", width="120%"))
                           ),
                           fluidRow(
-                            
-                            column(6, align = "right",
-                                   img(src = "Picture7.png", style = "display: inline;")),
+                            column(3),
+                            column(3, align = "right",
+                                   img(src = "NDWI_2016_NRV.png", style = "display: inline;", height="100%", width="100%")),
                             column(3,
                                    p(strong(style = "text-align: justify;","Normalized Difference Water Index")),
                                    p(style = "text-align: justify;","The Normalized Difference Water Index (NDWI) is highly correlated with the amount of water stored in the foliage of plants, as described in Bo-cai Gao’s paper, “A normalized difference water index for remote sensing of vegetation liquid water from space”. The NDWI is sometimes described as the Normalized Difference Water Index or NDMI. The USGS also provides a formula to calculate the NDWI by combining the Short-Wave Infrared with the Near Infrared wavelengths of light captured from the Landsat 8 satellite in the following formula:"),
                                    
-                                   p(strong(align = "center","NDMI = (NIR – SWIR) / (NIR + SWIR)")),  
+                                   p(strong(align = "center","NDWI = (NIR – SWIR) / (NIR + SWIR)")),  
                                    
                                    p(style = "text-align: justify;","Like the NDVI, this formula allows for per-pixel calculation of this index to describe the distribution of water in vegetation throughout the new river valley, as shown in the image to the left:"))
                           )
@@ -304,7 +329,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           fluidRow(
                             column(3),
                             column(3, align = "right",
-                                   img(src = "Picture11.png", width = "430px", align = "right"),
+                                   img(src = "Picture11.png", height="100%", width="100%", align = "right"),
                                    p(tags$small("A measure of NDVI after the region was filtered with the filtration algorithm. Note the absence of Urban areas such as Roanoke and Blacksburg/Christiansburg, Smith Mountain Lake and a large overhanging Cloud on the Scene.  ")),
                             ),
                             column(3,
@@ -328,7 +353,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           fluidRow(
                             column(3),
                             column(3,
-                                   img(src = "Picture13.png", style = "display: inline", align = "right")),
+                                   img(src = "Picture13.png", style = "display: inline", height="100%", width="100%", align = "right")),
                             column(3,
                                    p("Because of this technical hurdle, the team had to develop an algorithm to align the before and after images to line up at the individual pixel level. This was imperative because the resolution was so high and each pixel of the image only accounts for a 30m x 30m section of land. Therefore, the team had to be very precise in our corrections between these two images. We managed to accomplish this by subtracting the Band 5 Near Infrared (NIR) light reflectance for the two years and examining the change. This produced large color discrepancies in major landforms like water, lakes, ponds and urban areas which were easy to identify and correct for. Once the pictures were properly aligned, the distinct changes in color disappeared. A visualization of an example correction via subtracting the NIR bands is shown to the left. Correcting for these disparities in alignment turned out to be crucial for the accuracy of our neural network in its ability to truly predict the change from one year to another. ")
                             )
@@ -345,15 +370,18 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             
                           ),
                           fluidRow(
-                            align = "center",
-                            img(src = "Subset.jpg", align = "center", width = 1000)
+                            column(3),
+                            column(6,
+                                   align = "center",
+                                   img(src = "Subset.jpg", align = "center", width = "100%")
+                                   )
                           ),
                           tags$br(),
                           tags$br(),
                           fluidRow(
                             column(3),
                             column(3,
-                                   img(src = "Picture15.png", style = "display: inline", align = "right")),
+                                   img(src = "Picture15.png", style = "display: inline", height="100%", width="100%", align = "right")),
                             column(3,
                                    h4(strong("Building and Training a Neural Network")),
                                    p("Once the 20 x 20 subsets of input and output were identified and assembled, they needed to be conditioned in order to be fed to a model. The team used the MinMaxScaler from the Sklearn package in python to scale the intensities down to a continuous feature range between 0-1. These inputs had to be linked with the corresponding changes in NDVI and NDWI observed two years later and then saved as compressed numpy arrays. "),
@@ -376,15 +404,15 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    h4(strong("Testing Accuracy ")),
                                    p("The testing results below are for two different time periods of Southwest Virginia and an Image of Central Virginia. The accuracy percentage is the average percentage correct of predicted results and on the true values. The Loss Function used in this training was Means Absolute Error, which is the absolute value of the distance from the predicted values to the true values. The Loss values in the table are the average losses for all 16,000 test samples. The accuracy for Central Virginia is likely lower than the Southwest Virginia samples because it contained the least amount of training data compared to the previous two.")
                             ),
-                            column(6,
+                            column(3,
                                    tags$br(),
-                                   img(src = "Picture16.png", style = "display: inline", width = "550px")),
+                                   img(src = "Picture16.png", style = "display: inline", height="100%", width="100%")),
                             
                           ),
                           fluidRow(
                             column(3),
                             column(3,
-                                   img(src = "Picture17.png", align = "right")),
+                                   img(src = "Picture17.png", align = "right", height="100%", width="100%")),
                             column(3,
                                    h4(strong("Visualizing Accuracy ")),
                                    p("The error in training the model over time is visualized to the left for the data in Southwest Virginia from 2014 to 2016. This shows how the model efficiency decreased the error at an exponential rate and after multiple epochs honed in an astoundingly accurate model at over 99% accuracy. The size of the dataset also ensures that this is not an overfitting problem as this model performed at 99% or better for over 100,000 data points. To compare this to statistics, this is the equivalent of having a P-Value on the order of 1e-17 or a Z-Score 83 standard deviations above the mean. This has huge implications for policy and being able to predict environmental health, which will be spoken about in detail in the latter tabs of this project.")
@@ -414,7 +442,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             ),
                             column(4,
                                    h4(strong("NDVI Predictions for August 2023")),
-                                   withSpinner(leafletOutput("NDVIMap", height = 500)),
+                                   img(src="FloydPredictions.JPG", height="100%", width="100%", align="left"),
                                    tags$small("Please allow up to a minute for the graphic to load. Refresh if nothing loads.", align = "center")
                             )
                             
@@ -521,22 +549,22 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             column(3),
                             column(2, align = "center",
                                    h4(strong("Graduate Fellows")), tags$br(),
-                                   img(src = "fellow-Esha.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "175px"),
+                                   img(src = "fellow-Esha.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width="75%"),
                                    tags$br(), p(a(href = 'https://www.linkedin.com/in/esha-dwibedi-83a63476/', 'Esha Dwibedi', target = '_blank'), "(Virginia Tech, Behavioral and Experimental Economics)"),
-                                   tags$br(), img(src = "fellow-seth.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
+                                   tags$br(), img(src = "fellow-seth.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width="75%"),
                                    tags$br(), p(a(href = 'https://www.linkedin.com/in/aviseth/', 'Avi Seth', target = '_blank'), "(Virginia Tech, Computer Science);")
                                    ),
                             column(2, align = "center",
                                    h4(strong("Faculty Advisor")), tags$br(),
-                                   img(src = "faculty-posadas.jpg", height = "150px"), tags$br(),
+                                   img(src = "faculty-posadas.jpg", width="50%"), tags$br(),
                                    p(a(href = 'https://www.linkedin.com/in/briannaposadas/', 'Dr. Brianna Posadas', target = '_blank'), "(Virginia Tech, Statistical and Data Science)"),
-                                   img(src = "VT Logo.jpg", width = 300)
+                                   img(src = "VT Logo.jpg", width="75%")
                                       ),
                             column(2, align = "center",
                                    h4(strong("Undergraduate Interns")), tags$br(),
-                                   img(src = "team-rex.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"), tags$br(),
+                                   img(src = "team-rex.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width="75%"), tags$br(),
                                    p(a(href = "https://www.linkedin.com/in/atticus-rex-717581191/", 'Atticus Rex', target = '_blank'), "(Virginia Tech, Mechanical Engineering & Computational Modeling and Data Analytics)"), tags$br(),
-                                   img(src = "team-mukora.PNG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "175px"),
+                                   img(src = "team-mukora.PNG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width="75%"),
                                    p(a(href = "www.linkedin.com/in/victormukora", 'Victor Mukora', target = '_blank'), "(Virginia Tech, Computational Modeling and Data Analytics)")
                                    
                             )
@@ -631,6 +659,10 @@ server <- function(input, output, session) {
       setView(m, lng = -80.301, lat = 36.91, zoom = 9.5) %>%
       addProviderTiles("CartoDB")
   })
+  
+  output$ndviPredictions <- renderImage({
+     list(src = "www/FloydPredictions.JPG")
+  }, deleteFile = FALSE)
   
   
   
