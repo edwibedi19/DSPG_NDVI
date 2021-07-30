@@ -29,6 +29,7 @@ colors <- c("#232d4b","#2c4f6b","#0e879c","#60999a","#d1e0bf","#d9e12b","#e6ce3a
 tags$cite()
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
+# CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 jscode <- "function getUrlVars() {
                 var vars = {};
                 var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -60,9 +61,10 @@ jscode <- "function getUrlVars() {
            var x = document.getElementsByClassName('navbar-brand');
 
            if (mytype != 'economic') {
-              x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html\">' +
-                              '<img src=\"VTDSPG Logo.png\", alt=\"DSPG 2021 Symposium Proceedings\", style=\"height:42px;\">' +
+             x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/events/symposium2020/poster-sessions\">' +
+                              '<img src=\"DSPG_black-01.png\", alt=\"DSPG 2020 Symposium Proceedings\", style=\"height:42px;\">' +
                               '</a></div>';
+
              //changeLinks('dspg');
            } else {
              x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/economic-mobility/community-insights/case-studies\">' +
@@ -372,7 +374,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             column(3),
                             column(6,
                                    align = "center",
-                                   img(src = "Subset.jpg", align = "center", width = "100%")
+                                   img(src = "Subset.JPG", align = "center", width = "100%")
                             )
                           ),
                           tags$br(),
