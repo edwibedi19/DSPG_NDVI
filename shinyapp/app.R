@@ -246,7 +246,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    p("The Landsat 8 Data can be downloaded via the",  a(href = 'https://earthexplorer.usgs.gov/', ' USGS Earth Explorer '), "into large GeoTiff files. These files are then read as matrices of specific intensity values depending on which wavelength is being examined. Landsat GeoTiff files tend to get rather large, often being over 1gb in size because of the detail they capture of a particular region without falling victim to any kind of noise compression. "),
                                    p("The Landsat captures images corresponding to roughly 250x250 kilometer sections of earth. The different bands can be 
                                           combined to form all sorts of useful secondary images synthesized from the raw wavelengths. The image to the right is a true-color 
-                                          synthesis of the red, green and blue bands of an image of Las Angeles, California. ")
+                                          synthesis of the red, green and blue bands of an image of Los Angeles, California. ")
                             ),
                             column(3,
                                    img(src = "LALandsatImg.jpg", style = "display: inline; float: center;", height="100%", width="100%"),
@@ -587,7 +587,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    img(src = "fellow-Esha.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width="75%"),
                                    tags$br(), p(a(href = 'https://www.linkedin.com/in/esha-dwibedi-83a63476/', 'Esha Dwibedi', target = '_blank'), "(Virginia Tech, Behavioral and Experimental Economics)"),
                                    tags$br(), img(src = "fellow-seth.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width="75%"),
-                                   tags$br(), p(a(href = 'https://www.linkedin.com/in/aviseth/', 'Avi Seth', target = '_blank'), "(Virginia Tech, Computer Science);")
+                                   tags$br(), p(a(href = 'https://www.linkedin.com/in/aviseth/', 'Avi Seth', target = '_blank'), "(Virginia Tech, Computer Science)")
                             ),
                             column(2, align = "center",
                                    h4(strong("Faculty Advisor")), tags$br(),
@@ -604,7 +604,19 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    
                             )
                             
-                          )
+                          ),
+                          fluidRow(column(3),
+                                   column(6,
+                                         
+                                          h4(strong("Acknowledgments:")),
+                                          p("The team would also like to extend its gratitude to", a(href = 'https://spes.vt.edu/faculty-staff/faculty/seyyedhasani-hasan.html', 'Dr. Hasan Seyyedhasani', target = "_blank"), 
+                                            "and", a(href = 'http://www.uwyo.edu/wygisc/people/yang_di/di-short-cv.html', 'Dr. Di Yang'), 
+                                            "who helped us immensely with the data collection process and making us understand the nuances behind the project goals.")),
+                                          p("", style = "padding-top:20px;"),
+                                          br()
+                                   )
+                            
+                          
                  ),
                  tabPanel("References", value = "references",
                           column(3),
