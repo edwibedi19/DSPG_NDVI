@@ -213,7 +213,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    p("The Landsat 8 Data can be downloaded via the",  a(href = 'https://earthexplorer.usgs.gov/', ' USGS Earth Explorer '), "into large GeoTiff files. These files are then read as matrices of specific intensity values depending on which wavelength is being examined. Landsat GeoTiff files tend to get rather large, often being over 1gb in size because of the detail they capture of a particular region without falling victim to any kind of noise compression. "),
                                    p("The Landsat captures images corresponding to roughly 250x250 kilometer sections of earth. The different bands can be 
                                           combined to form all sorts of useful secondary images synthesized from the raw wavelengths. The image to the right is a true-color 
-                                          synthesis of the red, green and blue bands of an image of Las Angeles, California. ")
+                                          synthesis of the red, green and blue bands of an image of Los Angeles, California. ")
                             ),
                             column(3,
                                    img(src = "LALandsatImg.jpg", style = "display: inline; float: center;", height="100%", width="100%"),
