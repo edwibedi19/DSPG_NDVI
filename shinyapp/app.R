@@ -570,7 +570,19 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    
                             )
                             
-                          )
+                          ),
+                          fluidRow(column(3),
+                                   column(6,
+                                         
+                                          h4(strong("Acknowledgments:")),
+                                          p("The team would also like to extend its gratitude to", a(href = 'https://spes.vt.edu/faculty-staff/faculty/seyyedhasani-hasan.html', 'Dr. Hasan Seyyedhasani', target = "_blank"), 
+                                            "and", a(href = 'http://www.uwyo.edu/wygisc/people/yang_di/di-short-cv.html', 'Dr. Di Yang'), 
+                                            "who helped us immensely with the data collection process and making us understand the nuances behind the project goals.")),
+                                          p("", style = "padding-top:20px;"),
+                                          br()
+                                   )
+                            
+                          
                  ),
                  tabPanel("References", value = "references",
                           column(3),
