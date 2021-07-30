@@ -553,7 +553,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    img(src = "fellow-Esha.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width="75%"),
                                    tags$br(), p(a(href = 'https://www.linkedin.com/in/esha-dwibedi-83a63476/', 'Esha Dwibedi', target = '_blank'), "(Virginia Tech, Behavioral and Experimental Economics)"),
                                    tags$br(), img(src = "fellow-seth.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width="75%"),
-                                   tags$br(), p(a(href = 'https://www.linkedin.com/in/aviseth/', 'Avi Seth', target = '_blank'), "(Virginia Tech, Computer Science);")
+                                   tags$br(), p(a(href = 'https://www.linkedin.com/in/aviseth/', 'Avi Seth', target = '_blank'), "(Virginia Tech, Computer Science)")
                             ),
                             column(2, align = "center",
                                    h4(strong("Faculty Advisor")), tags$br(),
