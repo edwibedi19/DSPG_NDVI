@@ -54,8 +54,8 @@ jscode <- "function getUrlVars() {
            var x = document.getElementsByClassName('navbar-brand');
 
            if (mytype != 'economic') {
-            x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html\">' +
-                              '<img src=\"VTDSPG Logo.png\", alt=\"DSPG 2021 Symposium Proceedings\", style=\"height:42px;\">' +
+             x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/events/symposium2020/poster-sessions\">' +
+                              '<img src=\"DSPG_black-01.png\", alt=\"DSPG 2020 Symposium Proceedings\", style=\"height:42px;\">' +
                               '</a></div>';
 
              //changeLinks('dspg');
@@ -100,14 +100,14 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  tabPanel("Overview", value = "overview",
                           fluidRow(style = "margin: 2px;",
                                    align = "center",
-                                   #br("", style = "padding-top:2px;"),
-                                   #img(src = "VTDSPG-Logo.png", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
-                                   #br(""),
+                                   # br("", style = "padding-top:2px;"),
+                                   # img(src = "uva-dspg-logo.jpg", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
+                                   br(""),
                                    h1(strong("Analyzing Vegetative Health using Landsat 8 Satellite Imagery"),
                                       br(""),
                                       h4("Data Science for the Public Good Program"),
                                       h4("Virginia Tech"),
-                                      h4("Department of Agricultural and Applied Economics"),
+                                      h4("Biocomplexity Insititute"),
                                       br()
                                    )
                           ),
@@ -188,14 +188,14 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           There is also a panchromatic band that takes photographs at the 15m resolution, allowing for even higher-detail interpolation 
                                           of satellite images. "), tags$br()
                                           
-                                    
-                                          )
+                                          
+                                   )
                                    
-                                   ),
+                          ),
                           fluidRow(
                             column(12, align = "center",
                                    img(src = "Picture1.png", style = "text-align:left;")
-                                   )
+                            )
                           ),
                           fluidRow(
                             column(3),
@@ -205,14 +205,14 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                           in each photograph. The Landsat 8 captures eleven distinct “bands” of light:  "))
                           ),
                           fluidRow(style = "margin: 6px", align = "center",
-                            column(12, align = "center",
-                                   img(src = "Picture2.png", style = "text-align:right;", width = "550px"),
-                                   tags$br())
+                                   column(12, align = "center",
+                                          img(src = "Picture2.png", style = "text-align:right;", width = "550px"),
+                                          tags$br())
                           ),
                           fluidRow(
                             column(12, align = "center",
                                    img(src = "Picture3.png", style = "display: inline;")
-                                   )
+                            )
                           ),
                           fluidRow(
                             column(12, align = "center",
@@ -252,7 +252,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    p(style = "text-align: justify;", "This allows us to create aerial maps of NDVI for a particular region by combining individual pixel values. A Map of the NDVI of Southwest Virginia and Southern West Virginia is shown to the right:"),
                                    
                                    p(style = "text-align: justify;", "From these types of aerial maps of derived indices, conclusions about distribution and trends in the vegetative health over time and throughout the region can be made. The Normalized Difference Vegetative Index has been used in applications such as precision agriculture, drought monitoring, flooding and precipitation patterns. The aim of this project is to predict the NDVI by combining the band data from the Landsat 8 satellite to give an accurate prediction of how the NDVI will change over time.")
-                                   ),
+                            ),
                             column(6,
                                    img(src = "NDVI_2016_NRV.png", style = "display: inline", width = "550px"))
                           ),
@@ -327,7 +327,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    h4(strong("Introduction")),
                                    h4(strong("Top of Atmosphere Reflectance")),
                                    p(style = "text-align: justify;","When a satellite takes progressive images of the earth, it is rare that the sun is in the same position each time it takes a picture. Therefore, the angle of the sun needs to be taken into account when examining multiple images of the earth over time. The United States Geological Survey employs a formula to convert the raw intensity values captured by the Landsat to Top of Atmosphere reflectance. The values for the Sun Elevation angle and correction values are included in the metadata of each GeoTiff image. The United States Geological Survey Provides the following reference for converting raw values to Top of Atmosphere Reflectance:")
-                                   ),
+                            ),
                             column(6,
                                    img(src = "Picture10.png", style = "display: inline"),
                                    p(tags$small("Reference: United States Geological Survey ")))
@@ -388,8 +388,8 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    h4(strong("Building and Training a Neural Network")),
                                    p(style = "text-align: justify;", "Once all the 20x20 subsets of input and output pairs had been assembled, the team needed to create a neural network to handle the more than 4000 inputs per scene. This meant that in a single satellite image, there were going to be over 260,000,000 data points to train from. The team developed a feed-forward neural network with 5,475 neurons and over 4,000,000 weights connecting the neurons together to accommodate the large volume and diversity of data. The structure of the full neural network is below: "),
                                    p(style = "text-align: justify;", "The first 85,000 input/output scenes were used to train the model and the roughly 16,000 remaining were set aside to test the conditioned model. Over time, scenes from different time periods and areas of Virginia were used to increase the robustness of the model.  "),
-                                    
-                                   )
+                                   
+                            )
                             
                           ),
                           tags$br(),
@@ -404,7 +404,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             column(3,
                                    h4(strong("Testing Accuracy ")),
                                    p(style = "text-align: justify;", "The testing results below are for two different time periods of Southwest Virginia and an Image of Central Virginia. The accuracy percentage is the average percentage correct of predicted results and on the true values. The Loss Function used in this training was Means Absolute Error, which is the absolute value of the distance from the predicted values to the true values. The Loss values in the table are the average losses for all 16,000 test samples.  ")
-                                   ),
+                            ),
                             column(6,
                                    tags$br(),
                                    img(src = "Picture16.png", style = "display: inline", width = "550px")),
@@ -423,56 +423,76 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                  ),
                  
                  
-                 
-                 
                  # contact -----------------------------------------------------------
                  tabPanel("Our Team", value = "team",
                           fluidRow(style = "margin-left: 300px; margin-right: 300px;",
                                    h1(strong("Contact"), align = "center"),
                                    br(),
                                    h4(strong("Virginia Tech Data Science for the Public Good")),
-                                   p("The", a(href = 'https://biocomplexity.virginia.edu/social-decision-analytics/dspg-program', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"), 
-                                     "is a summer immersive program held at the", a(href = 'https://biocomplexity.virginia.edu/social-decision-analytics', 'University of Virginia Biocomplexity Institute’s Social and Decision Analytics division (SDAD).'), 
-                                     "In its seventh year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges around 
-                              critical social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences 
-                              to determine how information generated within every community can be leveraged to improve quality of life and inform public policy. For more information on program 
-                              highlights, how to apply, and our annual symposium, please visit", a(href = 'https://biocomplexity.virginia.edu/social-decision-analytics/dspg-program', 'the official Biocomplexity DSPG website.', target = "_blank")),
+                                   p("The", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"), 
+                                     "is a summer immersive program held at the", a(href = 'https://aaec.vt.edu/s', 'Virginia Tech Department of Agricultural and Applied Economics.'), 
+                                     "In its second year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges around critical social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences to determine how information generated within every community can be leveraged to improve quality of life and inform public policy. For more information on program highlights, how to apply, and our annual symposium, please visit", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'the official VT DSPG website.', target = "_blank")),
                                    p("", style = "padding-top:10px;")
                           ),
                           fluidRow(style = "margin-left: 300px; margin-right: 300px;",
                                    column(6, align = "center",
-                                          h4(strong("DSPG Team Leadership")),
-                                          img(src = "fellow-Esha.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
+                                          h4(strong("DSPG Team Members")),
                                           img(src = "fellow-seth.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
-                                          img(src = "faculty-posadas.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
-                                          p(a(href = 'https://www.linkedin.com/in/esha-dwibedi-83a63476/', 'Esha Dwibedi', target = '_blank'), "(Virginia Tech, Applied Microeconomics);"),
-                                            p(a(href = 'https://www.linkedin.com/in/aviseth/', 'Avi Seth', target = '_blank'), "(Virginia Tech, Computer Science);"),
-                                            p(a(href = 'https://www.linkedin.com/in/briannaposadas/', 'Dr. Brianna Posadas', target = '_blank'), "(Virginia Tech, Statistical and Data Science)."),
-                                          p("", style = "padding-top:10px;")
-                                   ),
-                                   column(6, align = "center",
-                                          h4(strong("DSPG Interns")),
-                                          img(src = "team-mukora.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
+                                          p(a(href = 'https://www.linkedin.com/in/aviseth/', 'Avi Seth', target = '_blank'), "(Virginia Tech, Computer Science);"),
+                                          img(src = "fellow-Esha.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px", height = "100px"),
+                                          p(a(href = 'https://www.linkedin.com/in/esha-dwibedi-83a63476/', 'Esha Dwibedi', target = '_blank'), "(Virginia Tech, Applied Microeconomics)"),
+                                          img(src = "team-mukora.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px", height = "100px"),
+                                          p(a(href = "www.linkedin.com/in/victormukora", 'Victor Mukora', target = '_blank'), "(Virginia Tech, Computational Modeling and Data Analytics)"),
                                           img(src = "team-rex.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "150px"),
-                                          #img(src = "team-sallie.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
-                                          p(a(href = "https://www.linkedin.com/in/tejapristavec/", 'Teja Pristavec', target = '_blank'), "(Project Lead, Research Assistant Professor);",
-                                            a(href = "https://biocomplexity.virginia.edu/brandon-kramer", 'Brandon Kramer', target = '_blank'), "(Postdoctoral Research Associate);",
-                                            a(href = 'https://biocomplexity.virginia.edu/sallie-keller', 'Sallie Keller', target = '_blank'), "(Division Director and Distinguished Professor)."),
-                                          p("", style = "padding-top:10px;")
+                                          p(a(href = "https://www.linkedin.com/in/atticus-rex-717581191/", 'Atticus Rex', target = '_blank'), "(Virginia Tech, Mechanical Engineering & Computational Modeling and Data Analytics)")
+                                   ), 
+                                   
+                                   column(6, align = "center",
+                                          h4(strong("Virginia Tech Faculty Members")),
+                                          img(src = "faculty-posadas.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
+                                          p(a(href = 'https://www.linkedin.com/in/briannaposadas/', 'Dr. Brianna Posadas', target = '_blank'), "(Virginia Tech, Statistical and Data Science)"),
                                    )
-                          ),
-                          fluidRow(style = "margin-left: 300px; margin-right: 300px;",
-                                   h4(strong("Project Stakeholders")),
-                                   p(a(href = 'https://www.linkedin.com/in/nancy-bell-aa293810/', 'Nancy Bell', target = '_blank'), "(Virginia Department of Health);",
-                                     a(href = 'https://www.linkedin.com/in/terri-alt-3138b4101/', 'Terri Alt', target = '_blank'), "(Virginia Cooperative Extension, Patrick County at Virginia Tech)."),
-                                   p("", style = "padding-top:10px;"),
-                                   h4(strong("Acknowledgments")),
-                                   p("We would like to thank Healthy Patrick County, an association of concerned Patrick County residents, and Brandon Kramer for their input to this project.")
                           )
                  ),
-                 tabPanel("References", value = "references"
-                   
+                 
+                 
+                 #references
+                 tabPanel("References", value = "references",
+                          h1(strong("References"), align = "center"),
+                          p("Acharya, T., Lee, D., Yang, I., & Lee, J. (2016). Identification of water bodies in a Landsat 8 Oli image using A j48 decision tree. Sensors, 16(7), 1075. https://doi.org/10.3390/s1607107"),
+                          p("Akhtar Ali Memon, Sher Muhammad, Said Rahman, Mateeul Haq, Flood monitoring and damage assessment using water indices: A case study of Pakistan flood-2012, The Egyptian Journal of Remote Sensing and Space Science, Volume 18, Issue 1, 2015, Pages 99-106, ISSN 1110-9823. "),
+                          p("Bakar, S.B.A. – Pradhan, B. – Lay, U.S., Abdullahi, S. (2016): Spatial assessment of land surface temperature and land use/land cover in Langkawi Island. 8th IGRSM International Conference and Exhibition on Remote Sensing & GIS (IGRSM 2016) IOP Publishing IOP Conf. Series: Earth and Environmental Science 37 (2016) 012064 doi:10.1088/1755- 1315/37/1/012064"),
+                          p("Bao, Z., Zhang, J., Wang, G., Guan, T., Jin, J., Liu, Y., Li, M., & Ma, T. (2021). The sensitivity of vegetation cover to climate change in multiple climatic zones using machine learning algorithms. Ecological Indicators, 124, 107443. https://doi.org/10.1016/j.ecolind.2021.107443 "),
+                          p("Chakroun, H.; Mouillot, F.; Hamdi, A. Regional equivalent water thickness modeling from remote sensing across a tree cover/LAI gradient in Mediterranean forests of Northern Tunisia. Remote Sens. 2015, 7, 1937–1961. "),
+                          p("Chen, X.-L. – Zhao, H.-M. – Li, P.-X. – Yin, Z.-Y. (2006): Remote sensing image-based analysis of the relationship between urban heat island and land use/cover changes. Remote Sensing of Environment. 104: 133-146"),
+                          p("Conversion to TOA Radiance. Using the USGS Landsat Level-1 Data Product. (n.d.). https://www.usgs.gov/core-science-systems/nli/landsat/using-usgs-landsat-level-1-data-product."),  
+                          p("Dawson, T., Sandoval, J. S., Sagan, V., & Crawford, T. (2018). A spatial analysis of the relationship between vegetation and poverty. ISPRS International Journal of Geo-Information, 7(3), 83. https://doi.org/10.3390/ijgi7030083"),
+                          p("El Bastawesy, M., Gabr, S., Mohamed, Ihab, 2015. Assessment of hydrological changes in the Nile River due to the construction of Renaissance Dam in Ethiopia. Egypt. J. Remote Sens. Space Sci. 18 (1), 65–75."),
+                          p("Fensholt, R.; Rasmussen, K.; Nielsen, T.T.; Mbow, C. Evaluation of earth observation based long term vegetation trends—Ntercomparing NDVI time series trend analysis consistency of Sahel from AVHRR GIMMS, Terra MODIS and SPOT VGT data. Remote Sens. Environ. 2009, 113, 1886–1898"),
+                          p("Gao, B.-C. NDWI—A normalized difference water index for remote sensing of vegetation liquid water from space. Remote Sens. Environ. 1996, 58, 257–266."),
+                          p("Gao, B.-cai. (1996). NDWI—A normalized Difference WATER index for remote sensing of VEGETATION liquid water from space. Remote Sensing of Environment, 58(3), 257–266. https://doi.org/10.1016/s0034-4257(96)00067-3"), 
+                          p("Gitelson, A.A.; Peng, Y.; Huemmrich, K.F. Relationship between fraction of radiation absorbed by photosynthesizing maize and soybean canopies and NDVI from remotely sensed data taken at close range and from MODIS 250m resolution data. Remote Sens. Environ. 2014, 147, 108–120."),
+                          p("Gu, Y. – Hunt, E. – Wardlow, B. – Basara, J.B. – Brown, J.F. - Verdin, J.P. (2008): Evaluation of MODIS NDVI and NDWI for vegetation drought monitoring using Oklahoma Mesonet soil moisture data, Geophysical Research Letters 35: L22401, doi:10.1029/2008GL035772."),
+                          p("Herrero, H., Waylen, P., Southworth, J., Khatami, R., Yang, D., & Child, B. (2020). A healthy Park NEEDS HEALTHY Vegetation: The story OF Gorongosa National Park in the 21st century. Remote Sensing, 12(3), 476. https://doi.org/10.3390/rs12030476"),  
+                          p("I.H.El-Gamily,G.Selim,E.A.Hermas, Wireless mobile field-based GIS science and technology for crisis management process: a case study of a fire event, Cairo, Egypt, Egypt. J. Remote Sens. Space Sci.,13(1)(2010), pp.21-29"), 
+                          p("Jackson, T.J.; Chen, D.; Cosh, M.; Li, F.; Anderson, M.; Walthall, C.; Doriaswamy, P.; Hunt, E.R. Vegetation water content mapping using Landsat data derived normalized difference water index for corn and soybeans. Remote Sens. Environ. 2004, 92, 475–482. "),
+                          p("Karnieli, A.; Agam, N.; Pinker, R.T.; Anderson, M.; Imhoff, M.L.; Gutman, G.G.; Panov, N.; Goldberg, A. Use of NDVI and land surface temperature for drought assessment: Merits and limitations. J. Clim. 2010, 23, 618–633."),
+                          p("Landsat surface REFLECTANCE-DERIVED SPECTRAL Indices. Landsat Normalized Difference Vegetation Index. (n.d.). https://www.usgs.gov/core-science-systems/nli/landsat/landsat-normalized-difference-vegetation-index?qt-science_support_page_related_con=0#qt-science_support_page_related_con. "),  
+                          p("Liu, W. – Lu, L. – Ye, C. – Liu, Y. (2009.): Relating urban surface temperature to surface characteristics in Beijing area of China. Proc. SPIE 7498, MIPPR 2009: Remote Sensing and GIS Data Processing and Other Applications, 74982I (30 October 2009); doi: 10.1117/12.833679"), 
+                          p("Ogashawara, I. – Bastos, V.S.B. (2012): A Quantitative Approach for Analyzing the Relationship between Urban Heat Islands and Land Cover. Remote Sensing. 4: 3596-3618. "), 
+                          p("Ouzemou, J.-E., El Harti, A., Lhissou, R., El Moujahid, A., Bouch, N., El Ouazzani, R., Bachaoui, E. M., & El Ghmari, A. (2018). Crop type mapping FROM pansharpened Landsat 8 NDVI data: A case of a highly fragmented and intensive agricultural system. Remote Sensing Applications: Society and Environment, 11, 94–103. https://doi.org/10.1016/j.rsase.2018.05.002"),
+                          p("Pettorelli, N. (2013). The normalized difference vegetation index. Oxford University Press. "),  
+                          p("Piragnolo, M.; Pirotti, F.; Guarnieri, A.; Vettore, A.; Salogni, G. Geo-spatial support for assessment of anthropic impact on biodiversity. Int. J. Geo-Inf. 2014, 3, 599–618. "),
+                          p("Pravalie, R., Sîrodoev, I., & Peptenatu, D. (2014). Detecting climate change effects on forest ecosystems in southwestern Romania USING Landsat TM Ndvi data. Journal of Geographical Sciences, 24(5), 815–832. https://doi.org/10.1007/s11442-014-1122-2"), 
+                          p("S.Lu,B.Wu,N.Yan,H.Wang, Water body mapping method with HJ-1A/B satellite imagery, Int. J. Appl. Earth Obs. Geoinf.,13(3)(2011), pp.428-434"), 
+                          p("S.K.McFeeters, The use of the normalized difference water index (NDWI) in the delineation of open water features, Int. J. Remote Sens.,17(7)(1996), pp.1425-1432"), 
+                          p("Sánchez-Ruiz, S.; Piles, M.; Sánchez, N.; Martínez-Fernández, J.; Vall-llossera, M.; Camps, A. Combining SMOS with visible and near/shortwave/thermal infrared satellite data for high resolution soil moisture estimates. J. Hidrol. 2014, 516, 273–283."),
+                          p("Serrano, J; Shahidian, S.; Marques da Silva, J. (2019) Evaluation of Normalized Difference Water Index as a Tool for Monitoring Pasture Seasonal and Inter-Annual Variability in a Mediterranean Agro-Silvo-Pastoral System. Water, 11, 62; doi:10.3390/w11010062"), 
+                          p("Su, H., Yang, D., & Yong, Y. (2015). MODIS-Landsat data fusion for Estimating Vegetation dynamics - a case study for Two ranches in SOUTHWESTERN TEXAS. Proceedings of 1st International Electronic Conference on Remote Sensing. https://doi.org/10.3390/ecrs-1-d016"), 
+                          p("Wang, X.; Fuller, D.O.; Setemberg, L.; Miralles-Wilhelm, F. Foliar nutrient and water content in subtropical tree islands: A new chemohydrodynamic link between satellite vegetation indices and foliar δ 15N values. Remote Sens. Environ. 2011, 3, 923–930."),
+                          p("Zhu, Y., Yang, K., Pan, E., Yin, X., & Zhao, J. (2018). Extraction and analysis of urban vegetation information based on remote sensing image. 2018 26th International Conference on Geoinformatics. https://doi.org/10.1109/geoinformatics.2018.8557075")   
                  ),
+              
                  inverse = T)
 
 
