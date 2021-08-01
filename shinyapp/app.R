@@ -670,14 +670,13 @@ server <- function(input, output, session) {
   output$NDVIMap <- renderLeaflet({
     
     ## outline of Floyd
-    virginiaCounty <- st_read("data/VirginiaCounty.shp")
     floyd <- virginiaCounty[5,] %>% st_transform(crs = "+init=epsg:4326")
     m <- leaflet(options = leafletOptions(minzoom = 19))
     
     
     
     
-    geotiffFile = "./www/2021_NN_Predictions.tiff"
+    geotiffFile = "./www/2021_NN_Predictions_2.tif"
     
     my_file = raster(geotiffFile)
     
