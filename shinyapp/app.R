@@ -19,14 +19,14 @@ library(leaflet)
 library(leafem)
 library(raster) 
 library(stars)
-
+library(rmapshaper)
 prettyblue <- "#232D4B"
 navBarBlue <- '#427EDC'
 options(spinner.color = prettyblue, spinner.color.background = '#ffffff', spinner.size = 3, spinner.type = 7)
 
 colors <- c("#232d4b","#2c4f6b","#0e879c","#60999a","#d1e0bf","#d9e12b","#e6ce3a","#e6a01d","#e57200","#fdfdfd")
 
-virginiaCounty <- st_read("data/VirginiaCounty.shp")
+virginiaCounty <- ms_simplify(st_read("data/VirginiaCounty.shp"))
 
 geotiffFile = "./www/2021_NN_Predictions_2.tif"
 
@@ -246,7 +246,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    p("The Landsat 8 Data can be downloaded via the",  a(href = 'https://earthexplorer.usgs.gov/', ' USGS Earth Explorer '), "into large GeoTiff files. These files are then read as matrices of specific intensity values depending on which wavelength is being examined. Landsat GeoTiff files tend to get rather large, often being over 1gb in size because of the detail they capture of a particular region without falling victim to any kind of noise compression. "),
                                    p("The Landsat captures images corresponding to roughly 250x250 kilometer sections of earth. The different bands can be 
                                           combined to form all sorts of useful secondary images synthesized from the raw wavelengths. The image to the right is a true-color 
-                                          synthesis of the red, green and blue bands of an image of Las Angeles, California. ")
+                                          synthesis of the red, green and blue bands of an image of Los Angeles, California. ")
                             ),
                             column(3,
                                    img(src = "LALandsatImg.jpg", style = "display: inline; float: center;", height="100%", width="100%"),
@@ -461,7 +461,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             column(3),
                             column(6,
                                    h4(strong("Overview")),
-                                   p("Floyd County is located in South-west Virginia and suffers from seasonal water scarcity and has observed a gradual decline in groundwater level over the last few decades. The county relies heavily on well water and natural springs for the bulk of its residential and commercial water requirements. This makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. However, the county currently has very limited data on its water resources."),
+                                   p("Floyd County is located in Southwest Virginia, suffers from seasonal water scarcity and has observed a gradual decline in groundwater level over the last few decades. The county relies heavily on well water and natural springs for the bulk of its residential and commercial water requirements. This makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. However, the county currently has very limited data on its water resources."),
                                    p("The Normalized Difference Vegetation Index is a powerful indicator to describe vegetative health. With the model synthesized in the aforementioned chapters, it is now possible to provide a high-resolution prediction for the year 2023 of the distribution of vegetative health in Floyd County, Virginia.")
                             )
                           ),
