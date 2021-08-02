@@ -19,49 +19,15 @@ library(leaflet)
 library(leafem)
 library(raster) 
 library(stars)
-library(rmapshaper)
+
 prettyblue <- "#232D4B"
 navBarBlue <- '#427EDC'
 options(spinner.color = prettyblue, spinner.color.background = '#ffffff', spinner.size = 3, spinner.type = 7)
 
 colors <- c("#232d4b","#2c4f6b","#0e879c","#60999a","#d1e0bf","#d9e12b","#e6ce3a","#e6a01d","#e57200","#fdfdfd")
 
-virginiaCounty <- ms_simplify(st_read("data/VirginiaCounty.shp"))
-
-geotiffFile = "./www/2021_NN_Predictions_2.tif"
-
-
-# Load raster
-
-my_file = raster(geotiffFile)
-
-
-
-# set 0 to NA
-
-my_file[!(my_file > 0)] = NA
-
-
-
-# Get Floyd and transform to same CRS as the raster
-
-floyd <- virginiaCounty[5,] %>% st_transform(crs = "+proj=utm +zone=17 +datum=WGS84 +units=m +no_defs")
-
-
-
-# crop the raster to the extent of floyd - reduces size greatly again
-
-my_file_crop = raster::crop(my_file, floyd)
-
-
-
-# transform floyd to crs that leaflet can plot
-
-floyd <- st_transform(floyd, crs = "+init=epsg:4326")
-
 tags$cite()
 
-# CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 jscode <- "function getUrlVars() {
                 var vars = {};
@@ -70,7 +36,6 @@ jscode <- "function getUrlVars() {
                 });
                 return vars;
             }
-
            function getUrlParam(parameter, defaultvalue){
                 var urlparameter = defaultvalue;
                 if(window.location.href.indexOf(parameter) > -1){
@@ -78,33 +43,26 @@ jscode <- "function getUrlVars() {
                     }
                 return urlparameter;
             }
-
             var mytype = getUrlParam('type','Empty');
-
             function changeLinks(parameter) {
                 links = document.getElementsByTagName(\"a\");
-
                 for(var i = 0; i < links.length; i++) {
                    var link = links[i];
                    var newurl = link.href + '?type=' + parameter;
                    link.setAttribute('href', newurl);
                  }
             }
-
            var x = document.getElementsByClassName('navbar-brand');
-
            if (mytype != 'economic') {
              x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/events/symposium2020/poster-sessions\">' +
                               '<img src=\"DSPG_black-01.png\", alt=\"DSPG 2020 Symposium Proceedings\", style=\"height:42px;\">' +
                               '</a></div>';
-
              //changeLinks('dspg');
            } else {
              x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/economic-mobility/community-insights/case-studies\">' +
                               '<img src=\"DSPG_black-01.png\", alt=\"Gates Economic Mobility Case Studies\", style=\"height:42px;\">' +
                               '</a></div>';
-
-             //changeLinks('economic');
+             //changeLinks('economic'); 
            }
            "
 
@@ -461,7 +419,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             column(3),
                             column(6,
                                    h4(strong("Overview")),
-                                   p("Floyd County is located in Southwest Virginia, suffers from seasonal water scarcity and has observed a gradual decline in groundwater level over the last few decades. The county relies heavily on well water and natural springs for the bulk of its residential and commercial water requirements. This makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. However, the county currently has very limited data on its water resources."),
+                                   p("Floyd County is located in South-west Virginia and suffers from seasonal water scarcity and has observed a gradual decline in groundwater level over the last few decades. The county relies heavily on well water and natural springs for the bulk of its residential and commercial water requirements. This makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. However, the county currently has very limited data on its water resources."),
                                    p("The Normalized Difference Vegetation Index is a powerful indicator to describe vegetative health. With the model synthesized in the aforementioned chapters, it is now possible to provide a high-resolution prediction for the year 2023 of the distribution of vegetative health in Floyd County, Virginia.")
                             )
                           ),
@@ -476,7 +434,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                             ),
                             column(4,
                                    h4(strong("NDVI Predictions for August 2023")),
-                                   withSpinner(leafletOutput("NDVIMap")), 
+                                   img(src="FloydPredictions.JPG", height="100%", width="100%", align="left"),
                                    tags$small("Please allow up to a minute for the graphic to load. Refresh if nothing loads.", align = "center")
                             )
                             
@@ -484,48 +442,47 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                           )
                  ),
                  
-                ##NDVI Predictions -----------------------------------------------------------
-                 tabPanel("Well-Depth Prediction", value = "welldepth",
-                          fluidRow(style = "margin: 6px;",
-                                   h1(strong("Predicting Well-Depth in Floyd County, Virginia"), align = "center"),
-                                   column(3),
-                                   column(6,
-                                          h4(strong("Overview")),
-                                          p("The Landsat 8 imagery provide a rich dataset that can be utilized for various purposes. One major application of the constructed indices in our project was in the prediction of water levels in areas which suffer from scarcity of available data. Groundwater consumption has become a critical element of development in areas with overall and/or seasonal water scarcity. Excessive withdrawal from groundwater sources might prove to be unsustainable unless the groundwater aquifers are regularly replenished."),
-                                          p("Unfortunately, groundwater use is difficult to monitor globally and even in the U.S., wells that are drilled on private property can be exempt from official monitoring. This is also the case for the region under study here, Floyd County, Virginia. Due to lack of official monitoring, there is an acute dearth of well water data for the entire county."),
-                                          p("Because Floyd County suffers from seasonal water scarcity and a gradual decline in groundwater level, this makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. The aim of this section of the project is to use a machine learning model to give an accurate predictor of well-levels on areas without established well-sites.")
-                                   )
-                          ),
-                          fluidRow(
-                            column(3),
-                            column(6,
-                                   h4(strong("Well-Depth Methodology")),
-                                   p("Our project employed a model to predict the well water level within the county utilizing the constructed indices and other readily available data on elevation and precipitation for the county. The NDWI values were hypothesized to be indicative of changes in groundwater levels across seasons over years. Elevation changes significantly impact NDWI values and were hence included in the model. Precipitation is also a major source of groundwater replenishment within most areas in Virginia and was hence also include in the model. "),
-                                   p("The estimation of the water table level was performed through a Long Short-Term Memory (LSTM) network, which is a Recurrent Neural Network (RNN) architecture used in machine learning. The model used data on well water levels (measured in feet below land surface), taken from ten well sites documented under USGS for counties surrounding Floyd. Based on the location (latitude and longitude) of these well sites, corresponding data on NDWI values, elevation of the sites as well as precipitation values from the year 2012 to 2021 was added from Google Earth Engine. The resulting panel dataset was analyzed using a LSTM model, to get temporal predictions of well water level from the training data for the various well sites. This model was also used to spatially and temporally predict the well water level at Floyd given the county’s location, and the elevation, NDWI and precipitation values for the county. ")
-                            )
-                          ),
-                          fluidRow(
-                            column(3),
-                            column(3,
-                                   h4(strong("Well-Depth Prediction Results")),
-                                   p("Unfortunately, the model was not able to provide an accurate prediction of the true well-depth for a given area. The model hovered around a 75% accuracy in the training sets, and a 48.27% accuracy when being tested. A graph of the model’s prediction of well-depth over time is shown in the graph to the right.  This shows that well-depth depends on more than the data our team had access to and the need for further research to be able to predict water-table levels is high. This is extremely important to regions like Floyd who do not have the means to drill wells in private locations and need a remote sensing tool to estimate groundwater levels in these inaccessible areas. The results for the last well to be tested are shown to the right")
-                                   
-                            ),
-                            column(3,
-                                   # This is where well-depth prediction graph goes
-                                   img(src = "WellDepthPredictions.png", width = "100%")
-                            )
-                          ),
-                          
-                          fluidRow(
-                            column(3),
-                            column(6,
-                                   h4(strong("Limitations")),
-                                   p("One major limitation of the model was the lack of training data used in the LSTM model. Given the dearth of data in counties surrounding Floyd, the data used for training the model came from only ten well sites. Even within these well sites, the well water level data is sporadic across months. This is often coupled with the lack of corresponding NDWI data for the specific date ranges due to the limitations of satellite data collection, which often suffers due to any kind of atmospheric disturbances. This lack of sufficient data required for training the model might result in significant underfitting of the model which would result in biased predictions.  "),
-                                   p("Our model also does not include other variables relevant variables which might significantly impact water table level predictions. These factors include geological variables like soil type, permeability of the soil, as well as topology changes within the county, which all determine the extent to which groundwater can be replenished. Other relevant variables would include vegetation type and the extent of homogeneity of the vegetation, which would also impact the NDWI variations within a region. These factors can be further explored in future research on well water predictions using NDWI. ")
-                            )
-                          )
-                 ),
+                 # NDVI Predictions -----------------------------------------------------------
+                 #tabPanel("Well-Depth Prediction", value = "welldepth",
+                 #         fluidRow(style = "margin: 6px;",
+                 #                  h1(strong("Predicting Well-Depth in Floyd County, Virginia"), align = "center"),
+                 #                  column(3),
+                 #                  column(6,
+                 #                         h4(strong("Overview")),
+                 #                         p("The Landsat 8 imagery provide a rich dataset that can be utilized for various purposes. One major application of the constructed indices in our project was in the prediction of water levels in areas which suffer from scarcity of available data. Groundwater consumption has become a critical element of development in areas with overall and/or seasonal water scarcity. Excessive withdrawal from groundwater sources might prove to be unsustainable unless the groundwater aquifers are regularly replenished."),
+                 #                         p("Unfortunately, groundwater use is difficult to monitor globally and even in the U.S., wells that are drilled on private property can be exempt from official monitoring. This is also the case for the region under study here, Floyd County, Virginia. Due to lack of official monitoring, there is an acute dearth of well water data for the entire county."),
+                 #                         p("Because Floyd County suffers from seasonal water scarcity and a gradual decline in groundwater level, this makes estimation of the county’s water resources essential for any potential residential and industrial growth in order to make informed water management plans. The aim of this section of the project is to use a machine learning model to give an accurate predictor of well-levels on areas without established well-sites.")
+                 #                  )
+                 #         ),
+                 #         fluidRow(
+                 #           column(3),
+                 #           column(6,
+                 #                  h4(strong("Well-Depth Methodology")),
+                 #                  p("Our project employed a model to predict the well water level within the county utilizing the constructed indices and other readily available data on elevation and precipitation for the county. The NDWI values were hypothesized to be indicative of changes in groundwater levels across seasons over years. Elevation changes significantly impact NDWI values and were hence included in the model. Precipitation is also a major source of groundwater replenishment within most areas in Virginia and was hence also include in the model. "),
+                 #                  p("The estimation of the water table level was performed through a Long Short-Term Memory (LSTM) network, which is a Recurrent Neural Network (RNN) architecture used in machine learning. The model used data on well water levels (measured in feet below land surface), taken from ten well sites documented under USGS for counties surrounding Floyd. Based on the location (latitude and longitude) of these well sites, corresponding data on NDWI values, elevation of the sites as well as precipitation values from the year 2012 to 2021 was added from Google Earth Engine. The resulting panel dataset was analyzed using a LSTM model, to get temporal predictions of well water level from the training data for the various well sites. This model was also used to spatially and temporally predict the well water level at Floyd given the county’s location, and the elevation, NDWI and precipitation values for the county. ")
+                 #           )
+                 #         ),
+                 #         fluidRow(
+                 #           column(3),
+                 #           column(3,
+                 #                  h4(strong("Well-Depth Prediction Results")),
+                 #                  p("Unfortunately, the model was not able to provide an accurate prediction of the true well-depth for a given area. The model hovered around a XX% accuracy in the training sets, and a XX% accuracy when being tested. A graph of the model’s prediction of well-depth over time is shown in the graph to the right.  This shows that well-depth depends on more than the data our team had access to and the need for further research to be able to predict water-table levels is high. This is extremely important to regions like Floyd who do not have the means to drill wells in private locations and need a remote sensing tool to estimate groundwater levels in these inaccessible areas. The results are shown to the right")
+                 #                  
+                 #           ),
+                 #           column(6,
+                 #                  # This is where well-depth prediction graph goes
+                 #           )
+                 #         ),
+                 #         
+                 #         fluidRow(
+                 #           column(3),
+                 #           column(6,
+                 #                  h4(strong("Limitations")),
+                 #                  p("One major limitation of the model was the lack of training data used in the LSTM model. Given the dearth of data in counties surrounding Floyd, the data used for training the model came from only ten well sites. Even within these well sites, the well water level data is sporadic across months. This is often coupled with the lack of corresponding NDWI data for the specific date ranges due to the limitations of satellite data collection, which often suffers due to any kind of atmospheric disturbances. This lack of sufficient data required for training the model might result in significant underfitting of the model which would result in biased predictions.  "),
+                 #                  p("Our model also does not include other variables relevant variables which might significantly impact water table level predictions. These factors include geological variables like soil type, permeability of the soil, as well as topology changes within the county, which all determine the extent to which groundwater can be replenished. Other relevant variables would include vegetation type and the extent of homogeneity of the vegetation, which would also impact the NDWI variations within a region. These factors can be further explored in future research on well water predictions using NDWI. ")
+                 #           )
+                 #         )
+                 #),
                  
                  tabPanel("Policy Implications", value = "policy",
                           fluidRow(
@@ -604,17 +561,7 @@ ui <- navbarPage(title = "Analyzing Vegetative Health using Landsat 8 Satellite 
                                    
                             )
                             
-                          ),
-                          fluidRow(column(3),
-                                   column(6,
-                                         
-                                          h4(strong("Acknowledgments:")),
-                                          p("The team would also like to extend its gratitude to", a(href = 'https://spes.vt.edu/faculty-staff/faculty/seyyedhasani-hasan.html', 'Dr. Hasan Seyyedhasani', target = "_blank"), 
-                                            "and", a(href = 'http://www.uwyo.edu/wygisc/people/yang_di/di-short-cv.html', 'Dr. Di Yang'), 
-                                            "who helped us immensely with the data collection process and making us understand the nuances behind the project goals.")),
-                                          p("", style = "padding-top:20px;"),
-                                          br()
-                                   )
+                          )
                  ),
                  tabPanel("References", value = "references",
                           column(3),
@@ -668,13 +615,14 @@ server <- function(input, output, session) {
   output$NDVIMap <- renderLeaflet({
     
     ## outline of Floyd
+    virginiaCounty <- st_read("data/VirginiaCounty.shp")
     floyd <- virginiaCounty[5,] %>% st_transform(crs = "+init=epsg:4326")
     m <- leaflet(options = leafletOptions(minzoom = 19))
     
     
     
     
-    geotiffFile = "./www/2021_NN_Predictions_2.tif"
+    geotiffFile = "./www/2021_NN_Predictions.tiff"
     
     my_file = raster(geotiffFile)
     
@@ -684,8 +632,6 @@ server <- function(input, output, session) {
       palette = 'viridis',
       domain = c(0, 1)
     )
-    
-    m <- leaflet()
     
     m <- addGeoRaster(m, my_file,
                       opacity = 0.55,
